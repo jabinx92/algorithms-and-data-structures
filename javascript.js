@@ -229,5 +229,121 @@ for(let key in object1) {
 return true;
 }
 // console.log(validAnagram('', '')) //true
-console.log(validAnagram('hello', 'olleh')) //false
+// console.log(validAnagram('hello', 'olleh')) //false
 // console.log(validAnagram('abc', 'wada')) //false
+
+//-------------------------------------------------------------------
+
+//multiple pointers
+//creating pointers or values that correspond to an index or position and move towards the beginning, end or middle based on a certain condition - very efficient for solving problems with minimal space complexity as well
+
+//write a function called sumZero which accepts a sorted array of integers. the function should find the first pair where the sum is 0. return an array that includes both values that sum to zero or undefined if a pair does not exist.
+
+//multiple pointers example. big o - time complexity - O(n^2) - space - o(1)
+function sumZero(arr){
+  for(let i = 0; i < arr.length; i++){
+      for(let j = i+1; j < arr.length; j++){
+          if(arr[i] + arr[j] === 0){
+              return [arr[i], arr[j]];
+          }
+      }
+  }
+}
+
+
+// console.log(sumZero([-4,-3,-2,-1,0,1,2,5])) //[-2,2]
+sumZero([-3,-2,-1,1,1,2,3]) // [-3,3]
+sumZero([-2,0,1,3]) //undefined
+sumZero([1,2,3]) //undefined
+
+//the problem with this example is that if you have an array with 10000 numbers, the nested for loop will be a lot.
+
+//refactored
+function sumZero(arr){
+  let left = 0;
+  let right = arr.length - 1;
+  while(left<right) {
+    let sum = arr[left] + arr[right];
+    if(sum === 0) {
+      return [arr[left], arr[right]];
+    } else if (sum > 0) {
+      right--;
+    } else {
+      left++;
+    }
+  }
+} // time complexity - O(n) | space complexity - O(1)
+
+// console.log(sumZero([-4,-3,-2,-1,0,1,2,5]))
+
+
+//big o - time - O(n), space - O(n)
+function countUniqueValues(arr){
+let pushedArray = [];
+
+for(var i = 0; i < arr.length; i++) {
+  let pointer1 = arr[i];
+  let pointer2 = arr[i+1];
+  if(pointer1 !== pointer2){
+    pushedArray.push(pointer1);
+    // console.log(pushedArray);
+
+  }
+
+}
+return pushedArray.length;
+}
+
+// console.log(countUniqueValues([1,2,3,4,4,4,7,7,12,12,13])) // 7
+// console.log(countUniqueValues([1,1,1,1,1,2]))
+
+//-----------------------------------------------------------
+//sliding window - creating a window which can either be an array or number from one position to another. depending on a certain condition, the window either increases or closes(and a new window is created) - sliding window is very useful for keeping track of a subset of data in an array/string etc.
+
+//ex - write a function called maxSubarraySum which accepts an array of integers and a number called n. The function should calculate the maximum sum of n consecutive elements in the array
+
+//big o | time complexity = O(n^2)
+function maxSubarraySum(arr, num) {
+  if ( num > arr.length){
+    return null;
+  }
+  var max = -Infinity;
+  for (let i = 0; i < arr.length - num + 1; i ++){
+    temp = 0;
+    for (let j = 0; j < num; j++){
+      temp += arr[i + j];
+    }
+    if (temp > max) {
+      max = temp;
+    }
+  }
+  return max;
+}
+
+// maxSubarraySum([1,2,5,2,8,1,5],2) // 10 because 2+8=10
+// maxSubarraySum([1,2,5,2,8,1,5], 4) // 17 because 2+5+2+7=17
+// maxSubarraySum([4,2,1,6],1) // 6 because 6=6
+// maxSubarraySum([],4) //null
+
+//refactor - 
+function maxSubarraySum(arr,num) { //time complexity - O(n)
+  let maxSum = 0;
+  let tempSum = 0;
+  if (arr.length < num) return null;
+  for(let i = 0; i < num; i++) {
+    maxSum += arr[i];
+    console.log(maxSum) //3
+  }
+  tempSum = maxSum; 
+  for (let i = num; i < arr.length; i++) { 
+    tempSum = tempSum - arr[i - num]  + arr[i]; //7
+    maxSum = Math.max(maxSum, tempSum);
+  }
+  return maxSum;
+}
+
+// console.log(maxSubarraySum([1,2,5,2,8,1,5], 4))
+console.log(maxSubarraySum([1,2,5,2,8,1,5],2)) // 10 because 2+8=10
+
+//============================================================
+//Divide and conquer - this pattern involves diviring a data set into smaller chunks and then repeating a process with a subset of data. this pattern can tremendously decrease time complexity
