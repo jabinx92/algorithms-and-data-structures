@@ -196,7 +196,7 @@ function same(arr1, arr2){
 
 // console.log(same([1,2,3,2,5], [9,1,4,4,11]))
 
-
+//Big O Time complexity - O(n) linear
 function validAnagram(word1, word2){
 // add whatever parameters you deem necessary - good luck!
 let object1 = {};
