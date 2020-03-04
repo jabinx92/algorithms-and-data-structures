@@ -343,7 +343,88 @@ function maxSubarraySum(arr,num) { //time complexity - O(n)
 }
 
 // console.log(maxSubarraySum([1,2,5,2,8,1,5], 4))
-console.log(maxSubarraySum([1,2,5,2,8,1,5],2)) // 10 because 2+8=10
+// console.log(maxSubarraySum([1,2,5,2,8,1,5],2)) // 10 because 2+8=10
 
 //============================================================
 //Divide and conquer - this pattern involves diviring a data set into smaller chunks and then repeating a process with a subset of data. this pattern can tremendously decrease time complexity
+
+//example - given a sorted array of integers, write a function called search, that accepts a value and returns the index where the value passed to the function is lcoated. if the value is not found, return -1.
+
+
+//linear search | time complexity = O(n)
+function search(arr, val){
+  for(let i = 0; i < arr.length; i++) {
+    if(arr[i] === val) {
+      return i;
+    }
+  }
+  return -1;
+}
+search([1,2,3,4,5,6], 4) // 3
+search([1,2,3,4,5,6], 6) // 5
+search([1,2,3,4,5,6], 11) // -1
+
+//refactor
+//binary search - lets say you have an array of 1000 numbers, you want to find a specific number but you dont want to use for loop to iterate through whole array, rather you use binary search to cut the array in half and if number is in that half then good, else let go of the cut-in-half-array, then repeat til you find the number.
+
+
+
+//--------------------------------------------------------------
+//frequency counter- same frequency
+//write a function called sameFrequency. given two positive integers, find out if the two numbers have the same frequency of digits. Your solution must have O(N) time complexity.
+
+function sameFrequency(num1, num2){
+  if(num1.toString().length !== num2.toString().length) return false;
+  let split1 = num1.toString().split('').sort()
+  let split2 = num2.toString().split('').sort()
+  console.log(split1);
+  console.log(split2)
+  for(var i = 0; i < split1.length; i++) {
+    if(split1[i] !== split2[i]) {
+      return false;
+    }
+    // return true;
+  }
+    
+  // let obj1 = {};
+  // let obj2 = {};
+  // console.log(split1)
+  // console.log(split2)
+  
+  // for(let val of split1) {
+  //   obj1[val] = (obj1[val] || 0) + 1
+  // }
+
+  // for(let val of split2) {
+  //   obj2[val] = (obj2[val] || 0) + 1
+  // }
+  // console.log(obj1);
+  // console.log(obj2);
+
+  // for(let key in obj1) {
+  //   if(!(key in obj2)) {
+  //     return false;
+  //   }
+  //   console.log(obj2[key])
+  //   console.log(obj1[key])
+  //   if(obj2[key] !== obj1[key]) {
+  //     return false;
+  //   }
+  // }
+  return true;
+}
+
+console.log(sameFrequency(182,281)) //true
+console.log(sameFrequency(34, 14)) //false
+console.log(sameFrequency(3589578, 5879385)) //true
+console.log(sameFrequency(22, 222)) //false
+
+//------------------------------------------------------------------------------
+
+function areThereDuplicates(...list) {
+  
+}
+
+areThereDuplicates(1,2,3) //false
+areThereDuplicates(1,2,2) //true
+areThereDuplicates('a','b','c','a') //true
