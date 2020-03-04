@@ -435,9 +435,9 @@ function areThereDuplicates(...args) {
   return false;
 }
 
-console.log(areThereDuplicates(1,2,3)) //false
-console.log(areThereDuplicates(1,2,2)) //true
-console.log(areThereDuplicates('a','b','c','a')) //true
+// console.log(areThereDuplicates(1,2,3)) //false
+// console.log(areThereDuplicates(1,2,2)) //true
+// console.log(areThereDuplicates('a','b','c','a')) //true
 
 //------------------------------------------------------------------------------
 
@@ -453,7 +453,49 @@ function averagePair(arr, num){
   }
   return false;
 }
-console.log(averagePair([1,2,3], 2.5)) //true (2+3 /2 = 2.5)
-console.log(averagePair([1,3,3,5,6,7,10,12,19], 8)) //true
+// console.log(averagePair([1,2,3], 2.5)) //true (2+3 /2 = 2.5)
+// console.log(averagePair([1,3,3,5,6,7,10,12,19], 8)) //true
 
+
+//alternate solution
+function averagePair(arr, num){
+  let start = 0
+  let end = arr.length-1;
+  while(start < end){ //0 < 2
+    let avg = (arr[start]+arr[end]) / 2 
+    if(avg === num) return true;
+    else if(avg < num) start++
+    else end--
+  }
+  return false;
+}
 //---------------------------------------------------------
+//multiple pointers -isSubsequence
+//Write a function called isSubsequence which takes in two strings and checks whether the characters in the first string form a subsequence of the characters in the second string. In other words, the function should check wther the charcters in the first string appear somewhere in the second string, without their order changing.
+
+function isSubsequence(str1, str2) {
+  if(str1.length == 0 || str2.length == 0) {
+      return false;
+  }
+  
+  let str1Ptr = 0; //4
+  let str2Ptr = 0; //5
+  let substring = "";
+  
+  while(str1Ptr < str1.length && str2Ptr < str2.length) {
+      if(str2[str2Ptr] == str1[str1Ptr]) {
+          substring = substring.concat(str2[str2Ptr]); //sing
+          str2Ptr++;
+          str1Ptr++;
+      }else {
+          str2Ptr++;
+      }
+  }
+
+  return substring == str1;
+}
+
+// console.log(isSubsequence('hello','hello world')); //true
+console.log(isSubsequence('sing','sting')); //true
+// console.log(isSubsequence('abc','abracadabra')); //true
+// console.log(isSubsequence('abc','acb')); //false (order matters)
