@@ -414,17 +414,29 @@ function sameFrequency(num1, num2){
   return true;
 }
 
-console.log(sameFrequency(182,281)) //true
-console.log(sameFrequency(34, 14)) //false
-console.log(sameFrequency(3589578, 5879385)) //true
-console.log(sameFrequency(22, 222)) //false
+// console.log(sameFrequency(182,281)) //true
+// console.log(sameFrequency(34, 14)) //false
+// console.log(sameFrequency(3589578, 5879385)) //true
+// console.log(sameFrequency(22, 222)) //false
 
 //------------------------------------------------------------------------------
 
-function areThereDuplicates(...list) {
-  
+function areThereDuplicates(...args) {
+  //put arguments into an array
+  let argList = [...args].sort();
+  console.log(argList)
+  //loop the array to see if the current index is the same as 
+  for(var i = 0; i < argList.length; i++) {
+    console.log(argList[i], argList[i + 1])
+    if (argList[i] === argList[i + 1]){
+      return true;
+    }
+  }
+  return false;
 }
 
-areThereDuplicates(1,2,3) //false
-areThereDuplicates(1,2,2) //true
-areThereDuplicates('a','b','c','a') //true
+console.log(areThereDuplicates(1,2,3)) //false
+console.log(areThereDuplicates(1,2,2)) //true
+console.log(areThereDuplicates('a','b','c','a')) //true
+
+//------------------------------------------------------------------------------
