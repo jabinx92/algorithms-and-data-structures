@@ -440,3 +440,18 @@ console.log(areThereDuplicates(1,2,2)) //true
 console.log(areThereDuplicates('a','b','c','a')) //true
 
 //------------------------------------------------------------------------------
+
+//multiple pointers - averagePair
+function averagePair(arr, num){
+  // add whatever parameters you deem necessary - good luck!
+  for(var i = 0; i < arr.length; i++) {
+    for(var j = i + 1; j < arr.length; j++) {
+      if(arr[i] + arr[j] / 2 === num) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+console.log(averagePair([1,2,3], 2.5)) //true (2+3 /2 = 2.5)
+console.log(averagePair([1,3,3,5,6,7,10,12,19], 8)) //true
