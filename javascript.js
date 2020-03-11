@@ -320,10 +320,10 @@ function maxSubarraySum(arr, num) {
   return max;
 }
 
-// maxSubarraySum([1,2,5,2,8,1,5],2) // 10 because 2+8=10
-// maxSubarraySum([1,2,5,2,8,1,5], 4) // 17 because 2+5+2+7=17
-// maxSubarraySum([4,2,1,6],1) // 6 because 6=6
-// maxSubarraySum([],4) //null
+// console.log(maxSubarraySum([1,2,5,2,8,1,5],2)) // 10 because 2+8=10
+// console.log(maxSubarraySum([1,2,5,2,8,1,5], 4)) // 17 because 2+5+2+7=17
+// console.log(maxSubarraySum([4,2,1,6],1)) // 6 because 6=6
+// console.log(maxSubarraySum([],4)) //null
 
 //refactor - 
 function maxSubarraySum(arr,num) { //time complexity - O(n)
@@ -332,7 +332,7 @@ function maxSubarraySum(arr,num) { //time complexity - O(n)
   if (arr.length < num) return null;
   for(let i = 0; i < num; i++) {
     maxSum += arr[i];
-    console.log(maxSum) //3
+    // console.log(maxSum) //3
   }
   tempSum = maxSum; 
   for (let i = num; i < arr.length; i++) { 
@@ -377,8 +377,8 @@ function sameFrequency(num1, num2){
   if(num1.toString().length !== num2.toString().length) return false;
   let split1 = num1.toString().split('').sort()
   let split2 = num2.toString().split('').sort()
-  console.log(split1);
-  console.log(split2)
+  // console.log(split1);
+  // console.log(split2)
   for(var i = 0; i < split1.length; i++) {
     if(split1[i] !== split2[i]) {
       return false;
@@ -435,9 +435,9 @@ function areThereDuplicates(...args) {
   return false;
 }
 
-console.log(areThereDuplicates(1,2,3)) //false
-console.log(areThereDuplicates(1,2,2)) //true
-console.log(areThereDuplicates('a','b','c','a')) //true
+// console.log(areThereDuplicates(1,2,3)) //false
+// console.log(areThereDuplicates(1,2,2)) //true
+// console.log(areThereDuplicates('a','b','c','a')) //true
 
 //------------------------------------------------------------------------------
 
@@ -453,5 +453,36 @@ function averagePair(arr, num){
   }
   return false;
 }
-console.log(averagePair([1,2,3], 2.5)) //true (2+3 /2 = 2.5)
-console.log(averagePair([1,3,3,5,6,7,10,12,19], 8)) //true
+// console.log(averagePair([1,2,3], 2.5)) //true (2+3 /2 = 2.5)
+// console.log(averagePair([1,3,3,5,6,7,10,12,19], 8)) //true
+
+//------------------------------------------------------------------------------
+//sliding window - maxSubarraySum
+//given an array of integers and a number, write a function called maxSubarraySum, which finds the maximum sum of a subarray with the length of the number passed to the function. Note that a subarray must consist of consecuvitve elements from the original array. In the first example below, [100, 200, 300] is a subarray of the original array, but [100,300] is not.
+
+function maxSubarraySum1(arr, num) {
+  //if num is greater than array length, return null
+  if (num > arr.length) {
+    return null;
+  }
+  //create a storage number
+  let emptyNumber = 0;
+  var num;
+  //loop over array
+  
+  
+  for(var i = 0; i < arr.length; i++) {
+    //store first however many numbers in an array using slice and add the values into emptyNumber
+    num = arr.slice(arr[i], arr[i + num]);
+    console.log(num)
+    emptyNumber = num = num.reduce();
+    //if next set numbers is greater than emptynumber, emptyNumber becomes new greater number
+    if(num > emptyNumber) {
+      emptyNumber = num;
+    }
+  }
+  //return emptyNumber
+  return emptyNumber;
+}
+
+console.log(maxSubarraySum1([100,200,300,400], 2)) //700
