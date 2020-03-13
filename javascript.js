@@ -458,35 +458,6 @@ function averagePair(arr, num){
 
 
 //------------------------------------------------------------------------------
-//sliding window - maxSubarraySum
-//given an array of integers and a number, write a function called maxSubarraySum, which finds the maximum sum of a subarray with the length of the number passed to the function. Note that a subarray must consist of consecuvitve elements from the original array. In the first example below, [100, 200, 300] is a subarray of the original array, but [100,300] is not.
-
-function maxSubarraySum1(arr, num) {
-  //if num is greater than array length, return null
-  if (num > arr.length) {
-    return null;
-  }
-  //create a storage number
-  let emptyNumber = 0;
-  var num;
-  //loop over array
-  
-  
-  for(var i = 0; i < arr.length; i++) {
-    //store first however many numbers in an array using slice and add the values into emptyNumber
-    num = arr.slice(arr[i], arr[i + num]);
-    console.log(num)
-    emptyNumber = num = num.reduce();
-    //if next set numbers is greater than emptynumber, emptyNumber becomes new greater number
-    if(num > emptyNumber) {
-      emptyNumber = num;
-    }
-  }
-  //return emptyNumber
-  return emptyNumber;
-}
-
-console.log(maxSubarraySum1([100,200,300,400], 2)) //700
 // =======
 
 //alternate solution
@@ -507,7 +478,7 @@ function averagePair(arr, num){
 
 function isSubsequence(str1, str2) {
   if(str1.length == 0 || str2.length == 0) {
-      return false;
+    return false;
   }
   
   let str1Ptr = 0; //4
@@ -515,20 +486,53 @@ function isSubsequence(str1, str2) {
   let substring = "";
   
   while(str1Ptr < str1.length && str2Ptr < str2.length) {
-      if(str2[str2Ptr] == str1[str1Ptr]) {
-          substring = substring.concat(str2[str2Ptr]); //sing
-          str2Ptr++;
-          str1Ptr++;
-      }else {
-          str2Ptr++;
-      }
+    if(str2[str2Ptr] == str1[str1Ptr]) {
+      substring = substring.concat(str2[str2Ptr]); //sing
+      str2Ptr++;
+      str1Ptr++;
+    }else {
+      str2Ptr++;
+    }
   }
-
+  
   return substring == str1;
 }
 
 // console.log(isSubsequence('hello','hello world')); //true
-console.log(isSubsequence('sing','sting')); //true
+// console.log(isSubsequence('sing','sting')); //true
 // console.log(isSubsequence('abc','abracadabra')); //true
 // console.log(isSubsequence('abc','acb')); //false (order matters)
 
+//======================================================
+
+//sliding window - maxSubarraySum
+//given an array of integers and a number, write a function called maxSubarraySum, which finds the maximum sum of a subarray with the length of the number passed to the function. Note that a subarray must consist of consecuvitve elements from the original array. In the first example below, [100, 200, 300] is a subarray of the original array, but [100,300] is not.
+
+function maxSubarraySum1(arr, num) {
+  //if num is greater than array length, return null
+  if (num > arr.length) {
+    return null;
+  }
+  //create a storage number
+ 
+  var num;
+  var num2;
+
+  //loop over array
+  for(var i = 0; i < arr.length; i++) {
+    //store first however many numbers in an array using slice and add the values into emptyNumber
+    num = arr.slice(i, i + num);
+    console.log(num)
+    var emptyNumber = num.reduce((x,y) => x + y);
+    console.log(emptyNumber);
+    num2 = emptyNumber
+    //if next set numbers is greater than emptynumber, emptyNumber becomes new greater number
+    if(emptyNumber > num) {
+      num = emptyNumber;
+    }
+  }
+  //return emptyNumber
+  return emptyNumber;
+}
+
+console.log(maxSubarraySum1([100,200,300,400], 2)) //700
