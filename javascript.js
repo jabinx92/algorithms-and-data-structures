@@ -29,7 +29,7 @@ var time2 = performance.now();
 
 //https://rithmschool.github.io/function-timer-demo/;
 
-  
+//time complexity
 //simplify big 0
 //0(1) - constant -flat line - ideal for constant run time (when you always have 3 operators 1 + 2 * 3)
 //0(n) - linear (bottom left to top right) - when you have a for loop in a function
@@ -56,7 +56,7 @@ var time2 = performance.now();
 let instructor = {
   firstName: 'Kelly',
   isInstructor: true,
-  facoriteNumbers: [1,2,3,4]
+  favoriteNumbers: [1,2,3,4]
 }
 
 //When to use objects - 1. when you don't need order, 2. when you need fast access / insertion and removal
@@ -102,8 +102,8 @@ let names  = ['Michael', 'Melissa', 'Andrea'];
     //Start with simple examples, write 2 or 3 with input and output
     //Progress to more complex examples
     //Write a function which takes in a string and returns counts of each character in the string.
-    //charCount("aaaa"); // {a:4}
-    //charCount("hello"); // {h:1,e:1, l:2, o:1}
+    console.log(charCount("aaaa")); // {a:4}
+    console.log(charCount("hello")); // {h:1,e:1, l:2, o:1}
     'my phone number is 182763'
     'Hello hi' //uppercase? lowercase? spaces? string and number?
     //Explore examples with empty and invalid inputs (edge cases)
@@ -161,7 +161,7 @@ let names  = ['Michael', 'Melissa', 'Andrea'];
     return true;
   }
 
-  // same([1,2,3,2],[9,1,4,4]);
+  console.log(same([1,2,3,2],[9,1,4,4])); //true
 
   // same([1,2,3], [4,1,9]) //true
   // same([1,2,3], [1,9]) //false
@@ -181,8 +181,8 @@ function same(arr1, arr2){
   for(let val of arr2){
       frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1        
   }
-  console.log(frequencyCounter1);
-  console.log(frequencyCounter2);
+  // console.log(frequencyCounter1);
+  // console.log(frequencyCounter2);
   for(let key in frequencyCounter1){
       if(!(key ** 2 in frequencyCounter2)){
           return false
@@ -535,4 +535,4 @@ function maxSubarraySum1(arr, num) {
   return emptyNumber;
 }
 
-console.log(maxSubarraySum1([100,200,300,400], 2)) //700
+// console.log(maxSubarraySum1([100,200,300,400], 2)) //700
