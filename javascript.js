@@ -102,8 +102,8 @@ let names  = ['Michael', 'Melissa', 'Andrea'];
     //Start with simple examples, write 2 or 3 with input and output
     //Progress to more complex examples
     //Write a function which takes in a string and returns counts of each character in the string.
-    console.log(charCount("aaaa")); // {a:4}
-    console.log(charCount("hello")); // {h:1,e:1, l:2, o:1}
+    // console.log(charCount("aaaa")); // {a:4}
+    // console.log(charCount("hello")); // {h:1,e:1, l:2, o:1}
     'my phone number is 182763'
     'Hello hi' //uppercase? lowercase? spaces? string and number?
     //Explore examples with empty and invalid inputs (edge cases)
@@ -152,6 +152,7 @@ let names  = ['Michael', 'Melissa', 'Andrea'];
     }
     for(var i = 0; i < arr1.length; i++) {
       let correctIndex = arr2.indexOf(arr1[i] ** 2)
+      console.log(correctIndex)
       if(correctIndex === -1) {
         return false;
       }
@@ -167,34 +168,35 @@ let names  = ['Michael', 'Melissa', 'Andrea'];
   // same([1,2,3], [1,9]) //false
   // same([1,2,1], [4,4,1]) //false(must be same frequency)
 
-
+//===================================================
 //refactored using frequency counter(object) - O(n)
-function same(arr1, arr2){
-  if(arr1.length !== arr2.length){
-      return false;
-  }
-  let frequencyCounter1 = {}
-  let frequencyCounter2 = {}
-  for(let val of arr1){
-      frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1
-  }
-  for(let val of arr2){
-      frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1        
-  }
-  // console.log(frequencyCounter1);
-  // console.log(frequencyCounter2);
-  for(let key in frequencyCounter1){
-      if(!(key ** 2 in frequencyCounter2)){
-          return false
-      }
-      if(frequencyCounter2[key ** 2] !== frequencyCounter1[key]){
-          return false
-      }
-  }
-  return true
-}
+// function same(arr1, arr2){
+//   if(arr1.length !== arr2.length){
+//       return false;
+//   }
+//   let frequencyCounter1 = {}
+//   let frequencyCounter2 = {}
+//   for(let val of arr1){
+//       frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1
+//   }
+//   for(let val of arr2){
+//       frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1        
+//   }
+//   // console.log(frequencyCounter1);
+//   // console.log(frequencyCounter2);
+//   for(let key in frequencyCounter1){
+//       if(!(key ** 2 in frequencyCounter2)){
+//           return false
+//       }
+//       if(frequencyCounter2[key ** 2] !== frequencyCounter1[key]){
+//           return false
+//       }
+//   }
+//   return true
+// }
 
 // console.log(same([1,2,3,2,5], [9,1,4,4,11]))
+//===================================================
 
 //Big O Time complexity - O(n) linear
 function validAnagram(word1, word2){
