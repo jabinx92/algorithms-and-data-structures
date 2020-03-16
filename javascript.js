@@ -162,7 +162,7 @@ let names  = ['Michael', 'Melissa', 'Andrea'];
     return true;
   }
 
-  console.log(same([1,2,3,2],[9,1,4,4])); //true
+  // console.log(same([1,2,3,2],[9,1,4,4])); //true
 
   // same([1,2,3], [4,1,9]) //true
   // same([1,2,3], [1,9]) //false
@@ -510,31 +510,30 @@ function isSubsequence(str1, str2) {
 //sliding window - maxSubarraySum
 //given an array of integers and a number, write a function called maxSubarraySum, which finds the maximum sum of a subarray with the length of the number passed to the function. Note that a subarray must consist of consecuvitve elements from the original array. In the first example below, [100, 200, 300] is a subarray of the original array, but [100,300] is not.
 
+//Constraints:
+//Time Complexity - O(N)
+//Space Complexity - O(1)
+
 function maxSubarraySum1(arr, num) {
   //if num is greater than array length, return null
   if (num > arr.length) {
     return null;
   }
+
   //create a storage number
- 
   var num;
   var num2;
 
   //loop over array
   for(var i = 0; i < arr.length; i++) {
-    //store first however many numbers in an array using slice and add the values into emptyNumber
-    num = arr.slice(i, i + num);
-    console.log(num)
-    var emptyNumber = num.reduce((x,y) => x + y);
-    console.log(emptyNumber);
-    num2 = emptyNumber
-    //if next set numbers is greater than emptynumber, emptyNumber becomes new greater number
-    if(emptyNumber > num) {
-      num = emptyNumber;
-    }
+    num2 = arr.slice(i, 2)
+    console.log(num2);
+  
   }
+    
   //return emptyNumber
   return emptyNumber;
 }
 
-// console.log(maxSubarraySum1([100,200,300,400], 2)) //700
+console.log(maxSubarraySum1([100,200,300,400], 2)) //700
+// console.log(maxSubarraySum1([1,4,2,10,23,3,1,0,20], 4)) //39
