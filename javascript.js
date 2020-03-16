@@ -546,10 +546,10 @@ function maxSubarraySum(arr, num){
 
   let total = 0;
   for (let i=0; i<num; i++){
-     total += arr[i];
+     total += arr[i]; //100 + 200 = 300
      console.log(total)
   }
-  let currentTotal = total;
+  let currentTotal = total; //300
   console.log(currentTotal)
   for (let i = num; i < arr.length; i++) {
      currentTotal += arr[i] - arr[i-num];
@@ -558,5 +558,26 @@ function maxSubarraySum(arr, num){
   return total;
 }
 
-console.log(maxSubarraySum([100,200,300,400], 2)) //700
-console.log(maxSubarraySum([1,4,2,10,23,3,1,0,20], 4)) //39
+// console.log(maxSubarraySum([100,200,300,400], 2)) //700
+// console.log(maxSubarraySum([1,4,2,10,23,3,1,0,20], 4)) //39
+
+//sliding window - findLongestSubstring
+//Write a function called findLongestSubstring, which accepts a string and returns the length of the longest substring with all distinct characters
+
+function findLongestSubstring(str){
+if(str.length === 0) return 0;
+
+}
+
+console.log(findLongestSubstring('')) // 0
+console.log(findLongestSubstring('rithmschool')) // 7
+console.log(findLongestSubstring('thecatinthehat')) // 7
+console.log(findLongestSubstring('bbbbbbbbbb')) // 1
+
+function nthLargest(arr, num) {
+  arr.sort().reverse();
+  return arr[num - 1];
+}
+
+console.log(nthLargest([5,7,2,3,4,1,6], 4))
+
