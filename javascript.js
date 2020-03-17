@@ -724,7 +724,14 @@ function collectOddValues(arr){
   return newArr;
 }
 
+
 collectOddValues([1,2,3,4,5])
+// [1].concat[collectOddValues([2,3,4,5])
+//               [].collectOddValues([3,4,5])
+//                     [3].collectOddValues([4,5])
+//                           [].collectOddValues([5])
+//                                 [5].collectOddValues([])
+//                                       []
 
 //pure recursion tip - for arrays, use methods like slice,  the spread operator, and concat that make copies of arrays so you do not mutate them
 //remember that strings are immutable so you will need to use methods like slice, substr, or substring to make copies of strings
