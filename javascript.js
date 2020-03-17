@@ -561,23 +561,171 @@ function maxSubarraySum(arr, num){
 // console.log(maxSubarraySum([100,200,300,400], 2)) //700
 // console.log(maxSubarraySum([1,4,2,10,23,3,1,0,20], 4)) //39
 
+//======================================================
+function minSubArrayLen(nums, sum) {
+  let total = 0;
+  let start = 0;
+  let end = 0;
+  let minLen = Infinity;
+ 
+  while (start < nums.length) {
+    // if current window doesn't add up to the given sum then 
+		// move the window to right
+    if(total < sum && end < nums.length){
+      total += nums[end];
+			end++;
+    }
+    // if current window adds up to at least the sum given then
+		// we can shrink the window 
+    else if(total >= sum){
+      minLen = Math.min(minLen, end-start);
+			total -= nums[start];
+			start++;
+    } 
+    // current total less than required total but we reach the end, need this or else we'll be in an infinite loop 
+    else {
+      break;
+    }
+  }
+ 
+  return minLen === Infinity ? 0 : minLen;
+}
+
+// console.log([2,3,1,2,4,3], 7) // 2 -> because [4,3] is the smallest subarray
+// console.log([2,1,6,5,4], 9) // 2 -> because [5,4] is the smallest subarray
+
 //sliding window - findLongestSubstring
 //Write a function called findLongestSubstring, which accepts a string and returns the length of the longest substring with all distinct characters
 
-function findLongestSubstring(str){
-if(str.length === 0) return 0;
-
+function findLongestSubstring(str) {
+  let longest = 0;
+  let seen = {};
+  let start = 0;
+ 
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    if (seen[char]) {
+      start = Math.max(start, seen[char]);
+    }
+    // index - beginning of substring + 1 (to include current in count)
+    longest = Math.max(longest, i - start + 1);
+    // store the index of the next char so as to not double count
+    seen[char] = i + 1;
+  }
+  return longest;
 }
 
-console.log(findLongestSubstring('')) // 0
-console.log(findLongestSubstring('rithmschool')) // 7
-console.log(findLongestSubstring('thecatinthehat')) // 7
-console.log(findLongestSubstring('bbbbbbbbbb')) // 1
+// console.log(findLongestSubstring('')) // 0
+// console.log(findLongestSubstring('rithmschool')) // 7
+// console.log(findLongestSubstring('thecatinthehat')) // 7
+// console.log(findLongestSubstring('bbbbbbbbbb')) // 1
 
 function nthLargest(arr, num) {
   arr.sort().reverse();
   return arr[num - 1];
 }
 
-console.log(nthLargest([5,7,2,3,4,1,6], 4))
+// console.log(nthLargest([5,7,2,3,4,1,6], 4))
 
+//================================================================
+//RECURSION
+
+
+function countDown(num) {
+  if(num <= 0) {
+    console.log("All done!");
+    return;
+  }
+  console.log(num);
+  num--;
+  countDown(num);
+}
+
+// countDown(5);
+
+
+function sumRange(num) {
+  if(num === 1) return 1;
+  return num + sumRange(num-1);
+}
+
+// console.log(sumRange(3));
+
+//sumRange(3)
+  //return 3 + sumRange(2)
+                //return 2 + sumRange(1)
+                              // return 1
+// all return to 6
+
+//writing factorial iteratively
+// function factorial(num) {
+//   let total = 1;
+//   for(let i = num; i > 1; i--) {
+//     total *= i
+//   }
+//   return total;
+// }
+
+// console.log(factorial(3))
+
+//writing factorial recursively
+function factorial(num){
+  if(num === 1) return 1;
+  return num * factorial(num - 1);
+}
+
+console.log(factorial(5))
+
+//common pitfalls - no base case, or base case is wrong will result in ininite call stack size exceeded
+
+//returning the wrong thing 'return num * factorial(num - 1);
+
+//stack overflow - maximum call stack exceeded
+
+//helper method recursion
+
+
+function collectOddValues(arr){
+    
+  let result = [];
+
+  function helper(helperInput){
+      if(helperInput.length === 0) {
+          return;
+      }
+      
+      if(helperInput[0] % 2 !== 0){
+          result.push(helperInput[0])
+      }
+      
+      helper(helperInput.slice(1))
+  }
+  
+  helper(arr)
+
+  return result;
+}
+
+collectOddValues([1,2,3,4,5])
+
+//pure recursion
+function collectOddValues(arr){
+  let newArr = [];
+  
+  if(arr.length === 0) {
+      return newArr;
+  }
+      
+  if(arr[0] % 2 !== 0){
+      newArr.push(arr[0]);
+  }
+      
+  newArr = newArr.concat(collectOddValues(arr.slice(1)));
+  return newArr;
+}
+
+collectOddValues([1,2,3,4,5])
+
+//pure recursion tip - for arrays, use methods like slice,  the spread operator, and concat that make copies of arrays so you do not mutate them
+//remember that strings are immutable so you will need to use methods like slice, substr, or substring to make copies of strings
+//to make copies of objects use Object.assign, or the spread operator
