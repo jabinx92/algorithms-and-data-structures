@@ -889,24 +889,44 @@ console.log(palindrome)
   }
 }
 
-console.log(isPalindrome('awesome')) // false
-console.log(isPalindrome('foobar')) // false
-console.log(isPalindrome('tacocat')) // true
-console.log(isPalindrome('amanaplanacanalpanama')) // true
-console.log(isPalindrome('amanaplanacanalpandemonium')) // false
+// console.log(isPalindrome('awesome')) // false
+// console.log(isPalindrome('foobar')) // false
+// console.log(isPalindrome('tacocat')) // true
+// console.log(isPalindrome('amanaplanacanalpanama')) // true
+// console.log(isPalindrome('amanaplanacanalpandemonium')) // false
 
 //===============================================================
 //someRecursive
-//write a recursive function called someRevursive which accepts an array and a callback.  the function returns true if a single value in the array returns true when passed to the callback. otherwise it returns false;
+//write a recursive function called someRecursive which accepts an array and a callback.  the function returns true if a single value in the array returns true when passed to the callback. otherwise it returns false;
 
 // SAMPLE INPUT / OUTPUT
 const isOdd = val => val % 2 !== 0;
+// console.log(isOdd(1))
 
 function someRecursive(arr, callback){
-  // add whatever parameters you deem necessary - good luck!
+  let emptyArray = [];
+
+  //helper function
+  function helper (input1, input2) {
+    if(input1.length === 0) return;
+    if(input2(input1[0]) === true){
+      emptyArray.push(true)
+    } else {
+      emptyArray.push(false)
+    }
+    input1.shift()
+    helper(input1, input2)
+  }
+helper(arr, callback)
+
+  if(emptyArray.includes(true)) {
+    return true;
+  } else {
+    return false;
+  };
 }
 
-// someRecursive([1,2,3,4], isOdd) // true
-// someRecursive([4,6,8,9], isOdd) // true
-// someRecursive([4,6,8], isOdd) // false
-// someRecursive([4,6,8], val => val > 10); // false
+console.log(someRecursive([1,2,3,4], isOdd)) // true
+console.log(someRecursive([4,6,8,9], isOdd)) // true
+console.log(someRecursive([4,6,8], isOdd)) // false
+console.log(someRecursive([4,6,8], val => val > 10)); // false
