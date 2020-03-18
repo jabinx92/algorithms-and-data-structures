@@ -853,18 +853,44 @@ helper(str)
 return emptyString;
 }
 
-console.log(reverse('awesome')) // 'emosewa'
-console.log(reverse('rithmschool')) // 'loohcsmhtir'
+// console.log(reverse('awesome')) // 'emosewa'
+// console.log(reverse('rithmschool')) // 'loohcsmhtir'
 
 //=============================================================================
 //write a recursive function called isPalindrome which returns true if the string passed to it is a palindrome(reads the same forward and backward). Otherwise it returns false.
 
 function isPalindrome(string) {
+  let palindrome = '';
+  let stringCopy = string;
+  console.log(stringCopy);
 
+  let copy = string.split('')
+  console.log(copy)
+
+  //helper function
+  function helper(input) {
+
+    //base case
+    if(input.length === 0) {
+      return;
+    }
+    palindrome += input[input.length - 1];
+    input.pop();
+    helper(input)
+  }
+
+helper(copy)
+
+console.log(palindrome)
+  if(palindrome === stringCopy){
+    return true;
+  } else {
+    return false;
+  }
 }
 
-isPalindrome('awesome') // false
-isPalindrome('foobar') // false
-isPalindrome('tacocat') // true
-isPalindrome('amanaplanacanalpanama') // true
-isPalindrome('amanaplanacanalpandemonium') // false
+console.log(isPalindrome('awesome')) // false
+console.log(isPalindrome('foobar')) // false
+console.log(isPalindrome('tacocat')) // true
+console.log(isPalindrome('amanaplanacanalpanama')) // true
+console.log(isPalindrome('amanaplanacanalpandemonium')) // false
