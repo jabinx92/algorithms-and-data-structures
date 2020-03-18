@@ -669,12 +669,12 @@ function sumRange(num) {
 // console.log(factorial(3))
 
 //writing factorial recursively
-function factorial(num){
-  if(num === 1) return 1;
-  return num * factorial(num - 1);
-}
+// function factorial(num){
+//   if(num === 1) return 1;
+//   return num * factorial(num - 1);
+// }
 
-console.log(factorial(5))
+// console.log(factorial(5))
 
 //common pitfalls - no base case, or base case is wrong will result in ininite call stack size exceeded
 
@@ -736,3 +736,135 @@ collectOddValues([1,2,3,4,5])
 //pure recursion tip - for arrays, use methods like slice,  the spread operator, and concat that make copies of arrays so you do not mutate them
 //remember that strings are immutable so you will need to use methods like slice, substr, or substring to make copies of strings
 //to make copies of objects use Object.assign, or the spread operator
+
+//power - write a function called power which accepts a base and an exponent. the function should return the power of the base to the exponent. this function should mimic the functionality of Math.pow() - do not worry about negative bases and exponents
+
+function power (num1, num2) {
+  if(num2 === 0) return 1
+  return num1 * power(num1, num2 - 1)
+}
+
+// console.log(power(2,0)) // 1
+//return 1
+// console.log(power(2,2)) // 4
+//return 2 * power(2, 1)
+            // 2 * power(2, 0)
+                    //1
+// console.log(power(2,4)) // 16
+//return 2 * power(2, 3)
+              //2 * power(2, 2)
+                      //2 * power(2, 1)
+                            //2 * power(2, 0)
+                                  //1
+
+
+//=======================================
+function factorial(num) {
+  //base case
+  if(num === 0) return 1;
+  return num * factorial(num - 1)
+}
+
+// console.log(factorial(1)) //1
+// console.log(factorial(2)) //2
+// console.log(factorial(4)) //24
+// console.log(factorial(7)) //5040
+
+//=============================================
+//productOfArray
+//write a function called productOfArray which takes in an array of numbers and returns the product of them all
+
+
+function productOfArray (arr) {
+  let empty = 1;
+  //helper function
+
+  function help(input){
+    //base case
+    if(input.length === 0) {
+      return;
+    }
+    empty *= input[0]
+
+    help(input.slice(1))
+  }
+  help(arr)
+
+  return empty;
+}
+
+// console.log(productOfArray([1,2,3])) // 6
+// console.log(productOfArray([1,2,3,10])) // 60
+
+
+//================================================
+
+function recursiveRange(num){
+  if(num === 0) return 0;
+
+  return num + recursiveRange(num - 1)
+}
+
+// console.log(recursiveRange(6)) // 21
+
+//=================================================
+function fib(num) {
+  if (num <= 2) return 1;
+
+  return fib(num - 1) + fib(num - 2);
+}
+
+// console.log(fib(4)) // 3
+//3 + 2
+//2 + 1
+// console.log(fib(10)) // 55
+// console.log(fib(28)) // 317811
+// console.log(fib(35)) // 9227465
+
+//reverse - write a recursive function called reverse which accepts a string and returns a new string in reverse
+
+function reverse(str) {
+//create empty string to add characters
+let emptyString = '';
+
+//make string into splitted array
+str = str.split('')
+console.log(str)
+
+  //helper function
+  function helper(insert) {
+    //base case
+    if(insert.length === 0) return;
+
+    //add into emptystring last character
+    emptyString += insert[insert.length - 1]
+
+    //pop last element in array
+    insert.pop();
+
+    //rerun helper function
+    helper(insert)
+  }
+
+//run recursion
+helper(str)
+
+//return complete emptyString
+return emptyString;
+}
+
+console.log(reverse('awesome')) // 'emosewa'
+console.log(reverse('rithmschool')) // 'loohcsmhtir'
+
+//=============================================================================
+//write a recursive function called isPalindrome which returns true if the string passed to it is a palindrome(reads the same forward and backward). Otherwise it returns false.
+
+function isPalindrome(string) {
+
+}
+
+isPalindrome('awesome') // false
+isPalindrome('foobar') // false
+isPalindrome('tacocat') // true
+isPalindrome('amanaplanacanalpanama') // true
+isPalindrome('amanaplanacanalpandemonium') // false
