@@ -926,7 +926,78 @@ helper(arr, callback)
   };
 }
 
-console.log(someRecursive([1,2,3,4], isOdd)) // true
-console.log(someRecursive([4,6,8,9], isOdd)) // true
-console.log(someRecursive([4,6,8], isOdd)) // false
-console.log(someRecursive([4,6,8], val => val > 10)); // false
+// console.log(someRecursive([1,2,3,4], isOdd)) // true
+// console.log(someRecursive([4,6,8,9], isOdd)) // true
+// console.log(someRecursive([4,6,8], isOdd)) // false
+// console.log(someRecursive([4,6,8], val => val > 10)); // false
+
+
+//===============================================================
+//flatten - write a recursive function called flatten which accepts an array of arrays and returns a new array with all values flattened
+
+function flatten(array){
+  var flatArray = [];
+  array.forEach(function(value){
+    if(Array.isArray(value)) {
+      flatArray = flatArray.concat(flatten(value))
+    } else {
+      flatArray.push(value)
+    }
+  });
+  return flatArray;
+}
+
+// console.log(flatten([1, 2, 3, [4, 5] ])) // [1, 2, 3, 4, 5]
+// console.log(flatten([1, [2, [3, 4], [[5]]]])) // [1, 2, 3, 4, 5]
+// console.log(flatten([[1],[2],[3]])) // [1,2,3]
+// console.log(flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]])) // [1,2,3]
+
+//=============================================================
+//capitalizeFirst - write a recursive function called capitalizeFirst. Given an array of strings, capitalize the first letter of each string in the array.
+
+function capitalizeFirst(arr) {
+  let emptyArray = [];
+
+  //helper function
+  function helper(input) {
+    //base case
+    if(arr.length === 0) return;
+    emptyArray.push(input[0].charAt(0).toUpperCase() + input[0].slice(1))
+    input.shift();
+    helper(input)
+  }
+  helper(arr)
+
+  return emptyArray;
+}
+
+console.log(capitalizeFirst(['car','taco','banana'])); // ['Car','Taco', 'Banana']
+
+//===================================================================
+function nestedEvenSum (obj) {
+  let emptyNumber = 0;
+}
+
+
+var obj1 = {
+  outer: 2,
+  obj: {
+    inner: 2,
+    otherObj: {
+      superInner: 2,
+      notANumber: true,
+      alsoNotANumber: "yup"
+    }
+  }
+}
+
+var obj2 = {
+  a: 2,
+  b: {b: 2, bb: {b: 3, bb: {b: 2}}},
+  c: {c: {c: 2}, cc: 'ball', ccc: 5},
+  d: 1,
+  e: {e: {e: 2}, ee: 'car'}
+};
+
+nestedEvenSum(obj1); // 6
+nestedEvenSum(obj2); // 10
