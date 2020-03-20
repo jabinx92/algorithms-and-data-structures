@@ -932,6 +932,28 @@ helper(arr, callback)
 // console.log(someRecursive([4,6,8], val => val > 10)); // false
 
 
+//=============================================================
+//capitalizeFirst - write a recursive function called capitalizeFirst. Given an array of strings, capitalize the first letter of each string in the array.
+
+function capitalizeFirst(arr) {
+  let emptyArray = [];
+  
+  //helper function
+  function helper(input) {
+    //base case
+    if(arr.length === 0) return;
+    emptyArray.push(input[0].charAt(0).toUpperCase() + input[0].slice(1))
+    input.shift();
+    helper(input)
+  }
+  helper(arr)
+  
+  return emptyArray;
+}
+
+// console.log(capitalizeFirst(['car','taco','banana'])); // ['Car','Taco', 'Banana']
+
+
 //===============================================================
 //flatten - write a recursive function called flatten which accepts an array of arrays and returns a new array with all values flattened
 
@@ -951,32 +973,24 @@ function flatten(array){
 // console.log(flatten([1, [2, [3, 4], [[5]]]])) // [1, 2, 3, 4, 5]
 // console.log(flatten([[1],[2],[3]])) // [1,2,3]
 // console.log(flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]])) // [1,2,3]
-
-//=============================================================
-//capitalizeFirst - write a recursive function called capitalizeFirst. Given an array of strings, capitalize the first letter of each string in the array.
-
-function capitalizeFirst(arr) {
-  let emptyArray = [];
-
-  //helper function
-  function helper(input) {
-    //base case
-    if(arr.length === 0) return;
-    emptyArray.push(input[0].charAt(0).toUpperCase() + input[0].slice(1))
-    input.shift();
-    helper(input)
-  }
-  helper(arr)
-
-  return emptyArray;
-}
-
-console.log(capitalizeFirst(['car','taco','banana'])); // ['Car','Taco', 'Banana']
-
 //===================================================================
 function nestedEvenSum (obj) {
-  let emptyNumber = 0;
+  let emptyNumber = 0;//global
+
+  //helper function for closure
+  function helper(ob){
+    for(var key in ob) {
+      if(ob[key] % 2 === 0){
+        emptyNumber += ob[key]
+      } else if(typeof ob[key] === 'object'){
+        helper(ob[key])
+      } 
+    }
+  } 
+  helper(obj)
+  return emptyNumber;
 }
+
 
 
 var obj1 = {
@@ -999,5 +1013,116 @@ var obj2 = {
   e: {e: {e: 2}, ee: 'car'}
 };
 
-nestedEvenSum(obj1); // 6
-nestedEvenSum(obj2); // 10
+// console.log(nestedEvenSum(obj1)); // 6
+// console.log(nestedEvenSum(obj2)); // 10
+
+//===========================================================================
+function capitalizeWords (array) {
+  let emptyArray = [];
+
+  //helper function
+  function helper(arr) {
+    //base case
+    if(arr.length === 0) return;
+    emptyArray.push(arr[0].toUpperCase());
+    arr.shift();
+    helper(arr);
+  }
+  helper(array);
+  return emptyArray;
+}
+
+let words = ['i', 'am', 'learning', 'recursion'];
+// console.log(capitalizeWords(words)); // ['I', 'AM', 'LEARNING', 'RECURSION']
+
+//===========================================================================
+//stringify numbers = write a function called stringifyNumbers which takes in an object and finds all of the values which are numbers and converts them to strings. recursion would be a great way to solve this!
+
+function stringifyNumbers(obj1) {
+  let newObj = {}
+  function helper(obj2){
+    for(var key in obj2) {
+        newObj[key] = obj2[key]
+    }
+  }
+  helper(obj1)
+
+  function secondHelper(obj3){
+    for(var key in obj3) {
+      if(typeof obj3[key] === 'number'){
+        obj3[key] = `${obj3[key]}`
+      } else {
+        secondHelper(obj3[key])
+      }
+    }
+  }
+  secondHelper(newObj)
+
+  return newObj
+}
+
+// let obj = {
+//     num: 1,
+//     test: [],
+//     data: {
+//         val: 4,
+//         info: {
+//             isRight: true,
+//             random: 66
+//         }
+//     }
+// }
+
+// console.log(obj)
+// console.log(stringifyNumbers(obj))
+// console.log(obj)
+
+/*
+{
+    num: "1",
+    test: [],
+    data: {
+        val: "4",
+        info: {
+            isRight: true,
+            random: "66"
+        }
+    }
+}
+*/
+//=====================================================
+//collectStrings - write a function that takes in an object and if the property is a string, add it into an empty array.
+
+function collectStrings(input){
+  let array = [];
+
+  function helper(collection){
+    for(var key in collection) {
+      if(typeof collection[key] === 'string'){
+        array.push(collection[key])
+      } else {
+        helper(collection[key])
+      }
+    }
+  }
+  helper(obj)
+  return array
+}
+
+const obj = {
+  stuff: "foo",
+  data: {
+      val: {
+          thing: {
+              info: "bar",
+              moreInfo: {
+                  evenMoreInfo: {
+                      weMadeIt: "baz"
+                  }
+              }
+          }
+      }
+  }
+}
+
+console.log(collectStrings(obj)) // ["foo", "bar", "baz"])
