@@ -1125,4 +1125,59 @@ const obj = {
   }
 }
 
-console.log(collectStrings(obj)) // ["foo", "bar", "baz"])
+// console.log(collectStrings(obj)) // ["foo", "bar", "baz"])
+
+//=================================================================
+//search - you can use indexOf(); if found return index number, else return -1. includes(), find(), findIndex()
+
+//linear search
+// var pets = ['cat','dog','bird'];
+// console.log(pets.indexOf('dog'))
+// console.log(pets.includes('dog'))
+// console.log(pets.find(x => x === 'dog'))
+// console.log(pets.findIndex(x => x === 'dog'))
+
+//linear search pseudocode
+//write a function that accepts an array and  value
+//loop through the array and check if the current array element is equal to the value
+//if it is, return the index at which the element is found
+//if the value is never found, return -1
+
+//big o? time complexity - O(N) because as array gets longer, the longer it takes to search. space complexity - O(1)
+function linearSearch(array, value) {
+  for(var i = 0; i < array.length; i++) {
+    if(array[i] === value) return i
+  }
+  return -1;
+}
+
+console.log(linearSearch([1,2,3,4], 22))
+
+//linear search BIG O - best case is O(1), worst case is O(n), average is also O(n)
+
+//intro to binary search - only works on sorted arrays
+//binary search is a much faster form of search
+//rather than eliminate half of the remaining elements at a time
+//binary search only works on sorted arrays!
+
+//binary search psuedocode
+//write a function that accepts a sorted array and a value
+//create a left pointer at the start of the array, and a right pointer at the end of the array
+//while the left pointer comes before the right pointer
+  //create a  pointer in the middle
+  //if you find the value you want, return the index
+  //if the value is too small, move the left pointer up
+  //if the value is too large, move the right pointer down
+//if you never find the value, return -1
+
+function binarySearch(array, value){
+    var leftPointer = array[0];
+    var rightPointer = array[array.length - 1];
+    while (leftPointer < rightPointer) {
+      var middlePointer = array[array.length / 2];
+      if(middlePointer === value) return array[middlePointer]
+    }
+
+    return -1
+
+}
