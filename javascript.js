@@ -1151,7 +1151,7 @@ function linearSearch(array, value) {
   return -1;
 }
 
-console.log(linearSearch([1,2,3,4], 22))
+console.log(linearSearch([1,2,3,4], 2))
 
 //linear search BIG O - best case is O(1), worst case is O(n), average is also O(n)
 
@@ -1174,10 +1174,20 @@ function binarySearch(array, value){
     var leftPointer = array[0];
     var rightPointer = array[array.length - 1];
     while (leftPointer < rightPointer) {
-      var middlePointer = array[array.length / 2];
-      if(middlePointer === value) return array[middlePointer]
+      var middlePointer = dawdaw
+      if(middlePointer === value) {
+        return array[middlePointer]
+      } else if (value < middlePointer) {
+        leftPointer = middlePointer
+      }
+
     }
 
     return -1
 
 }
+
+console.log(binarySearch([1,2,3,4,5], 2))
+console.log(binarySearch([1,2,3,4,5], 3))
+console.log(binarySearch([1,2,3,4,5], 5))
+console.log(binarySearch([1,2,3,4,5], 6))
