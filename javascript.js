@@ -1151,7 +1151,7 @@ function linearSearch(array, value) {
   return -1;
 }
 
-console.log(linearSearch([1,2,3,4], 2))
+// console.log(linearSearch([1,2,3,4], 2))
 
 //linear search BIG O - best case is O(1), worst case is O(n), average is also O(n)
 
@@ -1170,24 +1170,101 @@ console.log(linearSearch([1,2,3,4], 2))
   //if the value is too large, move the right pointer down
 //if you never find the value, return -1
 
-function binarySearch(array, value){
-    var leftPointer = array[0];
-    var rightPointer = array[array.length - 1];
-    while (leftPointer < rightPointer) {
-      var middlePointer = dawdaw
-      if(middlePointer === value) {
-        return array[middlePointer]
-      } else if (value < middlePointer) {
-        leftPointer = middlePointer
+// Original Solution
+function binarySearch(arr, elem) {
+  var start = 0;
+  var end = arr.length - 1;
+  var middle = Math.floor((start + end) / 2);
+  while(arr[middle] !== elem && start <= end) {
+      if(elem < arr[middle]){
+          end = middle - 1;
+      } else {
+          start = middle + 1;
       }
-
-    }
-
-    return -1
-
+      middle = Math.floor((start + end) / 2);
+  }
+  if(arr[middle] === elem){
+      return middle;
+  }
+  return -1;
 }
 
-console.log(binarySearch([1,2,3,4,5], 2))
-console.log(binarySearch([1,2,3,4,5], 3))
-console.log(binarySearch([1,2,3,4,5], 5))
-console.log(binarySearch([1,2,3,4,5], 6))
+// Refactored Version
+function binarySearch(arr, elem) {
+  var start = 0;
+  var end = arr.length - 1;
+  var middle = Math.floor((start + end) / 2);
+  while(arr[middle] !== elem && start <= end) {
+      if(elem < arr[middle]) end = middle - 1;
+      else start = middle + 1;
+      middle = Math.floor((start + end) / 2);
+  }
+  return arr[middle] === elem ? middle : -1;
+}
+
+// console.log(binarySearch([1,2,3,4,9,15,21,55], 21))
+// [1,2,3,4,9,15,21,55]  // 21
+//  L     M          R
+// [1,2,3,4,9,15,21,55]  // 21
+//          L  M     R
+// [1,2,3,4,9,15,21,55]  // 21
+//               LM  R
+
+// console.log(binarySearch([1,2,3,4,5], 2)) // 1
+// console.log(binarySearch([1,2,3,4,5], 3)) // 2
+// console.log(binarySearch([1,2,3,4,5], 5)) // 4
+// console.log(binarySearch([1,2,3,4,5], 6)) // -1
+
+//big 0 - best case is O(1), worst and average case is O(log N)
+
+//O(log n) is really good, it is close to O(1) which is constant which is the best, log n is just slightly above O(1). Binary search is mostly O(log n) because you are constantly cutting time in half from an array, as opposed to searching the whole array. Only if it is sorted can you use binary search. Lets say you have an array with 15 elements. That array gets chopped in half within the while loop to try and find the middle point. If numbers don't match the array gets chopped and chopped again. O(log n) is near constant and it is really good. 
+
+
+//Naive string search
+//Suppose you want to count the number of times a smaller string appears in a longer string
+//a straightforward approach involves checking pairs of characters individually
+
+function naiveSearch(long, short){
+  var count = 0;
+  for(var i = 0; i < long.length; i++){
+      for(var j = 0; j < short.length; j++){
+         if(short[j] !== long[i+j]) break;
+         if(j === short.length - 1) count++;
+      }
+  }
+  return count;
+}
+
+// console.log(naiveSearch("lorie loled", "lol")) //1
+// console.log(naiveSearch('wowzomgwwzomg', 'omg')) //2
+
+//===========================================================
+//elementary sorting algorithms - important and challenging topic.
+//sorting is the process of rearranging the items in a collection (e.g. an array) so that the items are in some kind of order.
+//sorting numbers from smallest to largest
+//sorting names alphabetically
+//sorting movies based on release year
+//sorting movies based on revenue
+
+function sort(arr){
+  return arr
+}
+
+// sort([23,45,6,12,13]) //[6,12,13,23,45]
+
+//why do we need to learn sort algorithm?
+  //sorting is an incredibly common  task, so its good to know how it works
+  //there are many different ways to sort things, and different techniques have their own advantages and disadvantages
+
+//objective - implement bubble sory, selection sort, and insertion sort
+
+//javascript has a sort method, but it does not always work 100%
+// ['steel', 'colt','data structures','algorithms'].sort();
+//['algorithms','colt','data structures','steele']
+// [6,4,15,10].sort();
+//[10,15,4,6] // WRONG
+
+function sortNumbers (num1, num2) {
+  return num1 - num2
+}
+[6,4,15,10].sort(sortNumbers);
