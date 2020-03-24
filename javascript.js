@@ -1377,8 +1377,9 @@ function selectionSort (array) {
 
 function insertionSort(array){
   for(var i = 1; i < array.length; i++){
-    for(var j = i; j > 0; j--) {
-      if(array[i] < array[j-1]) {
+    var currentVal = arr[i]
+    for(var j = i - 1; j >= 0; j--) {
+      if(array[i] < array[j-1] && array[i] > array[j-2]) {
         let temp = array[i];
         array[i] = array[j-1]
         array[j-1] = temp;
@@ -1389,3 +1390,5 @@ function insertionSort(array){
 }
 
 console.log(insertionSort([5,1,3,2,4]))
+
+//time complexity - worst case O(n squared)
