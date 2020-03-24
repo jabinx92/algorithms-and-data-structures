@@ -1267,4 +1267,41 @@ function sort(arr){
 function sortNumbers (num1, num2) {
   return num1 - num2
 }
-[6,4,15,10].sort(sortNumbers);
+console.log([6,4,15,10].sort(sortNumbers));
+console.log([6,4,15,10].sort(sortNumbers).reverse());
+
+function sortString (word1, word2) {
+  return word1.length - word2.length
+}
+console.log(['steel', 'colt','data structures','algorithms'].sort(sortString));
+console.log(['steel', 'colt','data structures','algorithms'].sort(sortString).reverse());
+
+
+//bubble sort - a sorting algorithm where the largest values bubble up to the top
+
+//[5,3,4,1,2]
+//[3,5,4,1,2]
+//[3,4,5,1,2]
+//[3,4,1,5,2]
+//[3,4,1,2,5]
+//[3,4,1,2,5]
+//[3,1,4,2,5]
+//[3,1,2,4,5]
+//[1,3,2,4,5]
+//[1,2,3,4,5]
+
+function swap(arr, idx1, idx2) { // [1,2,3] , 0, 1
+  var temp = arr[idx1]; // 1
+  arr[idx1] = arr[idx2]; // 2
+  arr[idx2] = temp; // 1
+  console.log(arr)
+}
+
+console.log(swap([1,2,3], 0, 1))
+
+//bubble sort psuedocode
+/* start looping from with a variable called i in the end of the array towards the beginning
+- start an inner loop with a variable called j from the beginning until i - 1
+- if arr[j] is greater than arr[j+1], swap those two values!
+- return the sorted array
+*/
