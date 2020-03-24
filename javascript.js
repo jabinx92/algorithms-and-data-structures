@@ -1267,14 +1267,14 @@ function sort(arr){
 function sortNumbers (num1, num2) {
   return num1 - num2
 }
-console.log([6,4,15,10].sort(sortNumbers));
-console.log([6,4,15,10].sort(sortNumbers).reverse());
+// console.log([6,4,15,10].sort(sortNumbers));
+// console.log([6,4,15,10].sort(sortNumbers).reverse());
 
 function sortString (word1, word2) {
   return word1.length - word2.length
 }
-console.log(['steel', 'colt','data structures','algorithms'].sort(sortString));
-console.log(['steel', 'colt','data structures','algorithms'].sort(sortString).reverse());
+// console.log(['steel', 'colt','data structures','algorithms'].sort(sortString));
+// console.log(['steel', 'colt','data structures','algorithms'].sort(sortString).reverse());
 
 
 //bubble sort - a sorting algorithm where the largest values bubble up to the top
@@ -1294,10 +1294,10 @@ function swap(arr, idx1, idx2) { // [1,2,3] , 0, 1
   var temp = arr[idx1]; // 1
   arr[idx1] = arr[idx2]; // 2
   arr[idx2] = temp; // 1
-  console.log(arr)
+  // console.log(arr)
 }
 
-console.log(swap([1,2,3], 0, 1))
+// console.log(swap([1,2,3], 0, 1))
 
 //bubble sort psuedocode
 /* start looping from with a variable called i in the end of the array towards the beginning
@@ -1307,20 +1307,85 @@ console.log(swap([1,2,3], 0, 1))
 */
 
 function bubbleSort(arr) {
-  let swapped;
+  let swapped = false;
   for(var i = arr.length; i > 0; i--) {
-    swapped = false;
-    for( var j = 0; j < i - 1; j++) {
+    for(var j = 0; j < i - 1; j++) {
       if(arr[j] > arr[j + 1]) {
-        var temp = arr[j];
-        arr[j] = arr[j+1];
-        arr[j+1] = temp;
+        let temp = arr[j];
+        arr[j] = arr[j + 1];
+        arr[j + 1] = temp;
         swapped = true;
       }
     }
-    if (!swapped) break;
+    if(!swapped) break;
   }
   return arr;
 }
 
-console.log(bubbleSort([1,32,2,34,12])) //[1,2,12,32,34]
+// console.log(bubbleSort([1,32,2,34,12])) //[1,2,12,32,34]
+// console.log(bubbleSort([99,88,777,66,5,44,333,2,11]))
+
+//==============================================================================
+//selection sort
+//similar to bubble sort, but instead of first placing large values into sorted position, it places small values into sorted position
+//[5,3,4,1,2] //compace 5,3 = 3 is smaller
+//[5,3,4,1,2] //compace 5,4 = 3 is still smaller
+//[5,3,4,1,2] //compace 5,1 = 1 is smaller
+//[5,3,4,1,2] //compace 5,2 = 1 is smaller
+//[1,3,4,5,2] //1 is now placed in the beginning
+
+//selection sort psuedocode
+//store the first element as the smallest value you've seen so far.
+//compare this item to the next item in the array until you find a smaller number
+//if a smaller number is found, designate that smaller number to be the new 'minimum' and continue until the end of the array. if the 'min' is not the value (index) you initially began with, swap the two values.
+//repeat this with the next element until the array is sorted
+
+
+//big o complexity = O(N sqaured)
+function selectionSort (array) {
+  let swapped = false;
+  for(var i  = 0; i < array.length; i++) {
+    for(var j = i + 1; j < array.length; j++) {
+      if(array[j] < array[i]) {
+        let temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+        swapped = true;
+      }
+    }
+    if(!swapped) break;
+  }
+  return array;
+}
+
+// console.log(selectionSort([5,4,3,2,1]))
+// console.log(selectionSort([99,1,888,22,7,33,64,345]))
+
+
+//=========================================================
+//insertion sort
+//builds up the sort by gradually creating a larger left half which is always sorted
+//[5,3,4,1,2] looking 3, it goes before 5
+//[3,5,4,1,2] looking at 4, it goes after 3
+//[3,4,5,1,2] looking at 1, it goes in beginning
+//[1,3,4,5,2] looking at 2, it goes after 1
+//[1,2,3,4,5] complete
+
+//start by picking the second element in the array
+//now comapre the second element with the one before it and swap if necessary
+//continue to the next element and if it is in the incorrect order, iterate thorugh the sorted portion (i.e. the left side) to place the element in the correct place.
+
+function insertionSort(array){
+  for(var i = 1; i < array.length; i++){
+    for(var j = i; j > 0; j--) {
+      if(array[i] < array[j-1]) {
+        let temp = array[i];
+        array[i] = array[j-1]
+        array[j-1] = temp;
+      }
+    }
+  }
+  return array;
+}
+
+console.log(insertionSort([5,1,3,2,4]))
