@@ -1305,3 +1305,22 @@ console.log(swap([1,2,3], 0, 1))
 - if arr[j] is greater than arr[j+1], swap those two values!
 - return the sorted array
 */
+
+function bubbleSort(arr) {
+  let swapped;
+  for(var i = arr.length; i > 0; i--) {
+    swapped = false;
+    for( var j = 0; j < i - 1; j++) {
+      if(arr[j] > arr[j + 1]) {
+        var temp = arr[j];
+        arr[j] = arr[j+1];
+        arr[j+1] = temp;
+        swapped = true;
+      }
+    }
+    if (!swapped) break;
+  }
+  return arr;
+}
+
+console.log(bubbleSort([1,32,2,34,12])) //[1,2,12,32,34]
