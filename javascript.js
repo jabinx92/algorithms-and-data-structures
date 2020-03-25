@@ -1408,7 +1408,7 @@ function insertionSort(arr){
   //if the value in the first array is larger than the value in the second array, push the value in the second array into our results and move onto the next value in the second array
   //once we exhaust one array, push in all remainaing values from the other array.
 
-function mergeSort(arr1, arr2){
+function merge(arr1, arr2){
   let emptyArray = [];
   let i = 0;
   let j = 0;
@@ -1432,6 +1432,22 @@ function mergeSort(arr1, arr2){
   return emptyArray;
 }
 
-console.log(mergeSort([1,10,50],[2,14,99,100]))
-console.log(mergeSort([],[2,14,99,100]))
-console.log(mergeSort([100],[2,14,99]))
+// console.log(merge([1,10,50],[2,14,99,100]))
+// console.log(merge([],[2,14,99,100]))
+// console.log(merge([100],[2,14,99]))
+
+//mergeSort pseudocode
+//break up the array into halves until you have arrays that are empty or have one element - hint slice
+//once you have smaller sorted arrays, merge those arrays with other arrays until you are back at the full length of the array(use the merge function above that is already written)
+//once the array has been merged back together, return the merged (and sorted!) array
+
+function mergeSort(arr) {
+  if(arr.length <=1) return arr;
+  let mid = Math.floor(arr.length/2);
+  let left = mergeSort(arr.slice(0,mid));
+  let right = mergeSort(arr.slice(mid));
+  return merge(left, right);
+}
+
+// console.log(mergeSort([10,24,76,72,1,9]))
+// console.log(mergeSort([10,24,76,73]));
