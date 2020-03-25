@@ -1375,20 +1375,63 @@ function selectionSort (array) {
 //now comapre the second element with the one before it and swap if necessary
 //continue to the next element and if it is in the incorrect order, iterate thorugh the sorted portion (i.e. the left side) to place the element in the correct place.
 
-function insertionSort(array){
-  for(var i = 1; i < array.length; i++){
-    var currentVal = arr[i]
-    for(var j = i - 1; j >= 0; j--) {
-      if(array[i] < array[j-1] && array[i] > array[j-2]) {
-        let temp = array[i];
-        array[i] = array[j-1]
-        array[j-1] = temp;
-      }
+function insertionSort(arr){
+	var currentVal;
+    for(var i = 1; i < arr.length; i++){
+        currentVal = arr[i];
+        for(var j = i - 1; j >= 0 && arr[j] > currentVal; j--) {
+            arr[j+1] = arr[j]
+        }
+        arr[j+1] = currentVal;
     }
-  }
-  return array;
+    return arr;
 }
 
-console.log(insertionSort([5,1,3,2,4]))
+// console.log(insertionSort([2,1,9,76,4]))
 
 //time complexity - worst case O(n squared)
+
+//============================================================================
+//intermediate sorting algorithms
+//DONT BE INTIMDATED IF YOU CANT DO IT FIRST TRY, THESE ARE CHALLENGING! DONT WORRY DONT WORRY
+
+//Objectives - understand the limitations of the sorting algorithsm
+
+//Merge Sort - a combo of two things - merging and sorting
+//exploits the fact that arrays of 0 or 1 element are always sorted
+//works by decomposing an  array into smaller arrays of 0 or 1 elements, the nbuilding up a newly sorted array
+
+//merge sort
+//create an empty array, take a look at the smallest values in each input array
+//while there are still values we havent looked at...
+  //if the value in the first array is smaller than the value in the second array, push the value in the first array into our results and move on to the next value in the first array
+  //if the value in the first array is larger than the value in the second array, push the value in the second array into our results and move onto the next value in the second array
+  //once we exhaust one array, push in all remainaing values from the other array.
+
+function mergeSort(arr1, arr2){
+  let emptyArray = [];
+  let i = 0;
+  let j = 0;
+  while(i < arr1.length && j < arr2.length){
+    if(arr1[i] < arr2[j]) {
+      emptyArray.push(arr1[i]);
+      i++;
+    } else {
+      emptyArray.push(arr2[j]);
+      j++;
+    }
+  }
+  while(i < arr1.length){
+    emptyArray.push(arr1[i]);
+    i++;
+  }
+  while(j < arr2.length){
+    emptyArray.push(arr2[j]);
+    j++;
+  }
+  return emptyArray;
+}
+
+console.log(mergeSort([1,10,50],[2,14,99,100]))
+console.log(mergeSort([],[2,14,99,100]))
+console.log(mergeSort([100],[2,14,99]))
