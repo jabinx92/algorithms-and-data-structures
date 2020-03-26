@@ -1358,8 +1358,8 @@ function selectionSort (array) {
   return array;
 }
 
-// console.log(selectionSort([5,4,3,2,1]))
-// console.log(selectionSort([99,1,888,22,7,33,64,345]))
+console.log(selectionSort([5,4,3,2,1,1,-2]))
+console.log(selectionSort([99,1,888,22,7,33,64,345]))
 
 
 //=========================================================
@@ -1442,12 +1442,14 @@ function merge(arr1, arr2){
 //once the array has been merged back together, return the merged (and sorted!) array
 
 function mergeSort(arr) {
-  if(arr.length <=1) return arr;
-  let mid = Math.floor(arr.length/2);
-  let left = mergeSort(arr.slice(0,mid));
-  let right = mergeSort(arr.slice(mid));
-  return merge(left, right);
+  if(arr.length <= 1) return arr;
+  let mid = Math.floor(arr.length / 2);
+  let low = mergeSort(arr.slice(0, mid));
+  let high = mergeSort(arr.slice(mid))
+  return merge(low, high)
 }
 
-// console.log(mergeSort([10,24,76,72,1,9]))
-// console.log(mergeSort([10,24,76,73]));
+console.log(mergeSort([10,24,76,72,1,9]))
+console.log(mergeSort([10,24,76,73]));
+console.log(mergeSort([5,1,1,2,0,0]));
+
