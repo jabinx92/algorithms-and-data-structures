@@ -1256,7 +1256,7 @@ function sort(arr){
   //sorting is an incredibly common  task, so its good to know how it works
   //there are many different ways to sort things, and different techniques have their own advantages and disadvantages
 
-//objective - implement bubble sory, selection sort, and insertion sort
+//objective - implement bubble sort, selection sort, and insertion sort
 
 //javascript has a sort method, but it does not always work 100%
 // ['steel', 'colt','data structures','algorithms'].sort();
@@ -1265,7 +1265,7 @@ function sort(arr){
 //[10,15,4,6] // WRONG
 
 function sortNumbers (num1, num2) {
-  return num1 - num2
+  return num1 - num2;
 }
 // console.log([6,4,15,10].sort(sortNumbers));
 // console.log([6,4,15,10].sort(sortNumbers).reverse());
@@ -1358,8 +1358,8 @@ function selectionSort (array) {
   return array;
 }
 
-console.log(selectionSort([5,4,3,2,1,1,-2]))
-console.log(selectionSort([99,1,888,22,7,33,64,345]))
+// console.log(selectionSort([5,4,3,2,1,1,-2]))
+// console.log(selectionSort([99,1,888,22,7,33,64,345]))
 
 
 //=========================================================
@@ -1449,9 +1449,9 @@ function mergeSort(arr) {
   return merge(low, high)
 }
 
-console.log(mergeSort([10,24,76,72,1,9]))
-console.log(mergeSort([10,24,76,73]));
-console.log(mergeSort([5,1,1,2,0,0]));
+// console.log(mergeSort([10,24,76,72,1,9]))
+// console.log(mergeSort([10,24,76,73]));
+// console.log(mergeSort([5,1,1,2,0,0]));
 
 //quick sort
 //pivot helper - in order to implement merge sort, its useful to first implement a function responsible arranging elements in an array on either side of a pivor
@@ -1508,7 +1508,7 @@ function quickSort(arr, left = 0, right = arr.length -1){
      return arr;
 } 
            
-quickSort([100,-3,2,4,6,9,1,2,5,3,23])
+// quickSort([100,-3,2,4,6,9,1,2,5,3,23])
 
 // [4,6,9,1,2,5,3]
 // [3,2,1,4,6,9,5]
@@ -1517,3 +1517,12 @@ quickSort([100,-3,2,4,6,9,1,2,5,3,23])
 //      3      6
 //  2,1      5  9
 //    2
+
+function digitCount(num){
+  num = `${num}`;
+  return num.length
+}
+
+console.log(digitCount(222))
+console.log(digitCount(22))
+console.log(digitCount(2))
