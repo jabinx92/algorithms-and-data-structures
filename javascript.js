@@ -1556,34 +1556,134 @@ replace our existing array with values in our buckets starting with 0 and going 
 return list at the end!
  */
 
-// function getDigit(num, i) {
-//   return Math.floor(Math.abs(num) / Math.pow(10, i)) % 10;
-// }
+function getDigit(num, i) {
+  return Math.floor(Math.abs(num) / Math.pow(10, i)) % 10;
+}
 
-// function digitCount(num) {
-//   if (num === 0) return 1;
-//   return Math.floor(Math.log10(Math.abs(num))) + 1;
-// }
+function digitCount(num) {
+  if (num === 0) return 1;
+  return Math.floor(Math.log10(Math.abs(num))) + 1;
+}
 
-// function mostDigits(nums) {
-//   let maxDigits = 0;
-//   for (let i = 0; i < nums.length; i++) {
-//     maxDigits = Math.max(maxDigits, digitCount(nums[i]));
-//   }
-//   return maxDigits;
-// }
+function mostDigits(nums) {
+  let maxDigits = 0;
+  for (let i = 0; i < nums.length; i++) {
+    maxDigits = Math.max(maxDigits, digitCount(nums[i]));
+  }
+  return maxDigits;
+}
 
-// function radixSort(nums){
-//     let maxDigitCount = mostDigits(nums);
-//     for(let k = 0; k < maxDigitCount; k++){
-//         let digitBuckets = Array.from({length: 10}, () => []);
-//         for(let i = 0; i < nums.length; i++){
-//             let digit = getDigit(nums[i],k);
-//             digitBuckets[digit].push(nums[i]);
-//         }
-//         nums = [].concat(...digitBuckets);
-//     }
-//     return nums;
-// }
+function radixSort(nums){
+    let maxDigitCount = mostDigits(nums);
+    for(let k = 0; k < maxDigitCount; k++){
+        let digitBuckets = Array.from({length: 10}, () => []);
+        for(let i = 0; i < nums.length; i++){
+            let digit = getDigit(nums[i],k);
+            digitBuckets[digit].push(nums[i]);
+        }
+        nums = [].concat(...digitBuckets);
+    }
+    return nums;
+}
 
-// console.log(radixSort([23,345,5467,12,2345,9852]));
+console.log(radixSort([23,345,5467,12,2345,9852]));
+
+//==========================================================
+//==========================================================
+//==========================================================
+/*DATA STRUCTURES - binary search trees, queues, singly linked lists, binary heaps, hash tables, etc
+
+what do they do? data structures are collections of values, the relationships among them, and the functions or operations that can be applied to the data
+
+why so many data structures? well different data structures excel at different things. some are highly specialized, while others (like arrays) are more generally used
+
+why care? - the more time you spend as a developer, the more likely you'll need to use one of these data structures
+
+You have already worked with many of them unknowingly
+
+You need to know data structures to pass job interviews
+
+There is no 'BEST' data structure
+
+working with map or location data? like google maps, (trying to write code for cheapest and nearest gas station)
+
+need an ordered list with fast inserts/removals at the beginning and end? use linked list
+
+google.com uses tree
+
+scheduler app - binary heap
+
+THERE IS A LOT TO LEARN
+*/
+
+/*
+ES2015 class syntax
+What is a class? It is a blueprint for creating objects with pre-defined properties and methods
+
+why learn it? we will implement a ton of data structures as classes
+
+Data structures - the class keyword
+
+*/
+
+class Student {
+  constructor(firstName, lastName, year) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.grade = year;
+    this.tardies = 0;
+    this.scores = [];
+  }
+  //full name to calculate average = instance methods
+  fullName() { 
+    return `Your full name is ${this.firstName} ${this.lastName}`
+  }
+  markLate() {
+    this.tardies += 1;
+    if(this.tardies >= 3) {
+      return `YOU ARE EXPELLED!`;
+    }
+    return `${this.firstName} ${this.lastName} has been late ${this.tardies} times.`
+  }
+  addScore(score) {
+    this.scores.push(score);
+    return this.scores
+  }
+  calculateAverage() {
+    let sum = this.scores.reduce(function(a,b){return a+b})
+    return sum/this.scores.length;
+  }
+
+  //class method
+  static enrollStudents(){
+    return "ENROLLING STUDENTS!"
+  }
+  //can only be ran by Students.enrollStudents();
+}
+
+let firstStudent = new Student("Colt", "Steele", 4);
+let secondStudent = new Student("Blue", "Steele", 2);
+console.log(firstStudent)
+
+//class methods - not that common 
+//we will be using the constructor and instance methods quite a bit!
+
+//How we will be using classes
+/*
+class DataStructure() {
+  constructor() {
+    //what default properties should it have?
+  }
+  someInstanceMethod(){
+    //what shoulld each object created from this class be able to do?
+  }
+}
+*/
+
+//One gotcha with 'this' - inside all of our instance methods and constructor, the keyword 'this' refers to the object created from that class (also known as an instance)
+
+//recap - classes are blueprints that when created make objects known as instances
+//classes are created with the new keyword
+//the constructor function is a special function that gets run when the class is instantiated
+//instance methods can be added to clases similar to methods in objects
+//class methods can bve added used thing static keyword.
