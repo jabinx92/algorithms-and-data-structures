@@ -10,10 +10,10 @@ function addUpTo(n) {
   return total;
 }
 
-var t1 = performance.now();
+// var t1 = performance.now();
 // console.log(t1);
 addUpTo(1000000000);
-var t2 = performance.now();
+// var t2 = performance.now();
 // console.log(t2);
 
 // console.log(`Time Elapsed: ${(t2 - t1) / 1000} seconds.`)
@@ -1586,7 +1586,7 @@ function radixSort(nums){
     return nums;
 }
 
-console.log(radixSort([23,345,5467,12,2345,9852]));
+// console.log(radixSort([23,345,5467,12,2345,9852]));
 
 //==========================================================
 //==========================================================
@@ -1663,7 +1663,7 @@ class Student {
 
 let firstStudent = new Student("Colt", "Steele", 4);
 let secondStudent = new Student("Blue", "Steele", 2);
-console.log(firstStudent)
+// console.log(firstStudent)
 
 //class methods - not that common 
 //we will be using the constructor and instance methods quite a bit!
@@ -1695,13 +1695,28 @@ class DataStructure() {
 linked list
 a data structure that contains a head, tail, and length property. linked lists consist of nodes, and each node has a value and a pointer to another node or null.
 
-an arary is like a skyscraper with an elevator, you can go to any floor/number
+an array is like a skyscraper with an elevator, you can go to any floor/number
 a linked list like a skyscraper with only stairs, you can only use the stairs to go up
 */
 
 //piece of data - val
 //reference to next ndoe - next
 
+
+//below is bad example because you have to constantly type .next
+// var first  = new Node('Hi')
+// first.next = new Node('there')
+// first.next.next = new Node('how')
+// first.next.next.next = new Node('are')
+// first.next.next.next.next = new Node('you')
+
+/*
+this function should accept a value
+-create a new node using the value passed to the function
+-if there is no head propert on the list, set the head and tail to be the newly created node
+-otherwise set the next property on the tail to be the new node and set the tail property on the list to be the newly created node
+-increment the length by one
+*/
 class Node{
   constructor(val){
     this.val = val;
@@ -1709,9 +1724,82 @@ class Node{
   }
 }
 
-//below is bad example because you have to constantly type .next
-var first  = new Node('Hi')
-first.next = new Node('there')
-first.next.next = new Node('how')
-first.next.next.next = new Node('are')
-first.next.next.next.next = new Node('you')
+class LinkedList{
+  constructor(){
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+  push(val){
+    var newNode = new Node(val);
+    if(!this.head){
+      this.head = newNode;
+      this.tail = this.head;
+    } else {
+      this.tail.next = newNode;
+      this.tail = newNode
+    }
+    this.length++
+    return this;
+  }
+  pop(){
+    
+  }
+}
+
+var list = new LinkedList();
+// list.push('hello')
+// list.push('bye')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// class Node{
+//   constructor(val){
+//     this.val = val;
+//     this.next = null;
+//   }
+// }
+
+// class SinglyLinkedList{
+//   constructor() {
+//     this.head = null;
+//     this.tail = null;
+//     this.length = 0;
+//   }
+//   push(val){
+//     var newNode = new Node(val);
+//     if(!this.head){
+//       this.head = newNode;
+//       this.tail = this.head;
+//     } else {
+//       this.tail.next = newNode;
+//       this.tail = newNode;
+//     }
+//     this.length++;
+//     return this;
+//   }
+// }
+
+// var list = new SinglyLinkedList()
+// list.push("HELLO");
+// list.push("GOODBYE");
+// list.push("Night");
+// list.push('Day');
+// list.push('Signing out');
