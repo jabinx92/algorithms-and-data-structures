@@ -1687,3 +1687,31 @@ class DataStructure() {
 //the constructor function is a special function that gets run when the class is instantiated
 //instance methods can be added to clases similar to methods in objects
 //class methods can bve added used thing static keyword.
+
+//====================================================================
+//singly linked list
+/* define what  singly linked list is, compare and contrast linked list with arrays, implement insertion, removal and traversal methods on singly linked lists.
+
+linked list
+a data structure that contains a head, tail, and length property. linked lists consist of nodes, and each node has a value and a pointer to another node or null.
+
+an arary is like a skyscraper with an elevator, you can go to any floor/number
+a linked list like a skyscraper with only stairs, you can only use the stairs to go up
+*/
+
+//piece of data - val
+//reference to next ndoe - next
+
+class Node{
+  constructor(val){
+    this.val = val;
+    this.next = null;
+  }
+}
+
+//below is bad example because you have to constantly type .next
+var first  = new Node('Hi')
+first.next = new Node('there')
+first.next.next = new Node('how')
+first.next.next.next = new Node('are')
+first.next.next.next.next = new Node('you')
