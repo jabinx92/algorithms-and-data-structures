@@ -1717,133 +1717,133 @@ this function should accept a value
 -otherwise set the next property on the tail to be the new node and set the tail property on the list to be the newly created node
 -increment the length by one
 */
-class Node{
-  constructor(val){
-    this.val = val;
-    this.next = null;
-  }
-}
+// class Node{
+//   constructor(val){
+//     this.val = val;
+//     this.next = null;
+//   }
+// }
 
-class LinkedList{
-  constructor(){
-    this.head = null;
-    this.tail = null;
-    this.length = 0;
-  }
-  push(val){
-    var newNode = new Node(val);
-    if(!this.head){
-      this.head = newNode;
-      this.tail = this.head;
-    } else {
-      this.tail.next = newNode;
-      this.tail = newNode
-    }
-    this.length++
-    return this;
-  }
-  pop(){
-    if(!this.head) return undefined 
-    var current = this.head;
-    var newTail = current;
-    while(current.next){
-      newTail = current;
-      current = current.next;
-    }
-    this.tail = newTail;
-    this.tail.next = null;
-    this.length--;
-    if(this.length === 0){
-      this.head = null;
-      this.tail = null;
-    }
-    return current;
-  }
-  shift(){
-    if(!this.head) return undefined;
-    var currentHead = this.head;
-    this.head = currentHead.next;
-    this.length--;
-    if(this.length === 0) {
-      this.tail = null;
-    }
-    return currentHead;
-  }
-  unshift(val){
-    var newNode = new Node(val);
-    if(!this.head){
-      this.head = newNode;
-      this.tail =  this.head;
-    } else {
-      newNode.next = this.head;
-      this.head = newNode;
-    }
-    this.length++;
-    return this;
-  }
-  get(val){
-    let number = 0;
-    let current = this.head
-    if(val < 0 || val >= this.length) return null;
-    while(number !== val){
-      current = current.next;
-      number++;
-    }
-    return current;
-  }
-  set(index, val){
-    let change = this.get(index)
-    if(change){
-      change.val = val;
-      console.log(change)
-      return true;
-    } else {
-      return false;
-    }
-  }
-  insert(index, val){
-    if(index < 0 || index > this.length) return false;
-    if(index === this.length) return this.push(val);
-    if(index === 0) return this.unshift(val);
+// class LinkedList{
+//   constructor(){
+//     this.head = null;
+//     this.tail = null;
+//     this.length = 0;
+//   }
+//   push(val){
+//     var newNode = new Node(val);
+//     if(!this.head){
+//       this.head = newNode;
+//       this.tail = this.head;
+//     } else {
+//       this.tail.next = newNode;
+//       this.tail = newNode
+//     }
+//     this.length++
+//     return this;
+//   }
+//   pop(){
+//     if(!this.head) return undefined 
+//     var current = this.head;
+//     var newTail = current;
+//     while(current.next){
+//       newTail = current;
+//       current = current.next;
+//     }
+//     this.tail = newTail;
+//     this.tail.next = null;
+//     this.length--;
+//     if(this.length === 0){
+//       this.head = null;
+//       this.tail = null;
+//     }
+//     return current;
+//   }
+//   shift(){
+//     if(!this.head) return undefined;
+//     var currentHead = this.head;
+//     this.head = currentHead.next;
+//     this.length--;
+//     if(this.length === 0) {
+//       this.tail = null;
+//     }
+//     return currentHead;
+//   }
+//   unshift(val){
+//     var newNode = new Node(val);
+//     if(!this.head){
+//       this.head = newNode;
+//       this.tail =  this.head;
+//     } else {
+//       newNode.next = this.head;
+//       this.head = newNode;
+//     }
+//     this.length++;
+//     return this;
+//   }
+//   get(val){
+//     let number = 0;
+//     let current = this.head
+//     if(val < 0 || val >= this.length) return null;
+//     while(number !== val){
+//       current = current.next;
+//       number++;
+//     }
+//     return current;
+//   }
+//   set(index, val){
+//     let change = this.get(index)
+//     if(change){
+//       change.val = val;
+//       console.log(change)
+//       return true;
+//     } else {
+//       return false;
+//     }
+//   }
+//   insert(index, val){
+//     if(index < 0 || index > this.length) return false;
+//     if(index === this.length) return this.push(val);
+//     if(index === 0) return this.unshift(val);
 
-    var newNode = new Node(val);
-    var prev = this.get(index - 1)
-    var temp = prev.next;
-    prev.next = newNode;
-    newNode.next = temp;
-    this.length++;
-    return true;
-  }
-  remove(index){
-    if(index < 0 || index > this.length) return undefined;
-    if(index === this.length - 1) return this.pop();
-    if(index === 0) return this.shift();
-    var previousNode = this.get(index - 1);
-    var removed = previousNode.next;
-    previousNode.next = removed.next;
-    this.length--;
-    return removed;
-  }
-  reverse(){
-    var node = this.head;
-    this.head = this.tail;
-    var next;
-    var prev = null;
-    for(var i = 0; i < this.length; i++){
-      next = node.next;
-      node.next = prev;
-      prev = node;
-      node = next;
-    }
-    return this;
-  }
-}
+//     var newNode = new Node(val);
+//     var prev = this.get(index - 1)
+//     var temp = prev.next;
+//     prev.next = newNode;
+//     newNode.next = temp;
+//     this.length++;
+//     return true;
+//   }
+//   remove(index){
+//     if(index < 0 || index > this.length) return undefined;
+//     if(index === this.length - 1) return this.pop();
+//     if(index === 0) return this.shift();
+//     var previousNode = this.get(index - 1);
+//     var removed = previousNode.next;
+//     previousNode.next = removed.next;
+//     this.length--;
+//     return removed;
+//   }
+//   reverse(){
+//     var node = this.head;
+//     this.head = this.tail;
+//     var next;
+//     var prev = null;
+//     for(var i = 0; i < this.length; i++){
+//       next = node.next;
+//       node.next = prev;
+//       prev = node;
+//       node = next;
+//     }
+//     return this;
+//   }
+// }
 
-var list = new LinkedList();
-console.log(list.push('hello'))
-console.log(list.push('bye'))
-console.log(list.push('goodnight'))
-console.log(list.push('goodmorning'))
+// var list = new LinkedList();
+// console.log(list.push('hello'))
+// console.log(list.push('bye'))
+// console.log(list.push('goodnight'))
+// console.log(list.push('goodmorning'))
 // // console.log(list.pop());
 // // console.log(list.pop());
 // // console.log(list.shift());
@@ -1856,3 +1856,41 @@ console.log(list.push('goodmorning'))
 // // console.log(list.get(1))
 // console.log(list.insert(2, 'inserted'))
 // console.log(list)
+
+//data structure - doubly linked list - construct a doubly linked list = compare and contrast double and singly linked lists - implement basic operations on a doubly linked list
+//doubly linked list is almost identical to singly linked lists, except every node has anothe rpointer, to the previous node!
+//it takes more memory === more flexibility, almost always a tradeoff!
+
+class Node{
+  constructor(val){
+    this.val = val;
+    this.next = null;
+    this.prev = null;
+  }
+}
+
+class DoublyLinkedList{
+  constructor(){
+    this.head = null;
+    this.tail = null;
+    this.length = 0;
+  }
+  push(val){
+    var newNode = new Node(val);
+    if(this.length === 0){
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.tail.next = newNode;
+      newNode.prev = this.tail;
+      this.tail = newNode;
+    }
+    this.length++;
+    return this;
+  }
+}
+
+var first = new DoublyLinkedList();
+console.log(first.push('first'));
+console.log(first.push('second'));
+console.log(first.push('last item'))
