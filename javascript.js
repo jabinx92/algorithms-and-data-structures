@@ -1931,15 +1931,39 @@ class DoublyLinkedList{
   get(index){
     if(index < 0 || index >= this.length) return null;
     if(index <= this.length / 2){
-      while(index !== this.length){
-        
+      let count = 0;
+      while(this.head){
+        if(index === count) {
+          return this.head;
+        } else {
+          this.head = this.head.next;
+          count++;
+        }
+      }
+    } else {
+      let count = this.length;
+      while(this.tail){
+        if(index === count){
+          return this.tail;
+        } else {
+          this.tail = this.tail.prev;
+          count--;
+        }
       }
     }
   }
 }
 
 var first = new DoublyLinkedList();
-// console.log(first.push('first'));
-// console.log(first.push('second'));
-// console.log(first.push('third'));
-// console.log(first.pop());
+console.log(first.push('1'));
+console.log(first.push('2'));
+console.log(first.push('3'));
+console.log(first.push('4'));
+console.log(first.push('5'));
+console.log(first.push('6'));
+console.log(first.push('7'));
+console.log(first.push('8'));
+console.log(first.push('9'));
+console.log(first.push('10'));
+console.log(first.get(1)); //2
+console.log(first.get(9)); //10
