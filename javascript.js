@@ -1930,48 +1930,74 @@ this function should accept a value
 //   }
 //   get(index){
 //     if(index < 0 || index >= this.length) return null;
+//     let count, next = this.head;
 //     if(index <= this.length / 2){
-//       let count = 0;
-//       while(this.head){
-//         if(index === count) {
-//           return this.head;
-//         } else {
-//           this.head = this.head.next;
-//           count++;
-//         }
-//       }
+//       count = 0;
+//       while(index !== count){
+//         next = next.next;
+//         count++;
+//       } 
 //     } else {
-//       let count = this.length;
-//       while(this.tail){
-//         if(index === count){
-//           return this.tail;
-//         } else {
-//           this.tail = this.tail.prev;
-//           count--;
-//         }
+//       count = this.length - 1;
+//       next = this.tail;
+//       while(index !== count){
+//         next = next.prev;
+//         count--;
 //       }
+//       }
+//       return next;
 //     }
+//   set(value, idx){
+//     let index = this.get(idx);
+//     if(index){
+//       index.val = value;
+//       return true;
+//     }
+//     return false;
+//   }
+//   insert(index,value) {
+//     if(index < 0 || index >= this.length) return false;
+//     if(index === 0) return this.unshift(value);
+//     if(index === this.length) return this.push(value);
+
+//     var newNode = new Node(value);
+//     var prev = this.get(index - 1);
+//     var temp = prev.next;
+
+//     prev.next = newNode, newNode.prev = prev;
+//     newNode.next = temp, temp.prev = newNode;
+//     this.length++;
+//     return true;
+//   }
+//   remove(index) {
+//     if(index < 0 || index >= this.length) return undefined;
+//     if(index === 0) return this.shift();
+//     if(index === this.length - 1) return this.pop();
+
+//     var removedNode = this.get(index);
+//     removedNode.prev.next = removedNode.next;
+//     removedNode.next.prev = removedNode.prev;
+//     removedNode.next = null;
+//     removedNode.prev = null;
+//     this.length--;
+//     return removedNode;
 //   }
 // }
 
+
 // var first = new DoublyLinkedList();
-// console.log(first.push('1'));
-// console.log(first.push('2'));
-// console.log(first.push('3'));
-// console.log(first.push('4'));
-// console.log(first.push('5'));
-// console.log(first.push('6'));
-// console.log(first.push('7'));
-// console.log(first.push('8'));
-// console.log(first.push('9'));
-// console.log(first.push('10'));
-// console.log(first.get(0)); //2
-// console.log(first.get(1)); //10
-// console.log(first.get(2));
-// console.log(first.get(3));
-// console.log(first.get(4));
-// console.log(first.get(5));
-// console.log(first.get(6));
-// console.log(first.get(7));
-// console.log(first.get(8));
-// console.log(first.get(9));
+// console.log(first.push('please'));
+// console.log(first.push('excuse'));
+// console.log(first.push('my'));
+// console.log(first.push('dear'));
+// console.log(first.push('aunt'));
+// console.log(first.push('sally'));
+// console.log(first.push('she'));
+// console.log(first.push('is'));
+// console.log(first.push('an'));
+// console.log(first.push('engineer'));
+// // console.log(first.get(-1));
+// // console.log(first.set('hello', 4))
+// // console.log(first.set('hello', -1))
+// first.insert(4, 'HELLO');
+// console.log(first);
