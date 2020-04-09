@@ -2030,49 +2030,118 @@ routing(the history object) is treated like a stack!
 
 
 //using stack in a linked list
-// var stack = new Stack();
-// stack.push("FIRST").push("SECOND").push("THIRD").push("FOURTH");
-// stack.pop();
+
+// class Node {
+//   constructor(value) {
+//     this.value = value;
+//     this.next = null;
+//   }
+// }
+
+// class LinkedList {
+//   constructor() {
+//     this.head = null;
+//     this.tail = null;
+//     this.length = 0;
+//   }
+//   push(value) {
+//     var newNode = new Node(value);
+//     if(!this.head) {
+//       this.head = newNode;
+//       this.tail = newNode;
+//     } else {
+//       var temp = this.head;
+//       this.head = newNode;
+//       newNode.next = temp;
+//     }
+//     this.length++;
+//     return this.length;
+//   }
+//   pop() {
+//     if(!this.head) return null;
+//     var removed = this.head;
+//     if(this.head === this.last) {
+//       this.last = null;
+//     }
+//     this.head = this.head.next;
+//     this.length--;
+//     return removed.value;
+//   }
+// }
+
+// var list = new LinkedList();
+// console.log(list.push(5));
+// console.log(list.push(10));
+// console.log(list.push(15));
+// console.log(list);
+// console.log(list.pop());
+// console.log(list);
+
+//===========================================================
+//queue - first in first out - when you go in store to get food and you get yours first.
+//when blizzard servers are busy, you go into queue to join the game
+//print queue - there are many ways to implement a queue - just remember FIRST IN FIRST OUT!
+
+// var q = [];
+// q.push("FIRST")
+// q.push("SECOND")
+// q.push("THIRD")
+// console.log(q)
+// q.shift();
+// console.log(q);
+// q.shift();
+// console.log(q);
+// q.shift();
+// console.log(q);
 
 // class Node {
 //   constructor(value){
-//       this.value = value;
-//       this.next = null;
+//     this.value = value;
+//     this.next = null;
 //   }
 // }
 
-// class Stack {
+// class LinkedList {
 //   constructor() {
-//       this.first = null;
-//       this.last = null;
-//       this.size = 0;
+//     this.head = null;
+//     this.tail = null;
+//     this.length = 0;
 //   }
-//   push(val) {
-//       var newNode = new Node(val);
-//       if(!this.first) {
-//           this.first = newNode;
-//           this.last = newNode;
-//       } else {
-//           var temp = this.first;
-//           this.first = newNode;
-//           this.first.next = temp;
-//       }
-//       return this.size++;
+//   enqueue(value) {
+//     var newNode = new Node(value);
+//     if(!this.head){
+//       this.head = newNode;
+//       this.tail = newNode;
+//     } else {
+//       let temp = this.tail;
+//       temp.next = newNode;
+//       this.tail = newNode;
+//     }
+//     return this.length++;
 //   }
-//   pop() {
-//       if(!this.first) return null;
-//       var temp = this.first;
-//       if(this.first === this.last) {
-//           this.last = null;
-//       }
-//       this.first = this.first.next;
-//       this.size--;
-//       return temp.value;
+//   dequeue() {
+//     if(!this.head) return null;
+//     let removed = this.head;
+//     if(this.first === this.last) {
+//     this.last === null;
+//     }
+//     this.head = removed.next;
+//     this.length--;
+//     return removed;
 //   }
 // }
-// var stack = new Stack();
-// console.log(stack.push('first'));
-// console.log(stack.push('second'))
-// console.log(stack.push('third'))
-// console.log(console.log(stack))
 
+// var list = new LinkedList();
+// console.log(list.enqueue(5));
+// console.log(list);
+// console.log(list.enqueue(10));
+// console.log(list);
+
+// list.enqueue(15);
+// list.enqueue(20);
+// console.log(list.dequeue())
+// console.log(list)
+
+
+
+// //fastest way - add to the end and move from the beginning, aka push and shift, enqueue and dequeue
