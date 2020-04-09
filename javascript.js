@@ -759,11 +759,11 @@ function power (num1, num2) {
 
 
 //=======================================
-function factorial(num) {
-  //base case
-  if(num === 0) return 1;
-  return num * factorial(num - 1)
-}
+// function factorial(num) {
+//   //base case
+//   if(num === 0) return 1;
+//   return num * factorial(num - 1)
+// }
 
 // console.log(factorial(1)) //1
 // console.log(factorial(2)) //2
@@ -2003,4 +2003,76 @@ this function should accept a value
 // console.log(first);
 
 
+//==============================================================
+/*
+define what a stack is. understand use cases for a stack. implement operations on a stack data structure.
+
+LIFO - last in first out - recursion call stack
+where are stacks used - managing function invocations
+undo / redo
+ctrl + z removes the latest mistake
+routing(the history object) is treated like a stack!
+*/
+
+// function factorial(x){
+//   //edge case
+//   if(x === 0) return 1;
+//   return x * factorial(x - 1);
+// }
+
+// console.log(factorial(4));
+
+
+//stack - LIFO - here is array implementation of stack
+// var stack = [];
+// stack.push(5).push(10).push(15).push(20);
+//push and pop is better than shift and unshift because you dont have to reindex everything, unlike shift and unshift
+
+
+//using stack in a linked list
+// var stack = new Stack();
+// stack.push("FIRST").push("SECOND").push("THIRD").push("FOURTH");
+// stack.pop();
+
+// class Node {
+//   constructor(value){
+//       this.value = value;
+//       this.next = null;
+//   }
+// }
+
+// class Stack {
+//   constructor() {
+//       this.first = null;
+//       this.last = null;
+//       this.size = 0;
+//   }
+//   push(val) {
+//       var newNode = new Node(val);
+//       if(!this.first) {
+//           this.first = newNode;
+//           this.last = newNode;
+//       } else {
+//           var temp = this.first;
+//           this.first = newNode;
+//           this.first.next = temp;
+//       }
+//       return this.size++;
+//   }
+//   pop() {
+//       if(!this.first) return null;
+//       var temp = this.first;
+//       if(this.first === this.last) {
+//           this.last = null;
+//       }
+//       this.first = this.first.next;
+//       this.size--;
+//       return temp.value;
+//   }
+// }
+// var stack = new Stack();
+// console.log(stack.push('first'));
+// console.log(stack.push('second'))
+// console.log(stack.push('third'))
+// console.log(console.log(stack))
 
