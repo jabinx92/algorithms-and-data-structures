@@ -2145,3 +2145,67 @@ routing(the history object) is treated like a stack!
 
 
 // //fastest way - add to the end and move from the beginning, aka push and shift, enqueue and dequeue
+
+//============================================================
+// binary search trees
+//why are linked lists different that TREES? well linked lists are linear(one node connects  to the other til it reaches the end), binary search trees are non-linear(they can have multiple paths going different ways).
+//root - the top node in a tree
+//child - node directly connected to another node when moving away from the root.
+//parent - the converse notion of a child 
+//siblings - node that shares the same parent
+//leaf - a node with no children
+//edge - the connection between one node and another
+
+//uses for trees - used all the time - HTML DOM - google searchbar uses a tree, when you type a word, it will show you multiple selections, further narrowing your search
+//network routing - not sure but dont worry
+//abstact syntax  tree - coding tree structure(while loop has aa condition and body branch)
+//artificial intelligence - machine learning uses a lot of trees
+//if you made a tic tac toe game, artificial intelligence can teach the robot to learn all the best possible moves.
+//folders in operating systems - folders have folders within folders
+
+
+//kinds of trees we will look into
+/*
+tree - each node can have unlimited children nodes
+binary tree - each node can have a max of 2 child nodes
+binary search tree - special case of binary tree - numbers are sorted in particular way, if you look at the root, all numbers smaller are to the left, all numbers greater than the root are located to the right
+  -every parent node has at most two children
+  -every node to the left of a parent node is always less than the parent
+  -every node to the right of a parent node is always greater than the parent
+*/
+
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+class BinarySearchTree {
+  constructor(){
+    this.root = null;
+  }
+}
+
+var tree = new BinarySearchTree();
+tree.root = new Node(10);
+tree.root.right  = new Node(15);
+tree.root.left = new Node(7);
+tree.root.left.right = new Node(9);
+//this will take too long - SOLUTION - insert function
+
+/*
+inserting a node - steps - iteratively or recursively
+-create a new node
+-starting at the root
+  -check if there is a root, if not - the root now becomes that new node!
+  -if there is a root, check if the value of the new node is greater than or less than the value of the root
+  -if it is greater
+    -check to see if there is a node to the right
+      -if there is, move to that node and repeat these steps
+      -if there is not, add that node as the right property
+  -if it is less
+    -check to see if there is a node to the left
+    -if there is not, add that node as the left property
+*/
