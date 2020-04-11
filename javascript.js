@@ -2189,10 +2189,10 @@ binary search tree - special case of binary tree - numbers are sorted in particu
 //   insert(value) {
 //     var newNode = new Node(value);
 //     if(this.node === null) {
-//       this.node === newNode;
+//       this.node = newNode;
 //       return this;
 //     }
-//     var current = this.node;
+//     let current = this.node;
 //     while(true) {
 //       if(value === current.value) return undefined;
 //       if(value < current.value) {
@@ -2203,20 +2203,55 @@ binary search tree - special case of binary tree - numbers are sorted in particu
 //           current = current.left;
 //         }
 //       } else if(value > current.value) {
-//         if(current.right === null) {
+//         if(current.right === null){
 //           current.right = newNode;
 //           return this;
 //         } else {
-//           current = current.right;
+//           current = current.right
 //         }
 //       }
 //     }
 //   }
+//   find(value) {
+//     if(this.node === null) return false;
+//     let current = this.node;
+//     while(true) {
+//       if(current === null) return false;
+//       if(value === current.value) {
+//         return current;
+//       } else if(value < current.value) {
+//       current = current.left;
+//       } else {
+//       current = current.right;
+//       } 
+//     }
+//   }
+//   contains(value) {
+//     if(this.node === null) return false;
+//     let current = this.node;
+//     while(true) {
+//       if(current === null) return false;
+//       if(value === current.value) {
+//         return true;
+//       } else if(value < current.value) {
+//       current = current.left;
+//       } else {
+//       current = current.right;
+//       } 
+//     }
+//   }
 // }
-
 // var tree = new BinarySearchTree();
-
-
+// console.log(tree.insert(50));
+// console.log(tree.insert(5));
+// console.log(tree.insert(24));
+// console.log(tree.insert(55));
+// console.log(tree.insert(15));
+// console.log(tree.insert(1));
+// console.log(tree.find(55));
+// console.log(tree.find(123));
+// console.log(tree.contains(55));
+// console.log(tree.contains(123));
 
 //this will take too long - SOLUTION - insert function
 // var tree = new BinarySearchTree();
@@ -2240,3 +2275,19 @@ inserting a node - steps - iteratively or recursively
     -check to see if there is a node to the left
     -if there is not, add that node as the left property
 */
+
+//============================================================================
+/*
+Tree Traversal - lets say you have a Tree structure but all the nodes are unordered and you want to find a value in a node.
+There are two ways to sort through a unsorted tree.
+  -Breadth-first search (work across the tree from left to right)
+  -Depth-first search (in-order(bottom left to top node to bottom right) or pre-order(top node to bottom left to bottom right) or post order(bottom left to bottom right to top node))
+*/
+
+//Breadth-first search
+  //create a queue (this can be an array) anda  variable to store the values of nodes visited
+  //place the root node in the queue
+  //loop as long as there is anything in the queue
+    //dequeue a node from the queue and push the value of the node into the variable that stores the nodes
+    //if there is a left property on the node dequeued - add it to the queue
+    //if there is a right property on the node dequeued - add it to the queue
