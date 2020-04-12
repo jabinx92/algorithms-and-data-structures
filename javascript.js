@@ -2174,6 +2174,7 @@ binary search tree - special case of binary tree - numbers are sorted in particu
   -every node to the right of a parent node is always greater than the parent
 */
 
+
 // class Node {
 //   constructor(value) {
 //     this.value = value;
