@@ -77,7 +77,7 @@ let names  = ['Michael', 'Melissa', 'Andrea'];
 //ALGORITHMS AND PROBLEM SOLVING PATTERNS - STEPS TO PROBLEM SOLVE
 //What is an algorithm? - A process or set of steps to accompish a certain task
 
-//Almost everytthing that you do in programming involves some kind of algorithm!
+//Almost everytting that you do in programming involves some kind of algorithm!
 //It is the FOUNDATION for being a successful problem solving and developer
 //Algorithms come up in interviews
 
@@ -264,7 +264,7 @@ sumZero([1,2,3]) //undefined
 function sumZero(arr){
   let left = 0;
   let right = arr.length - 1;
-  while(left<right) {
+  while(left < right) {
     let sum = arr[left] + arr[right];
     if(sum === 0) {
       return [arr[left], arr[right]];
@@ -470,7 +470,7 @@ function averagePair(arr, num){
     let avg = (arr[start]+arr[end]) / 2 
     if(avg === num) return true;
     else if(avg < num) start++
-    else end--
+    else end--;
   }
   return false;
 }
