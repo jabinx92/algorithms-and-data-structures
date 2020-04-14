@@ -2254,6 +2254,36 @@ class BinarySearchTree {
     }
     return result;
   }
+  DFSPreoder() {
+    var data = [];
+    var helperFunction = function(node) {
+      data.push(node.value);
+      if(node.left) helperFunction(node.left);
+      if(node.right) helperFunction(node.right);
+    }
+    helperFunction(this.root);
+    return data;
+  }
+  DFSPostorder() {
+    var data = [];
+    var helperFunction = function(node){
+      if(node.left) helperFunction(node.left);
+      if(node.right) helperFunction(node.right);
+      data.push(node.value);
+    }
+    helperFunction(this.root);
+    return data;
+  }
+  DFSInorder() {
+    var data = [];
+    var helperFunction = function(node) {
+    if(node.left) helperFunction(node.left);
+    data.push(node.value);
+    if(node.right) helperFunction(node.right);
+    }
+    helperFunction(this.root);
+    return data;
+  }
 }
 // var tree = new BinarySearchTree();
 // console.log(tree.insert(50));
@@ -2307,4 +2337,32 @@ There are two ways to sort through a unsorted tree.
     //if there is a left property on the node dequeued - add it to the queue
     //if there is a right property on the node dequeued - add it to the queue
 
+    //recap - trees are non-linear data structures that contain a root and child nodes
+      //binary trees can have values of any type, but at most two children for each parent
+      //binary search trees are more specific version of binary trees where every node to the left of a parent is less than it's value and evvery node to the right is greater
+      //we can search through trees using BFS and DFS
 
+
+//===================================================================
+/* BINARY HEAPS
+objectives - 
+  - define what a binary heap is
+  - compare and contrast min and max heaps
+  - implement basic methods on heaps
+  - understand where heaps are used in the real world and what other data structures can be constructed from heaps
+
+  - what is a binary heap? - very  similar to a binary search tree, but with some different rules!
+  - in a maxbinaryheap, parent nodes are always larger than child nodes. in a minbinaryheap, parent nodes are always smaller than child nodes
+
+  example - 33
+          18    41
+        12  27 39 --there is no order, as long as top(parent node) is greater than the child nodes
+
+max binary heap -
+  -each parent has at most two nodes
+  -the value of each parent node is alwaays greater than its child nodes
+  -in a max binary heap the parent is greater than the children, but there are no guarantees between sibling nodes
+  -a binary heap is as compact as possible. all the children of each node are as full as they can be and left children are filled out first
+
+  why are binary heaps important? binary heaps are used to implement priority queues, which are very commonly used data structures. they are also used quite a bit, with graph traversal algorithms
+*/
