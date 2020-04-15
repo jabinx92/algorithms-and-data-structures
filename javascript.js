@@ -118,7 +118,7 @@ let names  = ['Michael', 'Melissa', 'Andrea'];
         var obj = {};
         //loop over string, for each character...
         for (var char of str) {
-          char = char.toLowerCase()
+          char = char.toLowerCase();
           //if the char is a number/letter AND is a key in object, add one to count
           if(/[a-z0-9]/.test(char)) {
             //if char is a number/letter and is not in object, add it and set value to 1
@@ -230,9 +230,9 @@ for(let key in object1) {
 
 return true;
 }
-// console.log(validAnagram('', '')) //true
-// console.log(validAnagram('hello', 'olleh')) //false
-// console.log(validAnagram('abc', 'wada')) //false
+console.log(validAnagram('', '')) //true
+console.log(validAnagram('hello', 'olleh')) //false
+console.log(validAnagram('abc', 'wada')) //false
 
 //-------------------------------------------------------------------
 
