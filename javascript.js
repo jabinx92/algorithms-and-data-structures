@@ -198,41 +198,41 @@ let names  = ['Michael', 'Melissa', 'Andrea'];
 // console.log(same([1,2,3,2,5], [9,1,4,4,11]))
 //===================================================
 
-//Big O Time complexity - O(n) linear
-function validAnagram(word1, word2){
-// add whatever parameters you deem necessary - good luck!
-let object1 = {};
-let object2 = {};
-if (word1.length !== word2.length) {
-  return false;
-}
+// //Big O Time complexity - O(n) linear
+// function validAnagram(word1, word2){
+// // add whatever parameters you deem necessary - good luck!
+// let object1 = {};
+// let object2 = {};
+// if (word1.length !== word2.length) {
+//   return false;
+// }
 
-for(let i = 0; i < word1.length; i++) {
-  let letter = word1[i];
-  object1[letter] = object1[letter] + 1 || 1;
-}
-console.log(object1)
+// for(let i = 0; i < word1.length; i++) {
+//   let letter = word1[i];
+//   object1[letter] = object1[letter] + 1 || 1;
+// }
+// console.log(object1)
 
-for(let i = 0; i < word2.length; i++) {
-  let letter = word2[i];
-  object2[letter] = object2[letter] + 1 || 1;
-}
-console.log(object2)
+// for(let i = 0; i < word2.length; i++) {
+//   let letter = word2[i];
+//   object2[letter] = object2[letter] + 1 || 1;
+// }
+// console.log(object2)
 
-for(let key in object1) {
-  console.log(object1[key])
-  console.log('-------------')
+// for(let key in object1) {
+//   console.log(object1[key])
+//   console.log('-------------')
 
-  if(object1[key] !== object2[key]) {
-    return false;
-  }
-}
+//   if(object1[key] !== object2[key]) {
+//     return false;
+//   }
+// }
 
-return true;
-}
-console.log(validAnagram('', '')) //true
-console.log(validAnagram('hello', 'olleh')) //false
-console.log(validAnagram('abc', 'wada')) //false
+// return true;
+// }
+// console.log(validAnagram('', '')) //true
+// console.log(validAnagram('hello', 'olleh')) //true
+// console.log(validAnagram('abc', 'wada')) //false
 
 //-------------------------------------------------------------------
 
