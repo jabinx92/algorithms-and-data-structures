@@ -594,6 +594,8 @@ function minSubArrayLen(nums, sum) {
 // console.log([2,3,1,2,4,3], 7) // 2 -> because [4,3] is the smallest subarray
 // console.log([2,1,6,5,4], 9) // 2 -> because [5,4] is the smallest subarray
 
+//====================================================================================
+
 //sliding window - findLongestSubstring
 //Write a function called findLongestSubstring, which accepts a string and returns the length of the longest substring with all distinct characters
 
