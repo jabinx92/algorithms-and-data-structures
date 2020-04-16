@@ -651,6 +651,7 @@ function sumRange(num) {
   return num + sumRange(num-1);
 }
 
+
 // console.log(sumRange(3));
 
 //sumRange(3)
@@ -786,9 +787,9 @@ function productOfArray (arr) {
     if(input.length === 0) {
       return;
     }
-    empty *= input[0]
+    empty *= input[0];
 
-    help(input.slice(1))
+    help(input.slice(1));
   }
   help(arr)
 
@@ -2400,3 +2401,6 @@ max binary heap -
 // // [41,39,55,18,27,12,33]
 // // [55,39,41,18,27,12,33]
 // // [55,39,41,18,27,12,33]
+
+
+//review of course - control + f "function flatten(array){"
