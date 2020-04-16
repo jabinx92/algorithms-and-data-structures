@@ -1378,7 +1378,7 @@ function selectionSort (array) {
 
 //start by picking the second element in the array
 //now comapre the second element with the one before it and swap if necessary
-//continue to the next element and if it is in the incorrect order, iterate thorugh the sorted portion (i.e. the left side) to place the element in the correct place.
+//continue to the next element and if it is in the incorrect order, iterate through the sorted portion (i.e. the left side) to place the element in the correct place.
 
 function insertionSort(arr){
 	var currentVal;
