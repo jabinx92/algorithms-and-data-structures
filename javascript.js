@@ -1392,7 +1392,7 @@ function insertionSort(arr){
     return arr;
 }
 
-// console.log(insertionSort([2,1,9,76,4]))
+console.log(insertionSort([2,1,9,76,4]))
 
 //time complexity - worst case O(n squared)
 
@@ -2405,4 +2405,4 @@ max binary heap -
 // // [55,39,41,18,27,12,33]
 
 
-//review of course - control + f "function flatten(array){"
+//review of course - line 1634
