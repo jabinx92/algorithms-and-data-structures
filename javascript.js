@@ -1680,7 +1680,7 @@ class DataStructure() {
     //what default properties should it have?
   }
   someInstanceMethod(){
-    //what shoulld each object created from this class be able to do?
+    //what should each object created from this class be able to do?
   }
 }
 */
@@ -1690,8 +1690,8 @@ class DataStructure() {
 //recap - classes are blueprints that when created make objects known as instances
 //classes are created with the new keyword
 //the constructor function is a special function that gets run when the class is instantiated
-//instance methods can be added to clases similar to methods in objects
-//class methods can bve added used thing static keyword.
+//instance methods can be added to classes similar to methods in objects
+//class methods can be added used thing static keyword.
 
 //====================================================================
 //singly linked list
@@ -1849,18 +1849,20 @@ this function should accept a value
 // console.log(list.push('bye'))
 // console.log(list.push('goodnight'))
 // console.log(list.push('goodmorning'))
-// // console.log(list.pop());
-// // console.log(list.pop());
-// // console.log(list.shift());
-// // console.log(list.shift());
-// // console.log(list.unshift(1));
-// // console.log(list.unshift(2));
-// // console.log(list.get(0))
-// // console.log(list.get(1))
-// // console.log(list.set(1, 'byeagain'))
-// // console.log(list.get(1))
+// console.log(list.pop());
+// console.log(list.pop());
+// console.log(list.shift());
+// console.log(list.shift());
+// console.log(list.unshift(1));
+// console.log(list.unshift(2));
+// console.log(list.get(0))
+// console.log(list.get(1))
+// console.log(list.set(1, 'byeagain'))
+// console.log(list.get(1))
 // console.log(list.insert(2, 'inserted'))
-// console.log(list)
+// console.log(list.insert(2, 'tactical insertion'))
+// console.log(list.insert(2, 'tactical insertioasdasdan'))
+// console.log(list);
 
 //data structure - doubly linked list - construct a doubly linked list = compare and contrast double and singly linked lists - implement basic operations on a doubly linked list
 //doubly linked list is almost identical to singly linked lists, except every node has anothe rpointer, to the previous node!
