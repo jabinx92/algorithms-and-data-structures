@@ -2003,12 +2003,14 @@ this function should accept a value
 // console.log(first.push('is'));
 // console.log(first.push('an'));
 // console.log(first.push('engineer'));
-// // console.log(first.get(-1));
-// // console.log(first.set('hello', 4))
-// // console.log(first.set('hello', -1))
-// first.insert(4, 'HELLO');
+// console.log(first.pop());
+// console.log(first.shift());
+// console.log(first.unshift('unshifted'));
+// console.log(first.get(5));
+// console.log(first.set('hello', 4))
+// console.log(first.set('hello', -1))
+// console.log(first.insert(4, 'TRACTICAL INSERTION'));
 // console.log(first);
-
 
 //==============================================================
 /*
@@ -2183,127 +2185,131 @@ binary search tree - special case of binary tree - numbers are sorted in particu
 
 
 class Node {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
+  constructor(value){
+      this.value = value;
+      this.left = null;
+      this.right = null;
   }
 }
 
 class BinarySearchTree {
-  constructor() {
-    this.node = null;
+  constructor(){
+      this.root = null;
   }
-  insert(value) {
-    var newNode = new Node(value);
-    if(this.node === null) {
-      this.node = newNode;
-      return this;
-    }
-    let current = this.node;
-    while(true) {
-      if(value === current.value) return undefined;
-      if(value < current.value) {
-        if(current.left === null) {
-          current.left = newNode;
+  insert(value){
+      var newNode = new Node(value);
+      if(this.root === null){
+          this.root = newNode;
           return this;
-        } else {
-          current = current.left;
-        }
-      } else if(value > current.value) {
-        if(current.right === null){
-          current.right = newNode;
-          return this;
-        } else {
-          current = current.right
-        }
       }
-    }
+      var current = this.root;
+      while(true){
+          if(value === current.value) return undefined;
+          if(value < current.value){
+              if(current.left === null){
+                  current.left = newNode;
+                  return this;
+              }
+              current = current.left;
+          } else {
+              if(current.right === null){
+                  current.right = newNode;
+                  return this;
+              } 
+              current = current.right;
+          }
+      }
   }
-  find(value) {
-    if(this.node === null) return false;
-    let current = this.node;
-    while(true) {
-      if(current === null) return false;
-      if(value === current.value) {
-        return current;
-      } else if(value < current.value) {
-      current = current.left;
-      } else {
-      current = current.right;
-      } 
-    }
+  find(value){
+      if(this.root === null) return false;
+      var current = this.root,
+          found = false;
+      while(current && !found){
+          if(value < current.value){
+              current = current.left;
+          } else if(value > current.value){
+              current = current.right;
+          } else {
+              found = true;
+          }
+      }
+      if(!found) return undefined;
+      return current;
   }
-  contains(value) {
-    if(this.node === null) return false;
-    let current = this.node;
-    while(true) {
-      if(current === null) return false;
-      if(value === current.value) {
-        return true;
-      } else if(value < current.value) {
-      current = current.left;
-      } else {
-      current = current.right;
-      } 
-    }
+  contains(value){
+      if(this.root === null) return false;
+      var current = this.root,
+          found = false;
+      while(current && !found){
+          if(value < current.value){
+              current = current.left;
+          } else if(value > current.value){
+              current = current.right;
+          } else {
+              return true;
+          }
+      }
+      return false;
   }
   BFS(){
-    var root = this.root;
-    var queue = [];
-    var result = [];
-    queue.push(root);
-    while(queue.length) {
-      var removed = queue.shift();
-      result.push(removed.value);
-      if(removed.left) queue.push(removed.left);
-      if(removed.right) queue.push(removed.right);
-    }
-    return result;
+      var node = this.root,
+          data = [],
+          queue = [];
+      queue.push(node);
+
+      while(queue.length){
+         node = queue.shift();
+         data.push(node.value);
+         if(node.left) queue.push(node.left);
+         if(node.right) queue.push(node.right);
+      }
+      return data;
   }
-  DFSPreoder() {
-    var data = [];
-    var helperFunction = function(node) {
-      data.push(node.value);
-      if(node.left) helperFunction(node.left);
-      if(node.right) helperFunction(node.right);
-    }
-    helperFunction(this.root);
-    return data;
+  DFSPreOrder(){
+      var data = [];
+      function traverse(node){
+          data.push(node.value);
+          if(node.left) traverse(node.left);
+          if(node.right) traverse(node.right);
+      }
+      traverse(this.root);
+      return data;
   }
-  DFSPostorder() {
-    var data = [];
-    var helperFunction = function(node){
-      if(node.left) helperFunction(node.left);
-      if(node.right) helperFunction(node.right);
-      data.push(node.value);
-    }
-    helperFunction(this.root);
-    return data;
+  DFSPostOrder(){
+      var data = [];
+      function traverse(node){
+          if(node.left) traverse(node.left);
+          if(node.right) traverse(node.right);
+          data.push(node.value);
+      }
+      traverse(this.root);
+      return data;
   }
-  DFSInorder() {
-    var data = [];
-    var helperFunction = function(node) {
-    if(node.left) helperFunction(node.left);
-    data.push(node.value);
-    if(node.right) helperFunction(node.right);
-    }
-    helperFunction(this.root);
-    return data;
+  DFSInOrder(){
+      var data = [];
+      function traverse(node){
+          if(node.left) traverse(node.left);
+          data.push(node.value);
+          if(node.right) traverse(node.right);
+      }
+      traverse(this.root);
+      return data;
   }
 }
-// var tree = new BinarySearchTree();
-// console.log(tree.insert(50));
-// console.log(tree.insert(5));
-// console.log(tree.insert(24));
-// console.log(tree.insert(55));
-// console.log(tree.insert(15));
-// console.log(tree.insert(1));
-// console.log(tree.find(55));
-// console.log(tree.find(123));
-// console.log(tree.contains(55));
-// console.log(tree.contains(123));
-// console.log(tree.BFS());
+
+
+var tree = new BinarySearchTree();
+tree.insert(10);
+tree.insert(6);
+tree.insert(15);
+tree.insert(3);
+tree.insert(8);
+tree.insert(20);
+tree.DFSPreOrder();
+tree.DFSPostOrder();
+tree.DFSInOrder();
+
+
 
 //this will take too long - SOLUTION - insert function
 // var tree = new BinarySearchTree();
