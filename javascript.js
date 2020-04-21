@@ -2412,5 +2412,104 @@ max binary heap -
 // // [55,39,41,18,27,12,33]
 // // [55,39,41,18,27,12,33]
 
+//====================================================================================================
+/*
+HASH TABLES
+  -what is a hash table? - used to store key value pairs, somewhat like arrays
+    -unlike arrays, hash tables are FAST for all the following operations: finding values, adding new values, and removing values!
+    -why should i care? - nearly every programming language has some sort of hash table data structure - because of their speed, hash tables are very commonly used!
+      -ex python has dictionaries, javascript has objects and maps, java, go, and scala have maps, ruby has hashes. 
 
-//review of course - line 1634 
+HASH TABLE examples - imagine we want to store some colors, we could just you an array/ list: ["#ff69b4","#ee34b2"] - this is not good since we dont know what color those 2 items are
+-It would be nice if instead of using indices to access the colors, we could use more human-readable keys. pink -> #ff69b4 | orange -> #ff4500 | cyan -> #00ffff
+-colors["cyan"] is way better than colors[2]
+
+More about HASH TABLES
+-How can we get human-readability and computer readability? - computers don't know how to find an element at index pink!
+
+The HASH part - to implement a hash table, we will be using an array. In order to look up values by key, we need a way to convert keys into valid array indices. A function that performs this task is called a hash function
+
+[0,1,2]
+index 0 = ['red','#eff233']
+index 1 = ['blue','#qec567']
+index 2 = ['green','#uok5432']
+
+cryptographic hash function - crazy crypto code/algos/and data structures
+
+basic hash function - function that takes data of its size
+hash("hello!") returns -62445234892394889
+hash("Hello!") returns -7663449394394394
+hash("a") returns -123123433523232
+hash("sdadadwdawda") returns -1235446463223
+
+what makes a good hash? 
+- it has to be FAST! (i.e) constant time
+- doesnt cluster outputs at specific indices, but destributes uniformly
+- deterministic (same input yields same output)
+
+*BAD EXAMPLE but funny at same time XD*
+function slowHash(key) {
+  for (var i = 0; i < 10000; i++) {
+    console.log("everyday i'm hashing");
+  }
+  return key[0].charCodeAt(0);
+}
+
+or
+
+function randomHash(key) {
+  return Math.floor(Math.random() * 1000)
+}
+
+Writing our first Hash function
+hash("pink", 100) - pink will be in 0-99 indexes
+
+"a".charCodeAt(0) - returns 97
+"hi".charCodeAt(0) - returns 104
+"hi".charCodeAt(1) - returns 105
+"a".charCodeAt(0) - 96 = returns 105
+"d".charCodeAt(0) - 96 = returns 4
+"z".charCodeAt(0) - 96 = returns 26
+
+
+let total = 0;
+total += "hello".charCodeAt(0) - 96
+8 
+total += "hello".charCodeAt(1) - 96
+13
+total += "hello".charCodeAt(2) - 96
+25
+total += "hello".charCodeAt(3) - 96
+37
+total += "hello".charCodeAt(0) - 96
+52
+
+hash("hello", 11)
+
+13 % 3  = 1
+total
+52
+
+total % 11
+8
+
+10000003232 % 11  = 1
+100000032322 % 11  = 0
+100000032323 % 11  = 2
+1000000323245 % 11  = 1
+
+simple hash function example that works on strings only
+problems with function? only hashes strings and it is not constant time, it is linear in key length
+function hash(key, arrayLen) {
+  let total = 0;
+  for( let char of key) {
+    let value = char.charCodeAt(0) - 96
+    total = (total + value) % arrayLen;
+  }
+  return total;
+}
+hash('pink', 10); // 0
+hash('orangered', 10) // 7
+hash('cyan', 10) // 3
+
+*/
