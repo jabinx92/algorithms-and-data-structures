@@ -2512,4 +2512,5 @@ hash('pink', 10); // 0
 hash('orangered', 10) // 7
 hash('cyan', 10) // 3
 
+
 */
