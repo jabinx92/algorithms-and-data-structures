@@ -2534,4 +2534,222 @@ function hash(key, arrayLen) {
   }
   return total;
 }
+
+hash("hello",13) //7
+hash("goodbye",13) //9
+hash("hi",13) //10
+hash("cyan",13) //5
+
+
+===
+Dealing with Collisions
+Even with a large arraay and a great hash function, collisions are inevitable
+
+There are many strategies for dealing with collisions, but we'll focus on two:
+    1. Seperate Chaining - at each index in our array we store values using more sophisticated data structure (e.g. an array or a linked list)
+
+    nested array for darkblue -> 4 and salmon -> 4
+    0  1  2  3  4
+                [["darkblue", "#00008b"], ["salmon", "#fa8072"]]
+
+    2. Linear Probing - when we find a collision, we search through the array to find the next empty slot.
+
+    unlike with separate chaining, this allows us to store a single key-value at each index.
+    0  1  2  3  4
+    darkblue -> 4
+    salmon -> 4
+    tomato -> 4
+    darkblue at index 4 will be ["darkblue", "#00008b"]
+    salmon at index 4 will see that there is already a value because darkblue is placed there, so salmon will be placed at index 5 ["salmon","#fa8072"]
+    tomato at index 4 will see that there is already a value because darkblue is placed there, so it will check index 5 which there is already filled, so it will be placed at the next spot which is index 6 = ["tomato","#ff6347"]
+
+HASH TABLE CLASS
+SET 
+  1. accepts a key and value
+  2. hash the key
+  3. stores the key-value pair in the hash table array via separate chaining
+
+GET 
+  1. accepts a key 
+  2. hashes the key
+  3. retrieves the key-value pair in the hash table
+  4. if the key isn't found, returns undefined
+
+KEYS
+  1. loops through the hash table array and returns an array of keys in the table
+
+VALUES
+  1. loops through the hash table array and returns an array of values in the table
 */
+
+class HashTable {
+  constructor(size=53){
+    this.keyMap = new Array(size);
+  }
+
+  _hash(key) {
+    let total = 0;
+    let WEIRD_PRIME = 31;
+    for (let i = 0; i < Math.min(key.length, 100); i++) {
+      let char = key[i];
+      let value = char.charCodeAt(0) - 96
+      total = (total * WEIRD_PRIME + value) % this.keyMap.length;
+    }
+    return total;
+  }
+  set(key,value){
+    let index = this._hash(key);
+    if(!this.keyMap[index]){
+      this.keyMap[index] = [];
+    }
+    this.keyMap[index].push([key, value]);
+    console.log(ht)
+  }
+  get(key){
+    let index = this._hash(key);
+    if(this.keyMap[index]){
+      for(let i = 0; i < this.keyMap[index].length; i++){
+        if(this.keyMap[index][i][0] === key) {
+          return this.keyMap[index][i][1]
+        }
+      }
+    }
+    return undefined;
+  }
+   values(){
+    let valuesArr = [];
+    for(var i = 0; i < this.keyMap.length; i++){
+      if(this.keyMap[i]) {
+        for(var j = 0; j < this.keyMap[i].length; j++) {
+          if(!valuesArr.includes(this.keyMap[i][j][1]))
+          valuesArr.push(this.keyMap[i][j][1])
+        }
+      }
+    }
+    return valuesArr;
+  }
+  keys(){
+    let keysArr = [];
+    for(var i = 0; i < this.keyMap.length; i++) {
+      if(this.keyMap[i]){
+        for(var j = 0; j < this.keyMap[i].length; j++) {
+          if(!keysArr.includes(this.keyMap[i][j][0]))
+          keysArr.push(this.keyMap[i][j][0])
+        }
+      }
+    }
+    return keysArr;
+  }
+}
+
+let ht = new HashTable(17);
+console.log(ht.set("maroon","#800000"));
+console.log(ht.set("yellow","#FFFF00"));
+console.log(ht.set("olive","#808000"));
+console.log(ht.set("salmon","#FA8072"));
+console.log(ht.set("lightcoral","#F08080"));
+console.log(ht.set("mediumvioletred","#C71585"));
+console.log(ht.set("plum","#DDA0DD"));
+console.log(ht.get('olive'));
+console.log(ht.get('salmon'));
+console.log(ht.values());
+console.log(ht.keys());
+
+/*
+BIG O NOTATION FOR HASH TABLES (Average cases) - I personally thought it was linear and quadratic but I was wrong
+  Insert: O(1)
+  Deletion: O(1)
+  Access: O(1)
+
+A good hash functions spreads its keys all around the array. A bad hash function spreads its keys only in one index
+
+Recap of HASH TABLES
+  - Hash  tables are collections of key-value pairs
+  - Hash tables can find values quickly given a key
+  - Hash tables can add new key-values quickly
+  - Hash tables store data in a large array, and work by hashing the keys
+  - A good hash should be fast, distribute keys uniformly, and be deterministic
+  - Separate chaining and linear probing are two strategies used to deal with two keys that hash to the same index
+*/
+
+
+//HASH function example from FreeCodeCamp
+var hash = (string, max) => {
+  var hash = 0;
+  for(var i = 0; i < string.length; i++) {
+    hash += string.charCodeAt(i);
+  }
+  return hash % max;
+}
+
+
+let HashTable = function() {
+
+  let storage = [];
+  const storageLimit = 14;
+  
+  this.print = function() {
+    console.log(storage)
+  }
+
+  this.add = function(key, value) {
+    var index = hash(key, storageLimit);
+    if (storage[index] === undefined) {
+      storage[index] = [
+        [key, value]
+      ];
+    } else {
+      var inserted = false;
+      for (var i = 0; i < storage[index].length; i++) {
+        if (storage[index][i][0] === key) {
+          storage[index][i][1] = value;
+          inserted = true;
+        }
+      }
+      if (inserted === false) {
+        storage[index].push([key, value]);
+      }
+    }
+  };
+
+  this.remove = function(key) {
+    var index = hash(key, storageLimit);
+    if (storage[index].length === 1 && storage[index][0][0] === key) {
+      delete storage[index];
+    } else {
+      for (var i = 0; i < storage[index].length; i++) {
+        if (storage[index][i][0] === key) {
+          delete storage[index][i];
+        }
+      }
+    }
+  };
+
+  this.lookup = function(key) {
+    var index = hash(key, storageLimit);
+    if (storage[index] === undefined) {
+      return undefined;
+    } else {
+      for (var i = 0; i < storage[index].length; i++) {
+        if (storage[index][i][0] === key) {
+          return storage[index][i][1];
+        }
+      }
+    }
+  };
+
+};
+
+
+console.log(hash('quincy', 10))
+
+let ht = new HashTable();
+ht.add('beau', 'person');
+ht.add('fido', 'dog');
+ht.add('rex', 'dinosour');
+ht.add('tux', 'penguin')
+console.log(ht.lookup('tux'))
+ht.print();
+
+
+
