@@ -2753,3 +2753,20 @@ ht.print();
 
 
 
+//=======================================================================
+/*
+GRAPHS 
+
+Objectives - explain what a graph is, compare and contrast different types of graphs and their uses cases in the real world, implement a graph using an adjacency list, traverse through a graph using BFS and DFS, compare and contrast graph traversal algorithms
+
+What is a graph?
+  A graph data structure consists of a finite (and possibly mutable) set of vertices or nodes or points, together with a set of unordered pairs of these vertices for an undirected graph or a set of ordered pairs for a directed graph. It is a collection of nodes and connections between those nodes ex- nodes abcde all connected together with different lines
+
+uses for graphs
+  - social networks
+  - location / mapping
+  - routing algorithms
+  - visual hierarchy
+  - file system optimizations
+  - Everywhere!
+*/
