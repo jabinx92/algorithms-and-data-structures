@@ -2763,10 +2763,39 @@ What is a graph?
   A graph data structure consists of a finite (and possibly mutable) set of vertices or nodes or points, together with a set of unordered pairs of these vertices for an undirected graph or a set of ordered pairs for a directed graph. It is a collection of nodes and connections between those nodes ex- nodes abcde all connected together with different lines
 
 uses for graphs
-  - social networks
-  - location / mapping
+  - social networks - ex- a picture of a a persons facebook friends connections all linked together with lines and dots
+  - location / mapping - when you get directions, there are many options with different nodes and google maps will try and give you the fastest route to get there
   - routing algorithms
   - visual hierarchy
   - file system optimizations
   - Everywhere!
+  - "Recommendations" - "people also watched on youtube" - "you might also like" - "you may also like"
+  - Halo and Borderlands have nodes that both of the games have in common - space, shooter, sci fi, guns  
+
+Essential graph terms
+  -Vertex - a node
+  -Edge - connection between nodes
+  -weighted/unweighted - values assigned to distances between vertices
+  -directed/undirected - directions assigned to distanced between vertices. 
+    -instagram is directed and undirected - if you follow someone you see their content, they have to follow you to see your content
+    -facebook is undirected - if you friend someone, both people see each others content
+
+Storing Graphs: Adjacency Matrix - Representing a Graph
+Storing Graphs: Adjacency List - using some sort of hash map
+
+Adjacency List
+  +Can take up less space (in sparse graphs)
+  +Faster to iterate over all edges
+  -Can be slower to lookup specific edge
+
+Adjacency Matrix
+  -Takes up more space(in sparse graphs)
+  -Slower to iterate over all edges
+  +Faster to lookup specific edge
 */
+
+class Graph {
+  constructor() {
+    this.adjacencyList = {}
+  }
+}
