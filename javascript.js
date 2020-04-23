@@ -2777,8 +2777,8 @@ Essential graph terms
   -Edge - connection between nodes
   -weighted/unweighted - values assigned to distances between vertices
   -directed/undirected - directions assigned to distanced between vertices. 
-    -instagram is directed and undirected - if you follow someone you see their content, they have to follow you to see your content
-    -facebook is undirected - if you friend someone, both people see each others content
+    -INSTAGRAM is directed and undirected - if you follow someone you see their content, they have to follow you to see your content
+    -FACEBOOK is undirected - if you friend someone, both people see each others content
 
 Storing Graphs: Adjacency Matrix - Representing a Graph
 Storing Graphs: Adjacency List - using some sort of hash map
@@ -2796,8 +2796,42 @@ Adjacency Matrix
 
 class Graph {
   constructor() {
-    this.adjacencyList = {}
+    this.adjacencyList = {};
   }
-
-  
+  addVertex(vertex) {
+    if(!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+  }
+  addEdge(v1, v2) {
+    this.adjacencyList[v1].push(v2);
+    this.adjacencyList[v2].push(v1);
+  }
+  removeEdge(vertex1,vertex2) {
+    this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(v => v !== vertex2);
+    this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(v => v !== vertex1);
+  }
+  removeVertex(vertex) {
+    for(var i = 0; i < this.adjacencyList[vertex].length; i++) {
+      let current = this.adjacencyList[vertex][i];
+      this.adjacencyList[current] = this.adjacencyList[current].filter(v => v !== vertex);
+    }
+    delete this.adjacencyList[vertex];
+  }
 }
+
+var graph = new Graph();
+graph.addVertex('Tokyo');
+graph.addVertex('Dallas');
+graph.addVertex('Aspen');
+graph.addEdge("Dallas", "Tokyo");
+graph.addEdge("Dallas", "Aspen");
+graph.removeVertex("Dallas");
+console.log(graph);
+
+// graph.adjacencyList.sf.push('hyphy');
+// graph.adjacencyList.sf.push('lit');
+// graph.adjacencyList.tokyo.push('sushi');
+// graph.adjacencyList.tokyo.push('ramen');
+
+
+// graph.removeEdge("Aspen","Dallas");
+// graph.removeEdge("Tokyo","Dallas");
