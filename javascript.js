@@ -2835,3 +2835,11 @@ console.log(graph);
 
 // graph.removeEdge("Aspen","Dallas");
 // graph.removeEdge("Tokyo","Dallas");
+
+class GraphTraversal {
+  constructor() {
+    this.list = {}
+  }
+}
+
+var newGraph = new GraphTraversal ();
