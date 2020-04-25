@@ -2,6 +2,8 @@
 Time Complexity and Space complexity
 */
 
+import { formatWithOptions } from "util";
+
 function addUpTo(n) {
   let total = 0;
   for (let i = 1; i <= n; i++) {
@@ -2792,14 +2794,26 @@ Adjacency Matrix
   -Takes up more space(in sparse graphs)
   -Slower to iterate over all edges
   +Faster to lookup specific edge
+
+Graph Traversal Uses
+  -Peer to peer networking
+  -web crawlers
+  -finding "closest" matches/recommendations
+  -shortest path problems
+    -gps navigation
+    -solving mazes
+    -AI (shortest path to win the game)
 */
+
+
 
 class Graph {
   constructor() {
     this.adjacencyList = {};
   }
   addVertex(vertex) {
-    if(!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+    if(!this.adjacencyList[vertex]) 
+    this.adjacencyList[vertex] = [];
   }
   addEdge(v1, v2) {
     this.adjacencyList[v1].push(v2);
@@ -2813,19 +2827,48 @@ class Graph {
     for(var i = 0; i < this.adjacencyList[vertex].length; i++) {
       let current = this.adjacencyList[vertex][i];
       this.adjacencyList[current] = this.adjacencyList[current].filter(v => v !== vertex);
+
     }
     delete this.adjacencyList[vertex];
   }
+  DFSRecursive(start) {
+    const result = [];
+    const visited = {};
+    const adjacencyList = this.adjacencyList;
+    
+    (function dfs(vertex) {
+      if(!vertex) return null;
+      visited[vertex] = true;
+      result.push(vertex);
+      adjacencyList[vertex].forEach(neighbor => {
+        if(!visited[neighbor]) {
+          return dfs(neighbor)
+        }
+      })
+    })(start);
+    return result;
+  }
+  DFSIterative(start) {
+    
+  }
 }
 
-var graph = new Graph();
-graph.addVertex('Tokyo');
-graph.addVertex('Dallas');
-graph.addVertex('Aspen');
-graph.addEdge("Dallas", "Tokyo");
-graph.addEdge("Dallas", "Aspen");
-graph.removeVertex("Dallas");
-console.log(graph);
+// var graph = new Graph();
+// graph.addVertex('Tokyo');
+// graph.addVertex('Dallas');
+// graph.addVertex('Aspen');
+// graph.addVertex('China');
+// graph.addEdge("Dallas", "Tokyo");
+// graph.addEdge("Dallas", "Aspen");
+// graph.addEdge("Dallas", "China");
+// graph.addEdge("Tokyo", "China");
+// graph.addEdge("Aspen", "China");
+// graph.addEdge("Aspen", "Tokyo");
+
+// graph.removeVertex("China");
+// graph.removeVertex("Dallas");
+
+// console.log(graph);
 
 // graph.adjacencyList.sf.push('hyphy');
 // graph.adjacencyList.sf.push('lit');
@@ -2836,10 +2879,22 @@ console.log(graph);
 // graph.removeEdge("Aspen","Dallas");
 // graph.removeEdge("Tokyo","Dallas");
 
-class GraphTraversal {
-  constructor() {
-    this.list = {}
-  }
-}
 
-var newGraph = new GraphTraversal ();
+var g = new Graph();
+g.addVertex("A");
+g.addVertex("B");
+g.addVertex("C");
+g.addVertex("D");
+g.addVertex("E");
+g.addVertex("F");
+
+g.addEdge("A","B");
+g.addEdge("A","C");
+g.addEdge("B","D");
+g.addEdge("C","E");
+g.addEdge("D","E");
+g.addEdge("D","F");
+g.addEdge("E","F");
+console.log(g)
+g.DFSRecursive("A")
+
