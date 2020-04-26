@@ -2849,7 +2849,25 @@ class Graph {
     return result;
   }
   DFSIterative(start) {
-    
+    const stack = [start];
+    const result = [];
+    const visited = {};
+    let currentVertex;
+
+    visited[start] = true;
+    while(stack.length) {
+      console.log(stack)
+      currentVertex = stack.pop();
+      result.push(currentVertex);
+
+      this.adjacencyList[currentVertex].forEach(neighbor => {
+        if(!visited[neighbor]){
+          visited[neighbor] = true;
+          stack.push(neighbor)
+        }
+      });
+    }
+    return result;
   }
 }
 
@@ -2895,6 +2913,8 @@ g.addEdge("C","E");
 g.addEdge("D","E");
 g.addEdge("D","F");
 g.addEdge("E","F");
-console.log(g)
-g.DFSRecursive("A")
+// console.log(g);
+g.DFSRecursive("A");
+g.DFSIterative("C");
 
+//test
