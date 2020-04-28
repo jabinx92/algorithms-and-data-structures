@@ -2808,95 +2808,91 @@ Graph Traversal Uses
 
 
 class Graph {
-  constructor() {
+  constructor () {
     this.adjacencyList = {};
   }
-  addVertex(vertex) {
-    if(!this.adjacencyList[vertex]) 
-    this.adjacencyList[vertex] = [];
+  addVertex(name) {
+    if(!this.adjacencyList[name]) this.adjacencyList[name] = [];
   }
   addEdge(v1, v2) {
     this.adjacencyList[v1].push(v2);
     this.adjacencyList[v2].push(v1);
   }
-  removeEdge(vertex1,vertex2) {
-    this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(v => v !== vertex2);
-    this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(v => v !== vertex1);
+  removeEdge(v1, v2) {
+    this.adjacencyList[v1] = this.adjacencyList[v1].filter(x => x !== v2);
+    this.adjacencyList[v2] = this.adjacencyList[v2].filter(x => x !== v1);
   }
-  removeVertex(vertex) {
-    for(var i = 0; i < this.adjacencyList[vertex].length; i++) {
-      let current = this.adjacencyList[vertex][i];
-      this.adjacencyList[current] = this.adjacencyList[current].filter(v => v !== vertex);
-
+  removeVertex(name) {
+    while(this.adjacencyList[name].length) {
+      let popped = this.adjacencyList[name].pop();
+      this.removeEdge(popped,name)
     }
-    delete this.adjacencyList[vertex];
+
+    delete this.adjacencyList[name]
   }
-  DFSRecursive(start) {
-    const result = [];
-    const visited = {};
-    const adjacencyList = this.adjacencyList;
-    
-    (function dfs(vertex) {
-      if(!vertex) return null;
-      visited[vertex] = true;
-      result.push(vertex);
-      adjacencyList[vertex].forEach(neighbor => {
+  DFSIterative(vertex) {
+
+    let results = [];
+    let list = [];
+    let visited = {};
+    let popped;
+
+    list.push(vertex);
+    visited[vertex] = true;
+
+   
+
+    while(list.length) {
+      popped = list.pop();
+      results.push(popped)
+      this.adjacencyList[popped].forEach(neighbor => {
         if(!visited[neighbor]) {
-          return dfs(neighbor)
+          visited[neighbor] = true;
+          list.push(neighbor);
         }
       })
-    })(start);
+    }
+    return results;
+  }
+
+  DFSRecursive(vertex) {
+    let result = [];
+    let visited = {};
+    let adjacencyList = this.adjacencyList;
+
+    (function dfs(vertex) {
+      if(!vertex) return null;
+      if(!visited[vertex]){
+        visited[vertex] = true;
+        result.push(vertex);
+        adjacencyList[vertex].forEach(neighbor => {
+          if(!visited[neighbor]){
+            return dfs(neighbor)
+          }
+        })
+      }
+    })(vertex);
+
     return result;
   }
-  DFSIterative(start) {
-    const stack = [start];
-    const result = [];
-    const visited = {};
-    let currentVertex;
-
-    visited[start] = true;
-    while(stack.length) {
-      console.log(stack)
-      currentVertex = stack.pop();
-      result.push(currentVertex);
-
-      this.adjacencyList[currentVertex].forEach(neighbor => {
-        if(!visited[neighbor]){
-          visited[neighbor] = true;
-          stack.push(neighbor)
-        }
-      });
+  BFS(vertex) {
+    let queue = [vertex];
+    let result = [];
+    let visited = {vertex : true};
+    
+    while(queue.length) {
+      let remove = queue.shift()
+      result.push(remove);
+      this.adjacencyList[remove].forEach(neighbor => {
+        if(!visited[neighbor]) {
+        visited[neighbor] = true;
+        queue.push(neighbor);
+      }
+      })
     }
     return result;
   }
 }
-
-// var graph = new Graph();
-// graph.addVertex('Tokyo');
-// graph.addVertex('Dallas');
-// graph.addVertex('Aspen');
-// graph.addVertex('China');
-// graph.addEdge("Dallas", "Tokyo");
-// graph.addEdge("Dallas", "Aspen");
-// graph.addEdge("Dallas", "China");
-// graph.addEdge("Tokyo", "China");
-// graph.addEdge("Aspen", "China");
-// graph.addEdge("Aspen", "Tokyo");
-
-// graph.removeVertex("China");
-// graph.removeVertex("Dallas");
-
-// console.log(graph);
-
-// graph.adjacencyList.sf.push('hyphy');
-// graph.adjacencyList.sf.push('lit');
-// graph.adjacencyList.tokyo.push('sushi');
-// graph.adjacencyList.tokyo.push('ramen');
-
-
-// graph.removeEdge("Aspen","Dallas");
-// graph.removeEdge("Tokyo","Dallas");
-
 
 var g = new Graph();
 g.addVertex("A");
@@ -2916,7 +2912,97 @@ g.addEdge("E","F");
 // console.log(g);
 g.DFSRecursive("A");
 g.DFSIterative("C");
+//======================
+var list = new Graph()
+list.addVertex("china")
+list.addVertex("japan")
+list.addVertex("korea")
+list.addVertex("australia")
 
-//test
+list.addEdge("korea","japan")
+list.addEdge("korea","china")
+list.addEdge("japan","china")
+list.addEdge("japan","australia")
+
+// list.removeEdge("korea","china");
+// list.removeVertex("korea");
 
 
+// console.log(list.DFSRecursive("japan"));
+console.log(list);
+console.log(list.BFS("japan"));
+
+
+(function hello(arg){
+  console.log('immediately invoked function ' + arg)
+})('hhh');
+
+
+/*=============================================================================
+Dijkstra's("Dyke" + "Stras") Algorithm
+
+Objectives
+  -Understand the importance of Dijkstra's
+    -What is it? One of the most famous and widely used algorithms around!
+    -It finds the shortest path between two vertices on a graph
+    -"What's the fastest way to get from point A to point B?"
+
+  -Why is it useful?
+    - GPS - finding the fastest route
+    - network routing - finds open shortest path for data
+    - biology - use dto model the spread of viruses among humans
+    - airline tickets - finding cheapest route to your destination
+    - biology - used to model the spread of viruses among humans
+    - many other uses!
+
+  -Who was Edsger Dijkstra? A smart dutch programmer who helped advance the field of computer science from an "art" to an academic discipline
+  -Implement a weighted graph
+  -Walk through the steps of Dijkstra's
+  -Implement Diklstra's using a naive priority queue
+  -Implement Dijkstra's using a binary heap priority queue
+*/
+
+//Let's write a weighted graph
+class WeightedGraph {
+  constructore () {
+    this.adjacencyList = {};
+  }
+  addVertex(vertex){
+    if(!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+  }
+  addEdge(vertex1, vertex2, weight){
+    this.adjacencyList[vertex1].push({node: vertex2, weight});
+    this.adjacencyList[vertex2].push({node: vertex1, weight});
+  }
+}
+
+var graph = new WeightedGraph();
+graph.addVertex("A");
+graph.addVertex("B");
+graph.addVertex("C");
+
+
+//Now on to Dijkstra's - FInd the shortest path from A to E
+
+/* The Approach
+    1. Everytime we look to visit a new node, we pick the node with the smallest knwon distance to visit first,
+    2. Once we've moved to the node we're going to visit, we look at each of its neighbors
+    3. For each neighboring node, we calculate the distance by summing the total edges that elad to the node we're checking from the starting node.
+    4. If the new total distance to a node is less than the previous total, we store the new shorter distance for that node.
+*/
+
+class PriorityQueue {
+  constructor () {
+    this.values = [];
+  }
+  enqueue(val, priority) {
+    this.values.push({val,priority});
+    this.sort();
+  };
+  dequeue() {
+    return this.values.shift();
+  };
+  sort() {
+    this.values.sort((a, b) => a.priority - b.priority)
+  };
+}
