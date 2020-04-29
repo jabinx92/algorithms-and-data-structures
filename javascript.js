@@ -3154,6 +3154,51 @@ Objective
   -Understand what optimal substructure is
   -Solve more challenging problems using dynamic programming
 
-Dynamic Programming
+Dynamic Programming - in general coming up with more optimal solutions
   -"A method for solving a complex problem by breaking it down into a collection of simpler subproblems, solving each of those subproblems just once, and storing their solutions."
+
+Overlapping SupProblems
+  -"a problem is said to have overlapping supbroblems if it can be broken down into subproblems which are reused several times"
+  -EX - Fibonacci Sequence - "Every number is the sum of the two previous numbers" 1123581321345589
+
+  -"mergesort from previous does not have overlapping subproblems, fibonacci has subproblems where the same functions are essentially ran at multiple times, mergesort has different numbers running in recursion each time"
+  mergeSort([10,24,76,55])
+  mergeSort([10,24]) mergeSort([76,55])
+  mergeSort([10])mergeSort([24])mergeSort([76])mergeSort([55])
+
+Optimal Substructure
+  - A problem is said to have optimal substructure if an optimal solution can be constructured from optimal solutions of its subproblems - ex - shortest path from one node to another
 */
+
+//time complexity of this fib recursion problem? - O(2^n). It is worse than O(n^2). So it takes a lot of time and it is a bad and slow algorithm. Essentially anything above fib(50) will crash your chrome browser, the time complexity is terrible.
+function fib(number){
+  if(number <= 2) return 1;
+  return fib(number - 1) + fib(number - 2);
+} // the problem with this is that the time complexity is O(2^N), which is really bad, there is way to optimize so its O(N). If you tried fib(50), chrome freezes
+
+//what can we do to improve this example?
+//we can do a do a function that has an array of fib numbers, and a for loop to iterate and add new fib numbers into array, and return the last element number of array.
+//or we can run the recursive function again, but whilst doing so, we store numbers in an object so the function can look at the number and see if the number is stored, that way we dont have to constantly rerun recursive functions that hit near the base case(time would just take too long).
+
+//Memoization - storing the results of expensive function calls and returning the cached result when the same inputs occur again
+function fibMemoized(n, memo = [undefined, 1, 1]) {
+  if(memo[n] !== undefined) return memo[n];
+  var res = fib(n-1, memo) + fib(n-2, memo);
+  memo[n] = res;
+  return res;
+} // BIG O improves to linear O(n). As N is larger, the time it takes for our algorithm grows in proportion with N, so it is O(n)
+
+console.log(fibMemoized(50))
+
+
+//Tabulation: a bottom up approach - storing the result of a previous result in a "table"(usually an array). Usually done using iteration. better space complexity can be achieved using tabulation
+function fibTabulated(number) {
+  if(number <= 2) return 1;
+  let array = [0,1,1];
+  for(var i = 3; i <= number; i++){
+  array[i] = array[i - 1] + array[i - 2];
+  }
+  return array[number];
+}
+
+console.log(fibTabulated(5))
