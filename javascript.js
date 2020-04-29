@@ -3146,3 +3146,14 @@ graph.Dijkstra("A", "E");
 
 
 
+//====================================================================================================
+/* Dynamic Programming - a light introduction - there are literally whole books on this topic, this is just the introduction
+Objective 
+  -Define what dynamic programming is
+  -Explain waht overlapping subproblems are
+  -Understand what optimal substructure is
+  -Solve more challenging problems using dynamic programming
+
+Dynamic Programming
+  -"A method for solving a complex problem by breaking it down into a collection of simpler subproblems, solving each of those subproblems just once, and storing their solutions."
+*/
