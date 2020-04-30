@@ -3202,3 +3202,5 @@ function fibTabulated(number) {
 }
 
 console.log(fibTabulated(5))
+
+
