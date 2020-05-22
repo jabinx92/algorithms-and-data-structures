@@ -2,7 +2,7 @@
 Time Complexity and Space complexity
 */
 
-import { formatWithOptions } from "util";
+// import { formatWithOptions } from "util";
 
 function addUpTo(n) {
   let total = 0;
@@ -2584,7 +2584,7 @@ VALUES
   1. loops through the hash table array and returns an array of values in the table
 */
 
-class HashTable {
+class HashTable2 {
   constructor(size=53){
     this.keyMap = new Array(size);
   }
@@ -2644,7 +2644,7 @@ class HashTable {
   }
 }
 
-let ht = new HashTable(17);
+let ht = new HashTable2(17);
 console.log(ht.set("maroon","#800000"));
 console.log(ht.set("yellow","#FFFF00"));
 console.log(ht.set("olive","#808000"));
@@ -3208,3 +3208,13 @@ console.log(fibTabulated(5))
 
 
 
+function defibTabulated(number) {
+  if(number <= 2) return 1;
+  let array = [0,1,1];
+  for(var i = 3; i <= number; i++){
+  array[i] = array[i - 1] + array[i - 2];
+  }
+  return array[number];
+}
+
+console.log(defibTabulated(5))
