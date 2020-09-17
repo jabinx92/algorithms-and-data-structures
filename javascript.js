@@ -56,7 +56,7 @@ var time2 = performance.now();
 let instructor = {
   firstName: 'Kelly',
   isInstructor: true,
-  favoriteNumbers: [1,2,3,4]
+  favoriteNumbers: [1, 2, 3, 4]
 }
 
 //When to use objects - 1. when you don't need order, 2. when you need fast access / insertion and removal
@@ -69,7 +69,7 @@ let instructor = {
 //use arrays when you need order
 //when you need fast access, removal, insertion
 
-let names  = ['Michael', 'Melissa', 'Andrea'];
+let names = ['Michael', 'Melissa', 'Andrea'];
 //if you insert "Raj" to beginning of array you got to reindex the rest of the array. push and pop is quicker than shift and unshift
 
 
@@ -85,88 +85,88 @@ let names  = ['Michael', 'Melissa', 'Andrea'];
 
 //Problem solving
 
-  //Understand the Problem
-    //Write a function that takes two numbers and returns their sum.
-    //1. Can I restate the problem in my own words?
-      "implement addition"
-    //2.what are the inputs that go into the problem?
-      'ints? floats? what about string or very large number?'
-    //3.what are the outputs that should come from the solution to the problem?
-      'int?, float?, string?'
-    //4. can the outputs be determined from the inputs? Do I have enough information to solve the problem?
+//Understand the Problem
+//Write a function that takes two numbers and returns their sum.
+//1. Can I restate the problem in my own words?
+"implement addition"
+//2.what are the inputs that go into the problem?
+'ints? floats? what about string or very large number?'
+//3.what are the outputs that should come from the solution to the problem?
+'int?, float?, string?'
+//4. can the outputs be determined from the inputs? Do I have enough information to solve the problem?
 
-    //. How should i label the important pieces of data that are a part of the problem?
+//. How should i label the important pieces of data that are a part of the problem?
 
 
-  //Explore concrete examples
-    //Start with simple examples, write 2 or 3 with input and output
-    //Progress to more complex examples
-    //Write a function which takes in a string and returns counts of each character in the string.
-    // console.log(charCount("aaaa")); // {a:4}
-    // console.log(charCount("hello")); // {h:1,e:1, l:2, o:1}
-    'my phone number is 182763'
-    'Hello hi' //uppercase? lowercase? spaces? string and number?
-    //Explore examples with empty and invalid inputs (edge cases)
-    //charCount("")
+//Explore concrete examples
+//Start with simple examples, write 2 or 3 with input and output
+//Progress to more complex examples
+//Write a function which takes in a string and returns counts of each character in the string.
+// console.log(charCount("aaaa")); // {a:4}
+// console.log(charCount("hello")); // {h:1,e:1, l:2, o:1}
+'my phone number is 182763'
+'Hello hi' //uppercase? lowercase? spaces? string and number?
+//Explore examples with empty and invalid inputs (edge cases)
+//charCount("")
 
-  //Break it down
-    //comment out the steps you need to take, show your interviewer what you are implying
-    //write a function which takes in a string and returns counts of each character in the string.
+//Break it down
+//comment out the steps you need to take, show your interviewer what you are implying
+//write a function which takes in a string and returns counts of each character in the string.
 
-      function charCount(str) {
-        // make object to return at end
-        var obj = {};
-        //loop over string, for each character...
-        for (var char of str) {
-          char = char.toLowerCase()
-          //if the char is a number/letter AND is a key in object, add one to count
-          if(/[a-z0-9]/.test(char)) {
-            //if char is a number/letter and is not in object, add it and set value to 1
-            obj[char] = ++obj[char] || 1;
-          }
-        }
-          //if character is something else (space, period, etc.) dont do anything
-        //return object at end
-        return obj;
-      }
+function charCount(str) {
+  // make object to return at end
+  var obj = {};
+  //loop over string, for each character...
+  for (var char of str) {
+    char = char.toLowerCase()
+    //if the char is a number/letter AND is a key in object, add one to count
+    if (/[a-z0-9]/.test(char)) {
+      //if char is a number/letter and is not in object, add it and set value to 1
+      obj[char] = ++obj[char] || 1;
+    }
+  }
+  //if character is something else (space, period, etc.) dont do anything
+  //return object at end
+  return obj;
+}
 
-      // charCodeAt(0);
-  //Solve/ simplify
-      //if you cant solve it, solve a simpler problem
-        //find the core difficulty and temporarily ignore it, write a simplified solution, then solve it
-      
-  //Look back and refactor
-    //can you check the result? can you derive the result differently? can you understand it at a glance? can you use the result or method for some other problem? can you improve the performance of your solution? can you think of other ways to refactor? how have other people solved this problem?
+// charCodeAt(0);
+//Solve/ simplify
+//if you cant solve it, solve a simpler problem
+//find the core difficulty and temporarily ignore it, write a simplified solution, then solve it
+
+//Look back and refactor
+//can you check the result? can you derive the result differently? can you understand it at a glance? can you use the result or method for some other problem? can you improve the performance of your solution? can you think of other ways to refactor? how have other people solved this problem?
 
 //Understand the problem - ask the interviewer. Explore concrete examples. Break it down.
 
 
 //How do you improve? 1. Devise a plan for solving problems 2. Master common problem solving patterns (freq counter, multi pointers, sliding window, divide and conquer)
-  //Frequency counters - this pattern uses objects or sets to collect values/frequencies of values. This can often avoid the need for nested loops or O(N^2) operations with arrays / strings
+// Frequency counters - this pattern uses objects or sets to collect values/frequencies of values. This can often avoid the need for nested loops or O(N^2) operations with arrays / strings
 
-  //Write a function called same, which accepts two arrays, the function should return true if every value in the array has it's corresponding value sqaured in the second array. the frequency of values must be the same.
+//Write a function called same, which accepts two arrays, the function should return true if every value in the array has it's corresponding value sqaured in the second array. the frequency of values must be the same.
 
-  function same(arr1, arr2){
-    if(arr1.length !== arr2.length) {
+function same(arr1, arr2) {
+  if (arr1.length !== arr2.length) {
+    return false;
+  }
+  for (var i = 0; i < arr1.length; i++) {
+    let correctIndex = arr2.indexOf(arr1[i] ** 2)
+    console.log(correctIndex)
+    if (correctIndex === -1) {
       return false;
     }
-    for(var i = 0; i < arr1.length; i++) {
-      let correctIndex = arr2.indexOf(arr1[i] ** 2)
-      console.log(correctIndex)
-      if(correctIndex === -1) {
-        return false;
-      }
-      console.log(arr2)
-      arr2.splice(correctIndex, 1)
-    }
-    return true;
+    console.log(arr2)
+    arr2.splice(correctIndex, 1)
   }
+  return true;
+}
 
-  // console.log(same([1,2,3,2],[9,1,4,4])); //true
+// console.log(same([1,2,3,2],[9,1,4,4])); //true
 
-  // same([1,2,3], [4,1,9]) //true
-  // same([1,2,3], [1,9]) //false
-  // same([1,2,1], [4,4,1]) //false(must be same frequency)
+// same([1,2,3], [4,1,9]) //true
+// same([1,2,3], [1,9]) //false
+// same([1,2,1], [4,4,1]) //false(must be same frequency)
 
 //===================================================
 //refactored using frequency counter(object) - O(n)
@@ -199,36 +199,36 @@ let names  = ['Michael', 'Melissa', 'Andrea'];
 //===================================================
 
 //Big O Time complexity - O(n) linear
-function validAnagram(word1, word2){
-// add whatever parameters you deem necessary - good luck!
-let object1 = {};
-let object2 = {};
-if (word1.length !== word2.length) {
-  return false;
-}
-
-for(let i = 0; i < word1.length; i++) {
-  let letter = word1[i];
-  object1[letter] = object1[letter] + 1 || 1;
-}
-console.log(object1)
-
-for(let i = 0; i < word2.length; i++) {
-  let letter = word2[i];
-  object2[letter] = object2[letter] + 1 || 1;
-}
-console.log(object2)
-
-for(let key in object1) {
-  console.log(object1[key])
-  console.log('-------------')
-
-  if(object1[key] !== object2[key]) {
+function validAnagram(word1, word2) {
+  // add whatever parameters you deem necessary - good luck!
+  let object1 = {};
+  let object2 = {};
+  if (word1.length !== word2.length) {
     return false;
   }
-}
 
-return true;
+  for (let i = 0; i < word1.length; i++) {
+    let letter = word1[i];
+    object1[letter] = object1[letter] + 1 || 1;
+  }
+  console.log(object1)
+
+  for (let i = 0; i < word2.length; i++) {
+    let letter = word2[i];
+    object2[letter] = object2[letter] + 1 || 1;
+  }
+  console.log(object2)
+
+  for (let key in object1) {
+    console.log(object1[key])
+    console.log('-------------')
+
+    if (object1[key] !== object2[key]) {
+      return false;
+    }
+  }
+
+  return true;
 }
 // console.log(validAnagram('', '')) //true
 // console.log(validAnagram('hello', 'olleh')) //false
@@ -242,31 +242,31 @@ return true;
 //write a function called sumZero which accepts a sorted array of integers. the function should find the first pair where the sum is 0. return an array that includes both values that sum to zero or undefined if a pair does not exist.
 
 //multiple pointers example. big o - time complexity - O(n^2) - space - o(1)
-function sumZero(arr){
-  for(let i = 0; i < arr.length; i++){
-      for(let j = i+1; j < arr.length; j++){
-          if(arr[i] + arr[j] === 0){
-              return [arr[i], arr[j]];
-          }
+function sumZero(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] + arr[j] === 0) {
+        return [arr[i], arr[j]];
       }
+    }
   }
 }
 
 
 // console.log(sumZero([-4,-3,-2,-1,0,1,2,5])) //[-2,2]
-sumZero([-3,-2,-1,1,1,2,3]) // [-3,3]
-sumZero([-2,0,1,3]) //undefined
-sumZero([1,2,3]) //undefined
+sumZero([-3, -2, -1, 1, 1, 2, 3]) // [-3,3]
+sumZero([-2, 0, 1, 3]) //undefined
+sumZero([1, 2, 3]) //undefined
 
 //the problem with this example is that if you have an array with 10000 numbers, the nested for loop will be a lot.
 
 //refactored
-function sumZero(arr){
+function sumZero(arr) {
   let left = 0;
   let right = arr.length - 1;
-  while(left<right) {
+  while (left < right) {
     let sum = arr[left] + arr[right];
-    if(sum === 0) {
+    if (sum === 0) {
       return [arr[left], arr[right]];
     } else if (sum > 0) {
       right--;
@@ -280,20 +280,20 @@ function sumZero(arr){
 
 
 //big o - time - O(n), space - O(n)
-function countUniqueValues(arr){
-let pushedArray = [];
+function countUniqueValues(arr) {
+  let pushedArray = [];
 
-for(var i = 0; i < arr.length; i++) {
-  let pointer1 = arr[i];
-  let pointer2 = arr[i+1];
-  if(pointer1 !== pointer2){
-    pushedArray.push(pointer1);
-    // console.log(pushedArray);
+  for (var i = 0; i < arr.length; i++) {
+    let pointer1 = arr[i];
+    let pointer2 = arr[i + 1];
+    if (pointer1 !== pointer2) {
+      pushedArray.push(pointer1);
+      // console.log(pushedArray);
+
+    }
 
   }
-
-}
-return pushedArray.length;
+  return pushedArray.length;
 }
 
 // console.log(countUniqueValues([1,2,3,4,4,4,7,7,12,12,13])) // 7
@@ -306,13 +306,13 @@ return pushedArray.length;
 
 //big o | time complexity = O(n^2)
 function maxSubarraySum(arr, num) {
-  if ( num > arr.length){
+  if (num > arr.length) {
     return null;
   }
   var max = -Infinity;
-  for (let i = 0; i < arr.length - num + 1; i ++){
+  for (let i = 0; i < arr.length - num + 1; i++) {
     temp = 0;
-    for (let j = 0; j < num; j++){
+    for (let j = 0; j < num; j++) {
       temp += arr[i + j];
     }
     if (temp > max) {
@@ -328,17 +328,17 @@ function maxSubarraySum(arr, num) {
 // console.log(maxSubarraySum([],4)) //null
 
 //refactor - 
-function maxSubarraySum(arr,num) { //time complexity - O(n)
+function maxSubarraySum(arr, num) { //time complexity - O(n)
   let maxSum = 0;
   let tempSum = 0;
   if (arr.length < num) return null;
-  for(let i = 0; i < num; i++) {
+  for (let i = 0; i < num; i++) {
     maxSum += arr[i];
     // console.log(maxSum) //3
   }
-  tempSum = maxSum; 
-  for (let i = num; i < arr.length; i++) { 
-    tempSum = tempSum - arr[i - num]  + arr[i]; //7
+  tempSum = maxSum;
+  for (let i = num; i < arr.length; i++) {
+    tempSum = tempSum - arr[i - num] + arr[i]; //7
     maxSum = Math.max(maxSum, tempSum);
   }
   return maxSum;
@@ -354,17 +354,17 @@ function maxSubarraySum(arr,num) { //time complexity - O(n)
 
 
 //linear search | time complexity = O(n)
-function search(arr, val){
-  for(let i = 0; i < arr.length; i++) {
-    if(arr[i] === val) {
+function search(arr, val) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === val) {
       return i;
     }
   }
   return -1;
 }
-search([1,2,3,4,5,6], 4) // 3
-search([1,2,3,4,5,6], 6) // 5
-search([1,2,3,4,5,6], 11) // -1
+search([1, 2, 3, 4, 5, 6], 4) // 3
+search([1, 2, 3, 4, 5, 6], 6) // 5
+search([1, 2, 3, 4, 5, 6], 11) // -1
 
 //refactor
 //binary search - lets say you have an array of 1000 numbers, you want to find a specific number but you dont want to use for loop to iterate through whole array, rather you use binary search to cut the array in half and if number is in that half then good, else let go of the cut-in-half-array, then repeat til you find the number.
@@ -375,24 +375,24 @@ search([1,2,3,4,5,6], 11) // -1
 //frequency counter- same frequency
 //write a function called sameFrequency. given two positive integers, find out if the two numbers have the same frequency of digits. Your solution must have O(N) time complexity.
 
-function sameFrequency(num1, num2){
-  if(num1.toString().length !== num2.toString().length) return false;
+function sameFrequency(num1, num2) {
+  if (num1.toString().length !== num2.toString().length) return false;
   let split1 = num1.toString().split('').sort()
   let split2 = num2.toString().split('').sort()
   // console.log(split1);
   // console.log(split2)
-  for(var i = 0; i < split1.length; i++) {
-    if(split1[i] !== split2[i]) {
+  for (var i = 0; i < split1.length; i++) {
+    if (split1[i] !== split2[i]) {
       return false;
     }
     // return true;
   }
-    
+
   // let obj1 = {};
   // let obj2 = {};
   // console.log(split1)
   // console.log(split2)
-  
+
   // for(let val of split1) {
   //   obj1[val] = (obj1[val] || 0) + 1
   // }
@@ -428,9 +428,9 @@ function areThereDuplicates(...args) {
   let argList = [...args].sort();
   console.log(argList)
   //loop the array to see if the current index is the same as 
-  for(var i = 0; i < argList.length; i++) {
+  for (var i = 0; i < argList.length; i++) {
     console.log(argList[i], argList[i + 1])
-    if (argList[i] === argList[i + 1]){
+    if (argList[i] === argList[i + 1]) {
       return true;
     }
   }
@@ -444,11 +444,11 @@ function areThereDuplicates(...args) {
 //------------------------------------------------------------------------------
 
 //multiple pointers - averagePair
-function averagePair(arr, num){
+function averagePair(arr, num) {
   // add whatever parameters you deem necessary - good luck!
-  for(var i = 0; i < arr.length; i++) {
-    for(var j = i + 1; j < arr.length; j++) {
-      if(arr[i] + arr[j] / 2 === num) {
+  for (var i = 0; i < arr.length; i++) {
+    for (var j = i + 1; j < arr.length; j++) {
+      if (arr[i] + arr[j] / 2 === num) {
         return true;
       }
     }
@@ -463,13 +463,13 @@ function averagePair(arr, num){
 // =======
 
 //alternate solution
-function averagePair(arr, num){
+function averagePair(arr, num) {
   let start = 0
-  let end = arr.length-1;
-  while(start < end){ //0 < 2
-    let avg = (arr[start]+arr[end]) / 2 
-    if(avg === num) return true;
-    else if(avg < num) start++
+  let end = arr.length - 1;
+  while (start < end) { //0 < 2
+    let avg = (arr[start] + arr[end]) / 2
+    if (avg === num) return true;
+    else if (avg < num) start++
     else end--
   }
   return false;
@@ -479,24 +479,24 @@ function averagePair(arr, num){
 //Write a function called isSubsequence which takes in two strings and checks whether the characters in the first string form a subsequence of the characters in the second string. In other words, the function should check wther the charcters in the first string appear somewhere in the second string, without their order changing.
 
 function isSubsequence(str1, str2) {
-  if(str1.length == 0 || str2.length == 0) {
+  if (str1.length == 0 || str2.length == 0) {
     return false;
   }
-  
+
   let str1Ptr = 0; //4
   let str2Ptr = 0; //5
   let substring = "";
-  
-  while(str1Ptr < str1.length && str2Ptr < str2.length) {
-    if(str2[str2Ptr] == str1[str1Ptr]) {
+
+  while (str1Ptr < str1.length && str2Ptr < str2.length) {
+    if (str2[str2Ptr] == str1[str1Ptr]) {
       substring = substring.concat(str2[str2Ptr]); //sing
       str2Ptr++;
       str1Ptr++;
-    }else {
+    } else {
       str2Ptr++;
     }
   }
-  
+
   return substring == str1;
 }
 
@@ -533,27 +533,27 @@ function isSubsequence(str1, str2) {
 //     })
 //     console.log(final);
 
-  
+
 //   }
-    
+
 //   //return emptyNumber
 //   return emptyNumber;
 // }
 
 //=============================ANSWER
-function maxSubarraySum(arr, num){
+function maxSubarraySum(arr, num) {
   if (arr.length < num) return null;
 
   let total = 0;
-  for (let i=0; i<num; i++){
-     total += arr[i]; //100 + 200 = 300
-     console.log(total)
+  for (let i = 0; i < num; i++) {
+    total += arr[i]; //100 + 200 = 300
+    console.log(total)
   }
   let currentTotal = total; //300
   console.log(currentTotal)
   for (let i = num; i < arr.length; i++) {
-     currentTotal += arr[i] - arr[i-num];
-     total = Math.max(total, currentTotal);
+    currentTotal += arr[i] - arr[i - num];
+    total = Math.max(total, currentTotal);
   }
   return total;
 }
@@ -567,27 +567,27 @@ function minSubArrayLen(nums, sum) {
   let start = 0;
   let end = 0;
   let minLen = Infinity;
- 
+
   while (start < nums.length) {
     // if current window doesn't add up to the given sum then 
-		// move the window to right
-    if(total < sum && end < nums.length){
+    // move the window to right
+    if (total < sum && end < nums.length) {
       total += nums[end];
-			end++;
+      end++;
     }
     // if current window adds up to at least the sum given then
-		// we can shrink the window 
-    else if(total >= sum){
-      minLen = Math.min(minLen, end-start);
-			total -= nums[start];
-			start++;
-    } 
+    // we can shrink the window 
+    else if (total >= sum) {
+      minLen = Math.min(minLen, end - start);
+      total -= nums[start];
+      start++;
+    }
     // current total less than required total but we reach the end, need this or else we'll be in an infinite loop 
     else {
       break;
     }
   }
- 
+
   return minLen === Infinity ? 0 : minLen;
 }
 
@@ -601,7 +601,7 @@ function findLongestSubstring(str) {
   let longest = 0;
   let seen = {};
   let start = 0;
- 
+
   for (let i = 0; i < str.length; i++) {
     let char = str[i];
     if (seen[char]) {
@@ -632,7 +632,7 @@ function nthLargest(arr, num) {
 
 
 function countDown(num) {
-  if(num <= 0) {
+  if (num <= 0) {
     console.log("All done!");
     return;
   }
@@ -645,16 +645,16 @@ function countDown(num) {
 
 
 function sumRange(num) {
-  if(num === 1) return 1;
-  return num + sumRange(num-1);
+  if (num === 1) return 1;
+  return num + sumRange(num - 1);
 }
 
 // console.log(sumRange(3));
 
 //sumRange(3)
-  //return 3 + sumRange(2)
-                //return 2 + sumRange(1)
-                              // return 1
+//return 3 + sumRange(2)
+//return 2 + sumRange(1)
+// return 1
 // all return to 6
 
 //writing factorial iteratively
@@ -685,47 +685,47 @@ function sumRange(num) {
 //helper method recursion
 
 
-function collectOddValues(arr){
-    
+function collectOddValues(arr) {
+
   let result = [];
 
-  function helper(helperInput){
-      if(helperInput.length === 0) {
-          return;
-      }
-      
-      if(helperInput[0] % 2 !== 0){
-          result.push(helperInput[0])
-      }
-      
-      helper(helperInput.slice(1))
+  function helper(helperInput) {
+    if (helperInput.length === 0) {
+      return;
+    }
+
+    if (helperInput[0] % 2 !== 0) {
+      result.push(helperInput[0])
+    }
+
+    helper(helperInput.slice(1))
   }
-  
+
   helper(arr)
 
   return result;
 }
 
-collectOddValues([1,2,3,4,5])
+collectOddValues([1, 2, 3, 4, 5])
 
 //pure recursion
-function collectOddValues(arr){
+function collectOddValues(arr) {
   let newArr = [];
-  
-  if(arr.length === 0) {
-      return newArr;
+
+  if (arr.length === 0) {
+    return newArr;
   }
-      
-  if(arr[0] % 2 !== 0){
-      newArr.push(arr[0]);
+
+  if (arr[0] % 2 !== 0) {
+    newArr.push(arr[0]);
   }
-      
+
   newArr = newArr.concat(collectOddValues(arr.slice(1)));
   return newArr;
 }
 
 
-collectOddValues([1,2,3,4,5])
+collectOddValues([1, 2, 3, 4, 5])
 // [1].concat[collectOddValues([2,3,4,5])
 //               [].collectOddValues([3,4,5])
 //                     [3].collectOddValues([4,5])
@@ -739,8 +739,8 @@ collectOddValues([1,2,3,4,5])
 
 //power - write a function called power which accepts a base and an exponent. the function should return the power of the base to the exponent. this function should mimic the functionality of Math.pow() - do not worry about negative bases and exponents
 
-function power (num1, num2) {
-  if(num2 === 0) return 1
+function power(num1, num2) {
+  if (num2 === 0) return 1
   return num1 * power(num1, num2 - 1)
 }
 
@@ -748,20 +748,20 @@ function power (num1, num2) {
 //return 1
 // console.log(power(2,2)) // 4
 //return 2 * power(2, 1)
-            // 2 * power(2, 0)
-                    //1
+// 2 * power(2, 0)
+//1
 // console.log(power(2,4)) // 16
 //return 2 * power(2, 3)
-              //2 * power(2, 2)
-                      //2 * power(2, 1)
-                            //2 * power(2, 0)
-                                  //1
+//2 * power(2, 2)
+//2 * power(2, 1)
+//2 * power(2, 0)
+//1
 
 
 //=======================================
 function factorial(num) {
   //base case
-  if(num === 0) return 1;
+  if (num === 0) return 1;
   return num * factorial(num - 1)
 }
 
@@ -775,13 +775,13 @@ function factorial(num) {
 //write a function called productOfArray which takes in an array of numbers and returns the product of them all
 
 
-function productOfArray (arr) {
+function productOfArray(arr) {
   let empty = 1;
   //helper function
 
-  function help(input){
+  function help(input) {
     //base case
-    if(input.length === 0) {
+    if (input.length === 0) {
       return;
     }
     empty *= input[0]
@@ -799,8 +799,8 @@ function productOfArray (arr) {
 
 //================================================
 
-function recursiveRange(num){
-  if(num === 0) return 0;
+function recursiveRange(num) {
+  if (num === 0) return 0;
 
   return num + recursiveRange(num - 1)
 }
@@ -824,17 +824,17 @@ function fib(num) {
 //reverse - write a recursive function called reverse which accepts a string and returns a new string in reverse
 
 function reverse(str) {
-//create empty string to add characters
-let emptyString = '';
+  //create empty string to add characters
+  let emptyString = '';
 
-//make string into splitted array
-str = str.split('')
-console.log(str)
+  //make string into splitted array
+  str = str.split('')
+  console.log(str)
 
   //helper function
   function helper(insert) {
     //base case
-    if(insert.length === 0) return;
+    if (insert.length === 0) return;
 
     //add into emptystring last character
     emptyString += insert[insert.length - 1]
@@ -846,11 +846,11 @@ console.log(str)
     helper(insert)
   }
 
-//run recursion
-helper(str)
+  //run recursion
+  helper(str)
 
-//return complete emptyString
-return emptyString;
+  //return complete emptyString
+  return emptyString;
 }
 
 // console.log(reverse('awesome')) // 'emosewa'
@@ -871,7 +871,7 @@ function isPalindrome(string) {
   function helper(input) {
 
     //base case
-    if(input.length === 0) {
+    if (input.length === 0) {
       return;
     }
     palindrome += input[input.length - 1];
@@ -879,10 +879,10 @@ function isPalindrome(string) {
     helper(input)
   }
 
-helper(copy)
+  helper(copy)
 
-console.log(palindrome)
-  if(palindrome === stringCopy){
+  console.log(palindrome)
+  if (palindrome === stringCopy) {
     return true;
   } else {
     return false;
@@ -903,13 +903,13 @@ console.log(palindrome)
 const isOdd = val => val % 2 !== 0;
 // console.log(isOdd(1))
 
-function someRecursive(arr, callback){
+function someRecursive(arr, callback) {
   let emptyArray = [];
 
   //helper function
-  function helper (input1, input2) {
-    if(input1.length === 0) return;
-    if(input2(input1[0]) === true){
+  function helper(input1, input2) {
+    if (input1.length === 0) return;
+    if (input2(input1[0]) === true) {
       emptyArray.push(true)
     } else {
       emptyArray.push(false)
@@ -917,9 +917,9 @@ function someRecursive(arr, callback){
     input1.shift()
     helper(input1, input2)
   }
-helper(arr, callback)
+  helper(arr, callback)
 
-  if(emptyArray.includes(true)) {
+  if (emptyArray.includes(true)) {
     return true;
   } else {
     return false;
@@ -937,17 +937,17 @@ helper(arr, callback)
 
 function capitalizeFirst(arr) {
   let emptyArray = [];
-  
+
   //helper function
   function helper(input) {
     //base case
-    if(arr.length === 0) return;
+    if (arr.length === 0) return;
     emptyArray.push(input[0].charAt(0).toUpperCase() + input[0].slice(1))
     input.shift();
     helper(input)
   }
   helper(arr)
-  
+
   return emptyArray;
 }
 
@@ -957,10 +957,10 @@ function capitalizeFirst(arr) {
 //===============================================================
 //flatten - write a recursive function called flatten which accepts an array of arrays and returns a new array with all values flattened
 
-function flatten(array){
+function flatten(array) {
   var flatArray = [];
-  array.forEach(function(value){
-    if(Array.isArray(value)) {
+  array.forEach(function (value) {
+    if (Array.isArray(value)) {
       flatArray = flatArray.concat(flatten(value))
     } else {
       flatArray.push(value)
@@ -974,19 +974,19 @@ function flatten(array){
 // console.log(flatten([[1],[2],[3]])) // [1,2,3]
 // console.log(flatten([[[[1], [[[2]]], [[[[[[[3]]]]]]]]]])) // [1,2,3]
 //===================================================================
-function nestedEvenSum (obj) {
+function nestedEvenSum(obj) {
   let emptyNumber = 0;//global
 
   //helper function for closure
-  function helper(ob){
-    for(var key in ob) {
-      if(ob[key] % 2 === 0){
+  function helper(ob) {
+    for (var key in ob) {
+      if (ob[key] % 2 === 0) {
         emptyNumber += ob[key]
-      } else if(typeof ob[key] === 'object'){
+      } else if (typeof ob[key] === 'object') {
         helper(ob[key])
-      } 
+      }
     }
-  } 
+  }
   helper(obj)
   return emptyNumber;
 }
@@ -1007,23 +1007,23 @@ var obj1 = {
 
 var obj2 = {
   a: 2,
-  b: {b: 2, bb: {b: 3, bb: {b: 2}}},
-  c: {c: {c: 2}, cc: 'ball', ccc: 5},
+  b: { b: 2, bb: { b: 3, bb: { b: 2 } } },
+  c: { c: { c: 2 }, cc: 'ball', ccc: 5 },
   d: 1,
-  e: {e: {e: 2}, ee: 'car'}
+  e: { e: { e: 2 }, ee: 'car' }
 };
 
 // console.log(nestedEvenSum(obj1)); // 6
 // console.log(nestedEvenSum(obj2)); // 10
 
 //===========================================================================
-function capitalizeWords (array) {
+function capitalizeWords(array) {
   let emptyArray = [];
 
   //helper function
   function helper(arr) {
     //base case
-    if(arr.length === 0) return;
+    if (arr.length === 0) return;
     emptyArray.push(arr[0].toUpperCase());
     arr.shift();
     helper(arr);
@@ -1040,16 +1040,16 @@ let words = ['i', 'am', 'learning', 'recursion'];
 
 function stringifyNumbers(obj1) {
   let newObj = {}
-  function helper(obj2){
-    for(var key in obj2) {
-        newObj[key] = obj2[key]
+  function helper(obj2) {
+    for (var key in obj2) {
+      newObj[key] = obj2[key]
     }
   }
   helper(obj1)
 
-  function secondHelper(obj3){
-    for(var key in obj3) {
-      if(typeof obj3[key] === 'number'){
+  function secondHelper(obj3) {
+    for (var key in obj3) {
+      if (typeof obj3[key] === 'number') {
         obj3[key] = `${obj3[key]}`
       } else {
         secondHelper(obj3[key])
@@ -1093,12 +1093,12 @@ function stringifyNumbers(obj1) {
 //=====================================================
 //collectStrings - write a function that takes in an object and if the property is a string, add it into an empty array.
 
-function collectStrings(input){
+function collectStrings(input) {
   let array = [];
 
-  function helper(collection){
-    for(var key in collection) {
-      if(typeof collection[key] === 'string'){
+  function helper(collection) {
+    for (var key in collection) {
+      if (typeof collection[key] === 'string') {
         array.push(collection[key])
       } else {
         helper(collection[key])
@@ -1112,16 +1112,16 @@ function collectStrings(input){
 const obj = {
   stuff: "foo",
   data: {
-      val: {
-          thing: {
-              info: "bar",
-              moreInfo: {
-                  evenMoreInfo: {
-                      weMadeIt: "baz"
-                  }
-              }
+    val: {
+      thing: {
+        info: "bar",
+        moreInfo: {
+          evenMoreInfo: {
+            weMadeIt: "baz"
           }
+        }
       }
+    }
   }
 }
 
@@ -1145,8 +1145,8 @@ const obj = {
 
 //big o? time complexity - O(N) because as array gets longer, the longer it takes to search. space complexity - O(1)
 function linearSearch(array, value) {
-  for(var i = 0; i < array.length; i++) {
-    if(array[i] === value) return i
+  for (var i = 0; i < array.length; i++) {
+    if (array[i] === value) return i
   }
   return -1;
 }
@@ -1164,10 +1164,10 @@ function linearSearch(array, value) {
 //write a function that accepts a sorted array and a value
 //create a left pointer at the start of the array, and a right pointer at the end of the array
 //while the left pointer comes before the right pointer
-  //create a  pointer in the middle
-  //if you find the value you want, return the index
-  //if the value is too small, move the left pointer up
-  //if the value is too large, move the right pointer down
+//create a  pointer in the middle
+//if you find the value you want, return the index
+//if the value is too small, move the left pointer up
+//if the value is too large, move the right pointer down
 //if you never find the value, return -1
 
 // Original Solution
@@ -1175,16 +1175,16 @@ function binarySearch(arr, elem) {
   var start = 0;
   var end = arr.length - 1;
   var middle = Math.floor((start + end) / 2);
-  while(arr[middle] !== elem && start <= end) {
-      if(elem < arr[middle]){
-          end = middle - 1;
-      } else {
-          start = middle + 1;
-      }
-      middle = Math.floor((start + end) / 2);
+  while (arr[middle] !== elem && start <= end) {
+    if (elem < arr[middle]) {
+      end = middle - 1;
+    } else {
+      start = middle + 1;
+    }
+    middle = Math.floor((start + end) / 2);
   }
-  if(arr[middle] === elem){
-      return middle;
+  if (arr[middle] === elem) {
+    return middle;
   }
   return -1;
 }
@@ -1194,10 +1194,10 @@ function binarySearch(arr, elem) {
   var start = 0;
   var end = arr.length - 1;
   var middle = Math.floor((start + end) / 2);
-  while(arr[middle] !== elem && start <= end) {
-      if(elem < arr[middle]) end = middle - 1;
-      else start = middle + 1;
-      middle = Math.floor((start + end) / 2);
+  while (arr[middle] !== elem && start <= end) {
+    if (elem < arr[middle]) end = middle - 1;
+    else start = middle + 1;
+    middle = Math.floor((start + end) / 2);
   }
   return arr[middle] === elem ? middle : -1;
 }
@@ -1224,13 +1224,13 @@ function binarySearch(arr, elem) {
 //Suppose you want to count the number of times a smaller string appears in a longer string
 //a straightforward approach involves checking pairs of characters individually
 
-function naiveSearch(long, short){
+function naiveSearch(long, short) {
   var count = 0;
-  for(var i = 0; i < long.length; i++){
-      for(var j = 0; j < short.length; j++){
-         if(short[j] !== long[i+j]) break;
-         if(j === short.length - 1) count++;
-      }
+  for (var i = 0; i < long.length; i++) {
+    for (var j = 0; j < short.length; j++) {
+      if (short[j] !== long[i + j]) break;
+      if (j === short.length - 1) count++;
+    }
   }
   return count;
 }
@@ -1246,15 +1246,15 @@ function naiveSearch(long, short){
 //sorting movies based on release year
 //sorting movies based on revenue
 
-function sort(arr){
+function sort(arr) {
   return arr
 }
 
 // sort([23,45,6,12,13]) //[6,12,13,23,45]
 
 //why do we need to learn sort algorithm?
-  //sorting is an incredibly common  task, so its good to know how it works
-  //there are many different ways to sort things, and different techniques have their own advantages and disadvantages
+//sorting is an incredibly common  task, so its good to know how it works
+//there are many different ways to sort things, and different techniques have their own advantages and disadvantages
 
 //objective - implement bubble sort, selection sort, and insertion sort
 
@@ -1264,13 +1264,13 @@ function sort(arr){
 // [6,4,15,10].sort();
 //[10,15,4,6] // WRONG
 
-function sortNumbers (num1, num2) {
+function sortNumbers(num1, num2) {
   return num1 - num2;
 }
 // console.log([6,4,15,10].sort(sortNumbers));
 // console.log([6,4,15,10].sort(sortNumbers).reverse());
 
-function sortString (word1, word2) {
+function sortString(word1, word2) {
   return word1.length - word2.length
 }
 // console.log(['steel', 'colt','data structures','algorithms'].sort(sortString));
@@ -1308,16 +1308,16 @@ function swap(arr, idx1, idx2) { // [1,2,3] , 0, 1
 
 function bubbleSort(arr) {
   let swapped = false;
-  for(var i = arr.length; i > 0; i--) {
-    for(var j = 0; j < i - 1; j++) {
-      if(arr[j] > arr[j + 1]) {
+  for (var i = arr.length; i > 0; i--) {
+    for (var j = 0; j < i - 1; j++) {
+      if (arr[j] > arr[j + 1]) {
         let temp = arr[j];
         arr[j] = arr[j + 1];
         arr[j + 1] = temp;
         swapped = true;
       }
     }
-    if(!swapped) break;
+    if (!swapped) break;
   }
   return arr;
 }
@@ -1342,18 +1342,18 @@ function bubbleSort(arr) {
 
 
 //big o complexity = O(N sqaured)
-function selectionSort (array) {
+function selectionSort(array) {
   let swapped = false;
-  for(var i  = 0; i < array.length; i++) {
-    for(var j = i + 1; j < array.length; j++) {
-      if(array[j] < array[i]) {
+  for (var i = 0; i < array.length; i++) {
+    for (var j = i + 1; j < array.length; j++) {
+      if (array[j] < array[i]) {
         let temp = array[i];
         array[i] = array[j];
         array[j] = temp;
         swapped = true;
       }
     }
-    if(!swapped) break;
+    if (!swapped) break;
   }
   return array;
 }
@@ -1375,16 +1375,16 @@ function selectionSort (array) {
 //now comapre the second element with the one before it and swap if necessary
 //continue to the next element and if it is in the incorrect order, iterate thorugh the sorted portion (i.e. the left side) to place the element in the correct place.
 
-function insertionSort(arr){
-	var currentVal;
-    for(var i = 1; i < arr.length; i++){
-        currentVal = arr[i];
-        for(var j = i - 1; j >= 0 && arr[j] > currentVal; j--) {
-            arr[j+1] = arr[j]
-        }
-        arr[j+1] = currentVal;
+function insertionSort(arr) {
+  var currentVal;
+  for (var i = 1; i < arr.length; i++) {
+    currentVal = arr[i];
+    for (var j = i - 1; j >= 0 && arr[j] > currentVal; j--) {
+      arr[j + 1] = arr[j]
     }
-    return arr;
+    arr[j + 1] = currentVal;
+  }
+  return arr;
 }
 
 // console.log(insertionSort([2,1,9,76,4]))
@@ -1404,16 +1404,16 @@ function insertionSort(arr){
 //merge sort
 //create an empty array, take a look at the smallest values in each input array
 //while there are still values we havent looked at...
-  //if the value in the first array is smaller than the value in the second array, push the value in the first array into our results and move on to the next value in the first array
-  //if the value in the first array is larger than the value in the second array, push the value in the second array into our results and move onto the next value in the second array
-  //once we exhaust one array, push in all remainaing values from the other array.
+//if the value in the first array is smaller than the value in the second array, push the value in the first array into our results and move on to the next value in the first array
+//if the value in the first array is larger than the value in the second array, push the value in the second array into our results and move onto the next value in the second array
+//once we exhaust one array, push in all remainaing values from the other array.
 
-function merge(arr1, arr2){
+function merge(arr1, arr2) {
   let emptyArray = [];
   let i = 0;
   let j = 0;
-  while(i < arr1.length && j < arr2.length){
-    if(arr1[i] < arr2[j]) {
+  while (i < arr1.length && j < arr2.length) {
+    if (arr1[i] < arr2[j]) {
       emptyArray.push(arr1[i]);
       i++;
     } else {
@@ -1421,11 +1421,11 @@ function merge(arr1, arr2){
       j++;
     }
   }
-  while(i < arr1.length){
+  while (i < arr1.length) {
     emptyArray.push(arr1[i]);
     i++;
   }
-  while(j < arr2.length){
+  while (j < arr2.length) {
     emptyArray.push(arr2[j]);
     j++;
   }
@@ -1442,7 +1442,7 @@ function merge(arr1, arr2){
 //once the array has been merged back together, return the merged (and sorted!) array
 
 function mergeSort(arr) {
-  if(arr.length <= 1) return arr;
+  if (arr.length <= 1) return arr;
   let mid = Math.floor(arr.length / 2);
   let low = mergeSort(arr.slice(0, mid));
   let high = mergeSort(arr.slice(mid))
@@ -1471,7 +1471,7 @@ function mergeSort(arr) {
 //grab the pivot from the start of the array
 //store the current pivot index in a varaiable(this will keep track of where the pivot should end up)
 //loop through the array from the start until the end
-  //if the pivot is greater than the current element, increment the pivot index variable and then swap the current element with the element at the pivot index
+//if the pivot is greater than the current element, increment the pivot index variable and then swap the current element with the element at the pivot index
 //swap the starting element (the pivot) with the pivot index
 
 
@@ -1497,17 +1497,17 @@ function pivot(arr, start = 0, end = arr.length - 1) {
 }
 
 
-function quickSort(arr, left = 0, right = arr.length -1){
-    if(left < right){
-        let pivotIndex = pivot(arr, left, right) //3
-        //left
-        quickSort(arr,left,pivotIndex-1);
-        //right
-        quickSort(arr,pivotIndex+1,right);
-      }
-     return arr;
-} 
-           
+function quickSort(arr, left = 0, right = arr.length - 1) {
+  if (left < right) {
+    let pivotIndex = pivot(arr, left, right) //3
+    //left
+    quickSort(arr, left, pivotIndex - 1);
+    //right
+    quickSort(arr, pivotIndex + 1, right);
+  }
+  return arr;
+}
+
 // quickSort([100,-3,2,4,6,9,1,2,5,3,23])
 
 // [4,6,9,1,2,5,3]
@@ -1573,17 +1573,17 @@ function mostDigits(nums) {
   return maxDigits;
 }
 
-function radixSort(nums){
-    let maxDigitCount = mostDigits(nums);
-    for(let k = 0; k < maxDigitCount; k++){
-        let digitBuckets = Array.from({length: 10}, () => []);
-        for(let i = 0; i < nums.length; i++){
-            let digit = getDigit(nums[i],k);
-            digitBuckets[digit].push(nums[i]);
-        }
-        nums = [].concat(...digitBuckets);
+function radixSort(nums) {
+  let maxDigitCount = mostDigits(nums);
+  for (let k = 0; k < maxDigitCount; k++) {
+    let digitBuckets = Array.from({ length: 10 }, () => []);
+    for (let i = 0; i < nums.length; i++) {
+      let digit = getDigit(nums[i], k);
+      digitBuckets[digit].push(nums[i]);
     }
-    return nums;
+    nums = [].concat(...digitBuckets);
+  }
+  return nums;
 }
 
 // console.log(radixSort([23,345,5467,12,2345,9852]));
@@ -1635,12 +1635,12 @@ class Student {
     this.scores = [];
   }
   //full name to calculate average = instance methods
-  fullName() { 
+  fullName() {
     return `Your full name is ${this.firstName} ${this.lastName}`
   }
   markLate() {
     this.tardies += 1;
-    if(this.tardies >= 3) {
+    if (this.tardies >= 3) {
       return `YOU ARE EXPELLED!`;
     }
     return `${this.firstName} ${this.lastName} has been late ${this.tardies} times.`
@@ -1650,12 +1650,12 @@ class Student {
     return this.scores
   }
   calculateAverage() {
-    let sum = this.scores.reduce(function(a,b){return a+b})
-    return sum/this.scores.length;
+    let sum = this.scores.reduce(function (a, b) { return a + b })
+    return sum / this.scores.length;
   }
 
   //class method
-  static enrollStudents(){
+  static enrollStudents() {
     return "ENROLLING STUDENTS!"
   }
   //can only be ran by Students.enrollStudents();
@@ -1717,22 +1717,22 @@ this function should accept a value
 -otherwise set the next property on the tail to be the new node and set the tail property on the list to be the newly created node
 -increment the length by one
 */
-class Node{
-  constructor(val){
+class Node {
+  constructor(val) {
     this.val = val;
     this.next = null;
   }
 }
 
-class LinkedList{
-  constructor(){
+class LinkedList {
+  constructor() {
     this.head = null;
     this.tail = null;
     this.length = 0;
   }
-  push(val){
+  push(val) {
     var newNode = new Node(val);
-    if(!this.head){
+    if (!this.head) {
       this.head = newNode;
       this.tail = this.head;
     } else {
@@ -1742,38 +1742,38 @@ class LinkedList{
     this.length++
     return this;
   }
-  pop(){
-    if(!this.head) return undefined 
+  pop() {
+    if (!this.head) return undefined
     var current = this.head;
     var newTail = current;
-    while(current.next){
+    while (current.next) {
       newTail = current;
       current = current.next;
     }
     this.tail = newTail;
     this.tail.next = null;
     this.length--;
-    if(this.length === 0){
+    if (this.length === 0) {
       this.head = null;
       this.tail = null;
     }
     return current;
   }
-  shift(){
-    if(!this.head) return undefined;
+  shift() {
+    if (!this.head) return undefined;
     var currentHead = this.head;
     this.head = currentHead.next;
     this.length--;
-    if(this.length === 0) {
+    if (this.length === 0) {
       this.tail = null;
     }
     return currentHead;
   }
-  unshift(val){
+  unshift(val) {
     var newNode = new Node(val);
-    if(!this.head){
+    if (!this.head) {
       this.head = newNode;
-      this.tail =  this.head;
+      this.tail = this.head;
     } else {
       newNode.next = this.head;
       this.head = newNode;
@@ -1781,9 +1781,11 @@ class LinkedList{
     this.length++;
     return this;
   }
-  get(val){
-    
+  get(val) {
+
   }
+
+
 }
 
 var list = new LinkedList();
@@ -1797,7 +1799,7 @@ console.log(list.push('goodmorning'))
 // console.log(list.shift());
 // console.log(list.unshift(1));
 // console.log(list.unshift(2));
-console.log(list)
+console.log(list);
 
 
 
