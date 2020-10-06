@@ -325,7 +325,7 @@ function maxSubarraySum(arr, num) {
 }
 
 // console.log(maxSubarraySum([1,2,5,2,8,1,5],2)) // 10 because 2+8=10
-// console.log(maxSubarraySum([1,2,5,2,8,1,5], 4)) // 17 because 2+5+2+7=17
+// console.log(maxSubarraySum([1,2,5,2,8,1,5], 4)) // 17 because 2+5+2+8=17
 // console.log(maxSubarraySum([4,2,1,6],1)) // 6 because 6=6
 // console.log(maxSubarraySum([],4)) //null
 
