@@ -24,8 +24,11 @@ function addUpTo(n) {
   return n * (n + 1) / 2;
 }
 
+
 // var time1 = performance.now();
-addUpTo(1000000000);
+// console.log(addUpTo(1000000000));
+
+
 // var time2 = performance.now();
 // console.log(`Time Elapsed: ${(time2 - time1) / 1000} seconds.`)
 
@@ -172,32 +175,34 @@ let names  = ['Michael', 'Melissa', 'Andrea'];
 
 //===================================================
 //refactored using frequency counter(object) - O(n)
-// function same(arr1, arr2){
-//   if(arr1.length !== arr2.length){
-//       return false;
-//   }
-//   let frequencyCounter1 = {}
-//   let frequencyCounter2 = {}
-//   for(let val of arr1){
-//       frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1
-//   }
-//   for(let val of arr2){
-//       frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1        
-//   }
-//   // console.log(frequencyCounter1);
-//   // console.log(frequencyCounter2);
-//   for(let key in frequencyCounter1){
-//       if(!(key ** 2 in frequencyCounter2)){
-//           return false
-//       }
-//       if(frequencyCounter2[key ** 2] !== frequencyCounter1[key]){
-//           return false
-//       }
-//   }
-//   return true
-// }
+function sameAgain(arr1, arr2){
+  if(arr1.length !== arr2.length){
+      return false;
+  }
+  let frequencyCounter1 = {}
+  let frequencyCounter2 = {}
+  for(let val of arr1){
+      frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1
+  }
+  for(let val of arr2){
+      frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1        
+  }
+  console.log(frequencyCounter1);
+  console.log(frequencyCounter2);
+  for(let key in frequencyCounter1){
+      if(!(key ** 2 in frequencyCounter2)){
+          return false
+      }
+      if(frequencyCounter2[key ** 2] !== frequencyCounter1[key]){
+          return false
+      }
+  }
+  return true
+}
 
-// console.log(same([1,2,3,2,5], [9,1,4,4,11]))
+console.log(sameAgain([1,2,3,2,5], [9,1,4,4,11]))
+console.log(sameAgain([1,2,3,2,5], [1,4,9,25,4]))
+
 //===================================================
 
 // //Big O Time complexity - O(n) linear
@@ -428,10 +433,10 @@ function sameFrequency(num1, num2){
 function areThereDuplicates(...args) {
   //put arguments into an array
   let argList = [...args].sort();
-  console.log(argList)
+  // console.log(argList)
   //loop the array to see if the current index is the same as 
   for(var i = 0; i < argList.length; i++) {
-    console.log(argList[i], argList[i + 1])
+    // console.log(argList[i], argList[i + 1])
     if (argList[i] === argList[i + 1]){
       return true;
     }
@@ -549,10 +554,10 @@ function maxSubarraySum(arr, num){
   let total = 0;
   for (let i=0; i<num; i++){
      total += arr[i]; //100 + 200 = 300
-     console.log(total)
+    //  console.log(total)
   }
   let currentTotal = total; //300
-  console.log(currentTotal)
+  // console.log(currentTotal)
   for (let i = num; i < arr.length; i++) {
      currentTotal += arr[i] - arr[i-num];
      total = Math.max(total, currentTotal);
@@ -637,10 +642,10 @@ function nthLargest(arr, num) {
 
 function countDown(num) {
   if(num <= 0) {
-    console.log("All done!");
+    // console.log("All done!");
     return;
   }
-  console.log(num);
+  // console.log(num);
   num--;
   countDown(num);
 }
@@ -834,7 +839,7 @@ let emptyString = '';
 
 //make string into splitted array
 str = str.split('')
-console.log(str)
+// console.log(str)
 
   //helper function
   function helper(insert) {
@@ -867,10 +872,10 @@ return emptyString;
 function isPalindrome(string) {
   let palindrome = '';
   let stringCopy = string;
-  console.log(stringCopy);
+  // console.log(stringCopy);
 
   let copy = string.split('')
-  console.log(copy)
+  // console.log(copy)
 
   //helper function
   function helper(input) {
@@ -886,7 +891,7 @@ function isPalindrome(string) {
 
 helper(copy)
 
-console.log(palindrome)
+// console.log(palindrome)
   if(palindrome === stringCopy){
     return true;
   } else {
@@ -1394,7 +1399,7 @@ function insertionSort(arr){
     return arr;
 }
 
-console.log(insertionSort([2,1,9,76,4]))
+// console.log(insertionSort([2,1,9,76,4]))
 
 //time complexity - worst case O(n squared)
 
@@ -2605,7 +2610,7 @@ class HashTable2 {
       this.keyMap[index] = [];
     }
     this.keyMap[index].push([key, value]);
-    console.log(ht)
+    // console.log(ht)
   }
   get(key){
     let index = this._hash(key);
@@ -2645,17 +2650,17 @@ class HashTable2 {
 }
 
 let ht = new HashTable2(17);
-console.log(ht.set("maroon","#800000"));
-console.log(ht.set("yellow","#FFFF00"));
-console.log(ht.set("olive","#808000"));
-console.log(ht.set("salmon","#FA8072"));
-console.log(ht.set("lightcoral","#F08080"));
-console.log(ht.set("mediumvioletred","#C71585"));
-console.log(ht.set("plum","#DDA0DD"));
-console.log(ht.get('olive'));
-console.log(ht.get('salmon'));
-console.log(ht.values());
-console.log(ht.keys());
+// console.log(ht.set("maroon","#800000"));
+// console.log(ht.set("yellow","#FFFF00"));
+// console.log(ht.set("olive","#808000"));
+// console.log(ht.set("salmon","#FA8072"));
+// console.log(ht.set("lightcoral","#F08080"));
+// console.log(ht.set("mediumvioletred","#C71585"));
+// console.log(ht.set("plum","#DDA0DD"));
+// console.log(ht.get('olive'));
+// console.log(ht.get('salmon'));
+// console.log(ht.values());
+// console.log(ht.keys());
 
 /*
 BIG O NOTATION FOR HASH TABLES (Average cases) - I personally thought it was linear and quadratic but I was wrong
@@ -2691,7 +2696,7 @@ let HashTable = function() {
   const storageLimit = 14;
   
   this.print = function() {
-    console.log(storage)
+    // console.log(storage)
   }
 
   this.add = function(key, value) {
@@ -2743,14 +2748,14 @@ let HashTable = function() {
 };
 
 
-console.log(hash('quincy', 10))
+// console.log(hash('quincy', 10))
 
 let hasher = new HashTable();
 hasher.add('beau', 'person');
 hasher.add('fido', 'dog');
 hasher.add('rex', 'dinosour');
 hasher.add('tux', 'penguin')
-console.log(hasher.lookup('tux'))
+// console.log(hasher.lookup('tux'))
 hasher.print();
 
 
@@ -2929,13 +2934,13 @@ list.addEdge("japan","australia")
 
 
 // console.log(list.DFSRecursive("japan"));
-console.log(list);
-console.log(list.BFS("japan"));
+// console.log(list);
+// console.log(list.BFS("japan"));
 
 
-(function hello(arg){
-  console.log('immediately invoked function ' + arg)
-})('hhh');
+// (function hello(arg){
+//   console.log('immediately invoked function ' + arg)
+// })('hhh');
 
 
 /*=============================================================================
@@ -3189,7 +3194,7 @@ function fibMemoized(n, memo = [undefined, 1, 1]) {
   return res;
 } // BIG O improves to linear O(n). As N is larger, the time it takes for our algorithm grows in proportion with N, so it is O(n)
 
-console.log(fibMemoized(50))
+// console.log(fibMemoized(50))
 
 
 //Tabulation: a bottom up approach - storing the result of a previous result in a "table"(usually an array). Usually done using iteration. better space complexity can be achieved using tabulation
@@ -3202,7 +3207,7 @@ function fibTabulated(number) {
   return array[number];
 }
 
-console.log(fibTabulated(5))
+// console.log(fibTabulated(5))
 
 //test contribution
 
@@ -3218,6 +3223,6 @@ function defibTabulated(number) {
   return array[number];
 }
 
-console.log(defibTabulated(5))
+// console.log(defibTabulated(5))
 
 //start  start 
