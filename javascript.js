@@ -24,9 +24,9 @@ function addUpTo(n) {
   return n * (n + 1) / 2;
 }
 
-var time1 = performance.now();
+// var time1 = performance.now();
 addUpTo(1000000000);
-var time2 = performance.now();
+// var time2 = performance.now();
 // console.log(`Time Elapsed: ${(time2 - time1) / 1000} seconds.`)
 
 //https://rithmschool.github.io/function-timer-demo/;
@@ -2745,13 +2745,13 @@ let HashTable = function() {
 
 console.log(hash('quincy', 10))
 
-let ht = new HashTable();
-ht.add('beau', 'person');
-ht.add('fido', 'dog');
-ht.add('rex', 'dinosour');
-ht.add('tux', 'penguin')
-console.log(ht.lookup('tux'))
-ht.print();
+let hasher = new HashTable();
+hasher.add('beau', 'person');
+hasher.add('fido', 'dog');
+hasher.add('rex', 'dinosour');
+hasher.add('tux', 'penguin')
+console.log(hasher.lookup('tux'))
+hasher.print();
 
 
 
@@ -3117,7 +3117,7 @@ class PriorityQueue {
   }
 }
 
-class Node {
+class newNode {
   constructor(val, priority){
       this.val = val;
       this.priority = priority;
