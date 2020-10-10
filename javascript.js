@@ -1,3 +1,5 @@
+//line 760
+
 /* BIG O NOTATION
 Time Complexity and Space complexity
 */
@@ -177,66 +179,66 @@ let names  = ['Michael', 'Melissa', 'Andrea'];
 //refactored using frequency counter(object) - O(n)
 function sameAgain(arr1, arr2){
   if(arr1.length !== arr2.length){
-      return false;
+    return false;
   }
   let frequencyCounter1 = {}
   let frequencyCounter2 = {}
   for(let val of arr1){
-      frequencyCounter1[val] = (frequencyCounter1[val] || 0) + 1
+    frequencyCounter1[val] = (frequencyCounter1[val]++ || 1)
   }
   for(let val of arr2){
-      frequencyCounter2[val] = (frequencyCounter2[val] || 0) + 1        
+    frequencyCounter2[val] = (frequencyCounter2[val]++ || 1)        
   }
   console.log(frequencyCounter1);
   console.log(frequencyCounter2);
   for(let key in frequencyCounter1){
-      if(!(key ** 2 in frequencyCounter2)){
-          return false
-      }
-      if(frequencyCounter2[key ** 2] !== frequencyCounter1[key]){
-          return false
-      }
+    if(!(key * key in frequencyCounter2)){
+      return false
+    }
+    if(frequencyCounter2[key * key] !== frequencyCounter1[key]){
+      return false
+    }
   }
   return true
 }
 
-console.log(sameAgain([1,2,3,2,5], [9,1,4,4,11]))
-console.log(sameAgain([1,2,3,2,5], [1,4,9,25,4]))
+// console.log(sameAgain([1,2,3,2,5], [9,1,4,4,11]))
+// console.log(sameAgain([1,2,3,2,5], [1,4,9,25,4]))
 
 //===================================================
 
 // //Big O Time complexity - O(n) linear
-// function validAnagram(word1, word2){
-// // add whatever parameters you deem necessary - good luck!
-// let object1 = {};
-// let object2 = {};
-// if (word1.length !== word2.length) {
-//   return false;
-// }
+function validAnagram(word1, word2){
+// add whatever parameters you deem necessary - good luck!
+let object1 = {};
+let object2 = {};
+if (word1.length !== word2.length) {
+  return false;
+}
 
-// for(let i = 0; i < word1.length; i++) {
-//   let letter = word1[i];
-//   object1[letter] = object1[letter] + 1 || 1;
-// }
-// console.log(object1)
+for(let i = 0; i < word1.length; i++) {
+  let letter = word1[i];
+  object1[letter] = object1[letter] + 1 || 1;
+}
+console.log(object1)
 
-// for(let i = 0; i < word2.length; i++) {
-//   let letter = word2[i];
-//   object2[letter] = object2[letter] + 1 || 1;
-// }
-// console.log(object2)
+for(let i = 0; i < word2.length; i++) {
+  let letter = word2[i];
+  object2[letter] = object2[letter] + 1 || 1;
+}
+console.log(object2)
 
-// for(let key in object1) {
-//   console.log(object1[key])
-//   console.log('-------------')
+for(let key in object1) {
+  console.log(object1[key])
+  console.log('-------------')
 
-//   if(object1[key] !== object2[key]) {
-//     return false;
-//   }
-// }
+  if(object1[key] !== object2[key]) {
+    return false;
+  }
+}
 
-// return true;
-// }
+return true;
+}
 // console.log(validAnagram('', '')) //true
 // console.log(validAnagram('hello', 'olleh')) //true
 // console.log(validAnagram('abc', 'wada')) //false
@@ -251,11 +253,11 @@ console.log(sameAgain([1,2,3,2,5], [1,4,9,25,4]))
 //multiple pointers example. big o - time complexity - O(n^2) - space - o(1)
 function sumZero(arr){
   for(let i = 0; i < arr.length; i++){
-      for(let j = i+1; j < arr.length; j++){
-          if(arr[i] + arr[j] === 0){
-              return [arr[i], arr[j]];
-          }
+    for(let j = i+1; j < arr.length; j++){
+      if(arr[i] + arr[j] === 0){
+        return [arr[i], arr[j]];
       }
+    }
   }
 }
 
@@ -286,7 +288,7 @@ function sumZero(arr){
 // console.log(sumZero([-4,-3,-2,-1,0,1,2,5]))
 
 
-//big o - time - O(n), space - O(n)
+//big O - time - O(n), space - O(n)
 function countUniqueValues(arr){
 let pushedArray = [];
 
@@ -295,7 +297,7 @@ for(var i = 0; i < arr.length; i++) {
   let pointer2 = arr[i+1];
   if(pointer1 !== pointer2){
     pushedArray.push(pointer1);
-    // console.log(pushedArray);
+    console.log(pushedArray);
 
   }
 
@@ -330,7 +332,7 @@ function maxSubarraySum(arr, num) {
 }
 
 // console.log(maxSubarraySum([1,2,5,2,8,1,5],2)) // 10 because 2+8=10
-// console.log(maxSubarraySum([1,2,5,2,8,1,5], 4)) // 17 because 2+5+2+8=17
+// console.log(maxSubarraySum([1,2,5,2,8,1,5],4)) // 17 because 2+5+2+8=17
 // console.log(maxSubarraySum([4,2,1,6],1)) // 6 because 6=6
 // console.log(maxSubarraySum([],4)) //null
 
@@ -339,6 +341,7 @@ function maxSubarraySum(arr,num) { //time complexity - O(n)
   let maxSum = 0;
   let tempSum = 0;
   if (arr.length < num) return null;
+
   for(let i = 0; i < num; i++) {
     maxSum += arr[i];
     // console.log(maxSum) //3
@@ -355,7 +358,7 @@ function maxSubarraySum(arr,num) { //time complexity - O(n)
 // console.log(maxSubarraySum([1,2,5,2,8,1,5],2)) // 10 because 2+8=10
 
 //============================================================
-//Divide and conquer - this pattern involves diviring a data set into smaller chunks and then repeating a process with a subset of data. this pattern can tremendously decrease time complexity
+//Divide and conquer - this pattern involves dividing a data set into smaller chunks and then repeating a process with a subset of data. this pattern can tremendously decrease time complexity
 
 //example - given a sorted array of integers, write a function called search, that accepts a value and returns the index where the value passed to the function is lcoated. if the value is not found, return -1.
 
@@ -384,10 +387,11 @@ search([1,2,3,4,5,6], 11) // -1
 
 function sameFrequency(num1, num2){
   if(num1.toString().length !== num2.toString().length) return false;
+
   let split1 = num1.toString().split('').sort()
   let split2 = num2.toString().split('').sort()
-  // console.log(split1);
-  // console.log(split2)
+  console.log(split1);
+  console.log(split2)
   for(var i = 0; i < split1.length; i++) {
     if(split1[i] !== split2[i]) {
       return false;
@@ -462,25 +466,31 @@ function averagePair(arr, num){
   }
   return false;
 }
-// console.log(averagePair([1,2,3], 2.5)) //true (2+3 /2 = 2.5)
-// console.log(averagePair([1,3,3,5,6,7,10,12,19], 8)) //true
+console.log(averagePair([1,2,3], 2.5)) //true (2+3 /2 = 2.5)
+console.log(averagePair([1,3,3,5,6,7,10,12,19], 8)) //true
+console.log(averagePair([1,3,3,5,6,7,10,12,19], 18)) //true
 
 
 //------------------------------------------------------------------------------
 // =======
 
 //alternate solution
-function averagePair(arr, num){
+function avgPair(arr, num){
   let start = 0
   let end = arr.length-1;
   while(start < end){ //0 < 2
     let avg = (arr[start]+arr[end]) / 2 
-    if(avg === num) return true;
+    if(avg === num) return ([arr[start],arr[end]] + ' ' +true);
     else if(avg < num) start++
     else end--;
   }
   return false;
 }
+
+// console.log(avgPair([1,2,3], 2.5)) //true (2+3 /2 = 2.5)
+// console.log(avgPair([1,3,3,5,6,7,10,12,19], 8)) //true
+// console.log(avgPair([1,3,3,5,6,7,10,12,19], 3)) //true
+
 //---------------------------------------------------------
 //multiple pointers -isSubsequence
 //Write a function called isSubsequence which takes in two strings and checks whether the characters in the first string form a subsequence of the characters in the second string. In other words, the function should check wther the charcters in the first string appear somewhere in the second string, without their order changing.
@@ -499,7 +509,7 @@ function isSubsequence(str1, str2) {
       substring = substring.concat(str2[str2Ptr]); //sing
       str2Ptr++;
       str1Ptr++;
-    }else {
+    } else {
       str2Ptr++;
     }
   }
@@ -515,7 +525,7 @@ function isSubsequence(str1, str2) {
 //======================================================
 
 //sliding window - maxSubarraySum
-//given an array of integers and a number, write a function called maxSubarraySum, which finds the maximum sum of a subarray with the length of the number passed to the function. Note that a subarray must consist of consecuvitve elements from the original array. In the first example below, [100, 200, 300] is a subarray of the original array, but [100,300] is not.
+//given an array of integers and a number, write a function called maxSubarraySum, which finds the maximum sum of a subarray with the length of the number passed to the function. Note that a subarray must consist of consecutive elements from the original array. In the first example below, [100, 200, 300] is a subarray of the original array, but [100,300] is not.
 
 //Constraints:
 //Time Complexity - O(N)
@@ -594,12 +604,11 @@ function minSubArrayLen(nums, sum) {
       break;
     }
   }
- 
   return minLen === Infinity ? 0 : minLen;
 }
 
-// console.log([2,3,1,2,4,3], 7) // 2 -> because [4,3] is the smallest subarray
-// console.log([2,1,6,5,4], 9) // 2 -> because [5,4] is the smallest subarray
+// console.log(minSubArrayLen([2,3,1,2,4,3], 7)) // 2 -> because [4,3] is the smallest subarray
+// console.log(minSubArrayLen([2,1,6,5,4], 9)) // 2 -> because [5,4] is the smallest subarray
 
 //====================================================================================
 
@@ -642,10 +651,10 @@ function nthLargest(arr, num) {
 
 function countDown(num) {
   if(num <= 0) {
-    // console.log("All done!");
+    console.log("All done!");
     return;
   }
-  // console.log(num);
+  console.log(num);
   num--;
   countDown(num);
 }
@@ -668,23 +677,23 @@ function sumRange(num) {
 // all return to 6
 
 //writing factorial iteratively
-// function factorial(num) {
-//   let total = 1;
-//   for(let i = num; i > 1; i--) {
-//     total *= i
-//   }
-//   return total;
-// }
+function factorial(num) {
+  let total = 1;
+  for(let i = num; i > 1; i--) {
+    total *= i
+  }
+  return total;
+}
 
 // console.log(factorial(3))
 
 //writing factorial recursively
-// function factorial(num){
-//   if(num === 1) return 1;
-//   return num * factorial(num - 1);
-// }
+function factorial(num){
+  if(num === 1) return 1;
+  return num * factorial(num - 1);
+}
 
-// console.log(factorial(5))
+console.log(factorial(5))
 
 //common pitfalls - no base case, or base case is wrong will result in ininite call stack size exceeded
 
@@ -716,7 +725,7 @@ function collectOddValues(arr){
   return result;
 }
 
-collectOddValues([1,2,3,4,5])
+// console.log(collectOddValues([1,2,3,4,5]))
 
 //pure recursion
 function collectOddValues(arr){
@@ -735,7 +744,7 @@ function collectOddValues(arr){
 }
 
 
-collectOddValues([1,2,3,4,5])
+// console.log(collectOddValues([1,2,3,4,5]))
 // [1].concat[collectOddValues([2,3,4,5])
 //               [].collectOddValues([3,4,5])
 //                     [3].collectOddValues([4,5])
