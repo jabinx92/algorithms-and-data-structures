@@ -1860,6 +1860,8 @@ this function should accept a value
 //   }
 // }
 
+
+
 // var list = new LinkedList();
 // console.log(list.push('hello'))
 // console.log(list.push('bye'))
@@ -1879,6 +1881,8 @@ this function should accept a value
 // console.log(list.insert(2, 'tactical insertion'))
 // console.log(list.insert(2, 'tactical insertioasdasdan'))
 // console.log(list);
+
+////linked list review
 
 //data structure - doubly linked list - construct a doubly linked list = compare and contrast double and singly linked lists - implement basic operations on a doubly linked list
 //doubly linked list is almost identical to singly linked lists, except every node has anothe rpointer, to the previous node!
