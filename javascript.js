@@ -2329,7 +2329,7 @@ tree.DFSPreOrder();
 tree.DFSPostOrder();
 tree.DFSInOrder();
 
-//leetcode 5
+//leetcode 6
 
 //this will take too long - SOLUTION - insert function
 // var tree = new BinarySearchTree();
