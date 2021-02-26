@@ -331,10 +331,10 @@ function maxSubarraySum(arr, num) {
   return max;
 }
 
-console.log(maxSubarraySum([1,2,5,2,8,1,5],2)) // 10 because 2+8=10
-console.log(maxSubarraySum([1,2,5,2,8,1,5],4)) // 17 because 2+5+2+8=17
-console.log(maxSubarraySum([4,2,1,6],1)) // 6 because 6=6
-console.log(maxSubarraySum([],4)) //null
+// console.log(maxSubarraySum([1,2,5,2,8,1,5],2)) // 10 because 2+8=10
+// console.log(maxSubarraySum([1,2,5,2,8,1,5],4)) // 17 because 2+5+2+8=17
+// console.log(maxSubarraySum([4,2,1,6],1)) // 6 because 6=6
+// console.log(maxSubarraySum([],4)) //null
 
 //refactor - 
 function maxSubarraySum(arr,num) { //time complexity - O(n)
@@ -466,9 +466,9 @@ function averagePair(arr, num){
   }
   return false;
 }
-console.log(averagePair([1,2,3], 2.5)) //true (2+3 /2 = 2.5)
-console.log(averagePair([1,3,3,5,6,7,10,12,19], 8)) //true
-console.log(averagePair([1,3,3,5,6,7,10,12,19], 18)) //true
+// console.log(averagePair([1,2,3], 2.5)) //true (2+3 /2 = 2.5)
+// console.log(averagePair([1,3,3,5,6,7,10,12,19], 8)) //true
+// console.log(averagePair([1,3,3,5,6,7,10,12,19], 18)) //true
 
 
 //------------------------------------------------------------------------------
@@ -693,7 +693,7 @@ function factorial(num){
   return num * factorial(num - 1);
 }
 
-console.log(factorial(5))
+// console.log(factorial(5))
 
 //common pitfalls - no base case, or base case is wrong will result in ininite call stack size exceeded
 
@@ -1398,7 +1398,7 @@ function selectionSort2(arr) {
   return arr;
 }
 
-// selectionSort2([0,2,34,22,10,19,17]);
+// console.log(selectionSort2([0,2,34,22,10,19,17]));
 //=========================================================
 //insertion sort
 //builds up the sort by gradually creating a larger left half which is always sorted
