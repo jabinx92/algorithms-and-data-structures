@@ -1382,7 +1382,23 @@ function selectionSort (array) {
 // console.log(selectionSort([5,4,3,2,1,1,-2]))
 // console.log(selectionSort([99,1,888,22,7,33,64,345]))
 
+//es6 selection sort
+function selectionSort2(arr) {
+  const swap = (arr, idx1, idx2) => ([arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]]);
 
+  for(let i = 0; i < arr.length; i++) {
+    let lowest = i;
+    for(let j = i + 1; j < arr.length; j++) {
+      if(arr[lowest] > arr[j]) {
+        lowest = j;
+      }
+    }
+    if(i !== lowest) swap(arr, i, lowest);
+  }
+  return arr;
+}
+
+// selectionSort2([0,2,34,22,10,19,17]);
 //=========================================================
 //insertion sort
 //builds up the sort by gradually creating a larger left half which is always sorted
